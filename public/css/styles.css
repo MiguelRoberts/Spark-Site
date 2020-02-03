@@ -22,37 +22,29 @@ html, body{
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     letter-spacing: 1px;
+    scrollbar-width: 0;
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 20vh;
+    height: 18vh;
     width: 100vw;
-    position: fixed;
 }
 
 section {
-    min-height: 100vh;
+    height: 100vh;
     border-bottom: black 2px solid;
 }
 
-.landing {
+#landing {
     /* this will be image of spark leaders doing smthn. possibly ppo picnic photo */
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/img/hero.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     height: 100vh;
-}
-
-.about {
-    
-}
-
-.leaders {
-    
 }
 
 .leaders h1 {
@@ -64,9 +56,9 @@ section {
 nav img {
     display: flex;
     align-items: center;
-    padding-left: 50px;
+    padding-left: 75px;
     justify-content: flex-start;
-    height: 17vh;
+    height: 110px;
 }
 
 .buttons {
@@ -75,19 +67,25 @@ nav img {
 }
 
 #login {
-    display: flex;
-    justify-content: right;
-    padding-right: 35px;
-    text-decoration: none;
-    color: white;
+    margin-right: 35px;
 }
 
 #apply {
+    margin-right: 100px;
+}
+
+.nav-link {
     display: flex;
     justify-content: right;
-    padding-right: 100px;
     text-decoration: none;
     color: white;
+    transition: border .25s;
+    padding-bottom: 5px;
+    border-bottom: solid 2px transparent;
+}
+
+.nav-link:hover {
+    border-bottom: solid 2px #FBC02D;
 }
 
 .learn-more {
@@ -95,9 +93,12 @@ nav img {
     flex-direction: column;
     color: white;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 
+.learn-more p {
+    padding-bottom: 15px;
+}
 .learn-more img {
     width: 50px;
     height: 50px;
@@ -107,18 +108,53 @@ nav img {
     color: white;
     font-size: 1.3rem;
     margin: 0;
-    padding: 130px 0px 0px 200px;
+    padding-left: 225px;
 }
 
 .acronym tr td h1 {
     margin: 10px;
 }
 
-.events {
+.events, .questions {
+    font-size: 20px;
+    font-weight: 300;
     border: none;
-    background-color: #e67e22;
+    background-color: #FBC02D;
     color: white;
-    margin: 15px 0 0 215px;
-    border-radius: 15px;
-    padding: 10px 15px 10px 15px;
+    margin: 25px 0 0 235px;
+    border-radius: 30px;
+    padding: 15px 20px;
+}
+
+.questions {
+    margin-left: 20px;
+}
+
+#about {
+    display: flex;
+    height: 100vh;
+}
+
+.description, .mission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.description img, .mission img {
+    border-radius: 20px;
+    width: 75%;
+    margin-top: 28px;
+}
+
+.description h1, .mission h1 {
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+.description p, .mission p {
+    padding: 0 50px;
+    line-height: 28px;
 }
