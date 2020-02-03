@@ -1,14 +1,10 @@
 $(function() {
-    // const $login = $("#login")
-    // const $apply = $("#apply")
+    // waypoint for nav
+    $('#about').waypoint(function(direction) {
+        if (direction == "down")
+            $('nav.sticky').removeClass('hidden')
 
-    // $login.hover(
-    //     function(){$(this).addClass("hover");},
-    //     function(){$(this).removeClass("hover");}
-    // )
-
-    // $apply.hover(
-    //     function(){$(this).addClass("hover");},
-    //     function(){$(this).removeClass("hover");}
-    // )
+        else 
+            $('nav.sticky').addClass('hidden')
+    })
 })
