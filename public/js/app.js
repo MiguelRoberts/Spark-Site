@@ -6,5 +6,7 @@ $(function() {
 
         else 
             $('nav.sticky').addClass('hidden')
+    }, {
+        offset: 40
     })
 })
