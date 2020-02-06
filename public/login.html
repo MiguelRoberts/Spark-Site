@@ -16,16 +16,18 @@
     <div class="container">
         <img src="./img/favicon-2.png" alt="">
 
-        <h4>Username or email</h4>
-        <input id="user" type="text" placeholder="ex. bertec20@bergen.org">
-        <h4>Password</h4>
-        <input id="password" type="text" placeholder="password">
+        <form action="./api/auth" method="POST">
+            <h4>Email</h4>
+            <input id="user" name="email" type="text" placeholder="email">
+            <h4>Password</h4>
+            <input id="password" name="password" type="text" placeholder="password">
 
-        <!-- Would like to add hover-fill functionality to these -->
-        <div class="buttons">
-            <button id="login">Login</button>
-            <button id="forgotpass">Forgot Password</button>
-        </div>
+            <!-- Would like to add hover-fill functionality to these -->
+            <div class="buttons">
+                <button id="login" >Login</button>
+                <button id="forgotpass">Forgot Password</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>

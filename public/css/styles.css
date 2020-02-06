@@ -46,12 +46,6 @@ section {
     height: 100vh;
 }
 
-.leaders h1 {
-    margin: 0;
-    text-align: center;
-    padding-top: 25px;
-}
-
 nav img {
     display: flex;
     align-items: center;
@@ -128,25 +122,6 @@ nav img {
     margin-left: 20px;
 }
 
-#about {
-    display: flex;
-    height: 100vh;
-    border-bottom: black 2px solid;
-    justify-content: center;
-}
-
-#about h1 {
-    margin-top: 75px;
-    margin-bottom: 0px;
-    font-weight: 300;
-    height: 65px;
-}
-
-#about h1:after {
-    border-bottom: 1px solid #555;
-    width: 50%;
-}
-
 .sticky {
     position: fixed;
     top: 0;
@@ -170,4 +145,93 @@ nav img {
 
 .hidden {
     opacity: 0;
+}
+
+#about {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    align-items: center;
+}
+
+#about h1 {
+    margin-top: 75px;
+    margin-bottom: 0px;
+    font-weight: 300;
+    height: 65px;
+}
+
+#about hr {
+    width: 75px;
+    border: 1px solid #FBC02D;
+}
+
+.paragraphs {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+.mission {
+    margin: 0 100px 0 100px;
+    line-height: 28px;
+}
+
+.mission h2 {
+    font-weight: 300;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about {
+    margin: 0 100px 0 100px;
+    line-height: 28px;
+}
+
+.about h2 {
+    font-weight: 300;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#images {
+    height: 600px;
+}
+
+.row-one {
+    display: flex;
+    flex-direction: row;
+}
+
+.row-one img {
+    height: 300px;
+    width: 25vw;
+}
+
+.row-two {
+    display: flex;
+    flex-direction: row;
+}
+.row-two img {
+    height: 300px;
+    width: 25vw;
+}
+
+#leaders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#leaders h1 {
+    margin-top: 75px;
+    font-weight: 300;
+}
+
+#leaders hr {
+    width: 75px;
+    border: 1px solid #FBC02D;
 }
