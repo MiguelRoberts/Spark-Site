@@ -1,6 +1,7 @@
-const express   = require('express')
-const mongoose  = require('mongoose')
-const path      = require('path')
+const express       = require('express')
+const bodyParser    = require('body-parser')
+const mongoose      = require('mongoose')
+const path          = require('path')
 
 // env config
 require('dotenv').config()
@@ -8,6 +9,7 @@ require('dotenv').config()
 // server config
 const server = express()
 server.use(express.json())
+server.use(bodyParser.urlencoded({ extended: true }))
 
 // connect to mongodb
 const db = process.env.DB
@@ -19,6 +21,8 @@ mongoose
 // use routes
 server.use('/api/users', require('./routes/api/users'))
 server.use('/api/auth', require('./routes/api/auth'))
+
+server.use('/test', require('./middleware/auth'), (req, res) => res.json('u in homie'))
 
 // serve static assets
 server.use(express.static(path.join(__dirname, 'public')))

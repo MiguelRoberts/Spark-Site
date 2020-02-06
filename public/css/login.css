@@ -42,6 +42,7 @@ input {
     padding: 10px;
     height: 30px;
     width: 300px;
+    outline: none;
 }
 
 .buttons {
