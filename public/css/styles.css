@@ -187,7 +187,7 @@ nav img {
 
 .about {
     margin: 0 100px 0 100px;
-    line-height: 28px;
+    line-height: 32px;
 }
 
 .about h2 {
@@ -199,26 +199,34 @@ nav img {
 }
 
 #images {
-    height: 600px;
+    height: 550px;
 }
 
-.row-one {
+.row {
     display: flex;
     flex-direction: row;
+    width: 100vw;
+    height: 50%;
 }
 
-.row-one img {
-    height: 300px;
+.spark-image {
     width: 25vw;
+    overflow: hidden;
+    margin: 0;
+    background-color: #000;
 }
 
-.row-two {
-    display: flex;
-    flex-direction: row;
+.spark-image img {
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s, opacity 0.5s;
+    transform: scale(1.15);
 }
-.row-two img {
-    height: 300px;
-    width: 25vw;
+
+.spark-image img:hover {
+    opacity: 1;
+    transform: scale(1.03);
 }
 
 #leaders {
