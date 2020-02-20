@@ -9,4 +9,11 @@ $(function() {
     }, {
         offset: 40
     })
+
+    $(".leaders-carousel").slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3
+      });
 })

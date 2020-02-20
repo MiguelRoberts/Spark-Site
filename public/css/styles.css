@@ -243,3 +243,9 @@ nav img {
     width: 75px;
     border: 1px solid #FBC02D;
 }
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+}
