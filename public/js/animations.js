@@ -42,7 +42,6 @@ $(function() {
         const scrollDur = Number($el.attr('data-scroll-duration')) || 1000;
 
         $el.click(function() {
-            
             $("html, body").animate({ scrollTop: scrollPos }, scrollDur);
         })
     })
