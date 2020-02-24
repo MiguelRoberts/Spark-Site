@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="BCA Spark">
+
+        <link rel="stylesheet" type="text/css" href="./css/normalize.css">
+        <link rel="stylesheet" href="./css/animations.css">
+        <link rel="stylesheet" type="text/css" href="./css/apply.css">
+        <link rel="icon" type="image/png" href="./img/favicon-2.png">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300i,400,400i" rel="stylesheet">
+        <title>BCA Spark</title>
+</head>
+<body>
+    <div class="container">
+        <img src="./img/favicon-2.png" alt="">
+
+        <form action="./api/auth" method="POST">
+            <h3>Create an Account</h3>
+            <hr>
+
+            <h4>First Name</h4>
+            <input id="firstname" name="firstname" type="text" placeholder="First Name">
+
+            <h4>Last Name</h4>
+            <input id="lastname" name="lastname" type="text" placeholder="Last Name">
+
+            <h4>Email</h4>
+            <input id="user" name="email" type="text" placeholder="email">
+
+            <h4>Academy</h4>
+            <select name="academy" id="academy">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="AAST">AAST</option>
+                <option value="ATCS">ATCS</option>
+                <option value="AEDT">AEDT</option>
+                <option value="ABF">ABF</option>
+                <option value="AMST">AMST</option>
+                <option value="ACAHA">ACAHA</option>
+                <option value="AVPA/M">AVPA/M</option>
+                <option value="AVPA/T">AVPA/T</option>
+                <option value="AVPA/V">AVPA/V</option>
+            </select>
+
+            <h4>Gender</h4>
+            <select name="gender" id="gender">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            
+            <h4>Password</h4>
+            <input id="password" name="password" type="password" placeholder="password">
+
+            <h4>Confirm Password</h4>
+            <input id="password" name="password" type="password" placeholder="Confirm Password">
+
+            <div class="buttons">
+                <button id="create">Create Your Account!</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

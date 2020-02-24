@@ -95,7 +95,7 @@ nav img {
 .acronym {
     color: white;
     font-size: 1.3rem;
-    margin: 0;
+    margin-bottom: 25px;
     padding-left: 225px;
 }
 
@@ -103,18 +103,26 @@ nav img {
     margin: 10px;
 }
 
-.events, .questions {
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: 25px 0 0 235px;
+}
+
+#events, #questions {
     font-size: 20px;
     font-weight: 300;
     border: none;
     background-color: #FBC02D;
     color: white;
-    margin: 25px 0 0 235px;
     border-radius: 30px;
     padding: 15px 20px;
+    text-decoration: none;
 }
 
-.questions {
+#questions {
     margin-left: 20px;
 }
 

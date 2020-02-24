@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    background-color: #fff;
+    color: #555;
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    letter-spacing: 1px;
+    scrollbar-width: 0;
+    height: 350vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 50vw;
+    margin: 25px 20vw 0 25vw;
+}
+
+#logo {
+    width: 150px;
+    height: 150px;
+}
+
+hr {
+    border: 1px solid #FBC02D;
+    width: 50%;
+}
+
+h3 {
+    margin: 50px 0 30px 0;
+    font-weight: 400;
+}
+
+.submit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.submit h3 {
+    margin-bottom: 15px;
+}
+.submit hr {
+    width: 75px;
+    margin-bottom: 20px;
+}
+
+.submit p {
+    margin: 0 15%;
+}
+
+.submit h4 {
+    margin-top: 25px;
+    font-weight: 400;
+}
+.submit input {
+    margin-top: 20px;
+    width: 75%;
+    color: #555;
+    padding: 10px;
+}
+
+#question {
+    height: 200px;
+}
+
+#submit {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 300;
+    border: none;
+    background-color: #FBC02D;
+    color: white;
+    border-radius: 30px;
+    padding: 15px 20px;
+    text-decoration: none;
+}
