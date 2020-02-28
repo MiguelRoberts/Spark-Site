@@ -9,6 +9,7 @@ const auth      = require('../../middleware/auth')
 // @access  Public
 
 router.post('/', async (req, res) => {
+    return res.json(req.body)
     const { email, password } = req.body
 
     // Simple validation

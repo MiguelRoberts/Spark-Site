@@ -16,7 +16,7 @@
     <div class="container">
         <img src="./img/favicon-2.png" alt="">
 
-        <form action="./api/auth" method="POST">
+        <form action="./api/users" method="POST">
             <h3>Create an Account</h3>
             <hr>
 
@@ -28,6 +28,13 @@
 
             <h4>Email</h4>
             <input id="user" name="email" type="text" placeholder="email">
+
+            <h4>Grade</h4>
+            <select name="grade" id="academy">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="sophomore">Sophomore</option>
+                <option value="junior">Junior</option>
+            </select>
 
             <h4>Academy</h4>
             <select name="academy" id="academy">
