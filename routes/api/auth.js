@@ -2,7 +2,7 @@ const User      = require('../../models/User')
 const router    = require('express').Router()
 const bcrypt    = require('bcryptjs')
 const jwt       = require('jsonwebtoken')
-const auth      = require('../../middleware/auth')
+const { auth }  = require('../../middleware/auth')
 
 // @route   POST /api/auth
 // @desc    Authenticate User
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 router.get('/user', auth, (req, res) => {
     User.findById(req.user.id)
       .select('-password')
-      .then(user => res.json(user));
-});  
+      .then(user => res.json(user))
+})
 
 module.exports = router

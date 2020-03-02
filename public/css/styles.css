@@ -234,22 +234,18 @@ nav img {
 }
 
 #leaders {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100vw;
 }
+
 #leaders h1 {
     margin-top: 75px;
     font-weight: 300;
+    text-align: center;
 }
 
 #leaders hr {
     width: 75px;
     border: 1px solid #FBC02D;
-}
-
-.box {
-    width: 100px;
-    height: 100px;
-    background-color: green;
+    margin: 0 auto;
+    margin-bottom: 50px;
 }

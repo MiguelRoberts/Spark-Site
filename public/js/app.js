@@ -13,7 +13,7 @@ $(function() {
     $(".leaders-carousel").slick({
         dots: true,
         infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToShow: 5,
+        slidesToScroll: 7
       });
 })

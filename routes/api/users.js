@@ -8,12 +8,16 @@ const jwt       = require('jsonwebtoken')
 // @desc    Register New User
 // @access  Public
 
-router.post('/', async (req, res) => {
-    const userInfo = { name, grade, academy, email, password } = req.body
+router.post('/', async (req, res) => {    
+    const userInfo = { firstname, lastname, email, grade, academy, password } = req.body
 
     // Simple validation
-    if (!name || !grade || !academy || !email || !password)
+    if (!firstname || !lastname || !grade || !academy || !email || !password)
         return res.status(400).json({ msg: 'Please enter all fields' })
+
+    if (password[0] !== password[1])
+        return res.status(400).json({ msg: 'Passwords do not match' })
+    else password = password[0]
     
     // Check for existing user
     const user = await User.findOne({ email })
@@ -23,7 +27,7 @@ router.post('/', async (req, res) => {
     const newUser = new User(userInfo)
 
     // if user is a spark leader add extra info
-    if (req.body.type === 'leader') {
+    if (req.body.type && req.body.type === 'leader') {
         const leaderInfo = { activities, committees, headshot } = req.body
 
         const leader = new Leader(leaderInfo)
@@ -44,7 +48,8 @@ router.post('/', async (req, res) => {
             token,
             user: {
                 id: user.id,
-                name: user.name,
+                firstname: user.firstname,
+                lastname: user.lastname,
                 grade: user.grade,
                 academy: user.academy,
                 email: user.email,

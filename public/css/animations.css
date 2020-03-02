@@ -45,7 +45,6 @@
 
     100% {
         opacity: 0;
-        display: none;
         transform: translateX(125px);
     }
 }
@@ -60,6 +59,32 @@
     100% {
         opacity: 0;
         transform: translateX(-125px);
+    }
+}
+
+/* == Slide-Out-Up == */
+@keyframes slide-out-up {
+    0% {
+        transform: translateY();
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-125px);
+    }
+}
+
+/* == Slide-Out-Down == */
+@keyframes slide-out-down {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(125px);
     }
 }
 
@@ -135,6 +160,20 @@
     transform: scale(1.35);
 }
 
+@keyframes scale-out {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+.scale-out {
+    transform: scale(1);
+}
+
 /* ===== Exit Animations ====== */
 
 @keyframes fade-out {
@@ -150,32 +189,13 @@
     opacity: 1;
 }
 
-@keyframes scale-out {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    25% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0);
-    }
-}
-
-.scale-out {
-    opacity: 1;
-    transform: scale(1);
-}
-
 @keyframes bounce {
     0% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
 
     100% {
@@ -188,4 +208,128 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/* ====== CAROUSEL ======= */
+
+.carousel {
+    margin: 150px auto;
+
+    width: 1000px;
+    height: 400px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
+
+    overflow-x: hidden;
+
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    /* padding: 0 20 */
+}
+
+.carousel-slides {
+    width: 100%;
+    display: flex;
+    transition: transform 1500ms ease;
+}
+
+.carousel-slide {
+    display: flex;
+    justify-content: space-around;
+
+    min-width: 100%;
+}
+
+.carousel-item {
+    position: relative;
+    
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    transition: 350ms transform ease-in-out;
+    
+}
+
+.carousel-item:first-of-type:hover {
+    position: relative;
+    transform: scale(1.25, 1.25) translateX(10%);
+    z-index: 999;
+}
+
+.carousel-item:last-of-type:hover {
+    position: relative;
+    transform: scale(1.25, 1.25) translateX(-10%);
+    z-index: 999;
+}
+
+.carousel-item:hover {
+    position: relative;
+    transform: scale(1.25, 1.25);
+    z-index: 999;
+}
+
+.carousel-button {
+    color: rgb(46, 46, 46);
+    background-color: 0;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+
+.carousel-button > i {
+    font-size: 48px;
+}
+
+.carousel-button--left {
+    left: -50px;
+    z-index: 999;
+}
+
+.carousel-button--right {
+    right: -50px;
+    z-index: 999;
+    outline: none;
+    user-select: none;
+}
+
+.carousel-nav {
+    position: absolute;
+    display: flex;
+    bottom: 50px;
+    right: 48%;
+}
+
+.dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 8.5px;
+    border: 0;
+    cursor: pointer;
+    background-color: #E0E0E0;
+    margin: 0 2px;
+    outline: none;
+    user-select: none;
+    transition: 200ms background-color ease-in-out;
+}
+
+.dot-active {
+    background-color: #9E9E9E;
+}
+
+.dot:hover {
+    background-color: #9E9E9E;
 }

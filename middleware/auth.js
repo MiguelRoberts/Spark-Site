@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken')
+const jwt   = require('jsonwebtoken')
+const User  = require('../models/User')
 
 const auth = (req, res, next) => {
     const token = req.header('x-auth-token')
@@ -18,4 +19,16 @@ const auth = (req, res, next) => {
     }
 }
 
-module.exports = auth
+const sparkAuth = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.user.id)
+        if (!user.leader_data)
+            return res.status(400).json({ msg: 'Invalid Permissions' })
+
+        next()
+    } catch (e) {
+        res.status(500).json({ msg: 'Error validating user.' })
+    }
+}
+
+module.exports = { auth, sparkAuth }
