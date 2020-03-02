@@ -21,9 +21,7 @@ mongoose
 // use routes
 server.use('/api/users', require('./routes/api/users'))
 server.use('/api/auth', require('./routes/api/auth'))
-
-server.use('/test', require('./middleware/auth'), (req, res) => res.json('u in homie'))
-
+server.use('/api/faq', require('./routes/api/faq'))
 // serve static assets
 server.use(express.static(path.join(__dirname, 'public')))
 
