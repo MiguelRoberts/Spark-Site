@@ -1,5 +1,6 @@
 const express       = require('express')
 const bodyParser    = require('body-parser')
+const cookieParser  = require('cookie-parser')
 const mongoose      = require('mongoose')
 const path          = require('path')
 
@@ -10,6 +11,7 @@ require('dotenv').config()
 const server = express()
 server.use(express.json())
 server.use(bodyParser.urlencoded({ extended: true }))
+server.use(cookieParser(process.env.COOKIE))
 
 // connect to mongodb
 const db = process.env.DB
@@ -18,10 +20,17 @@ mongoose
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log(`Error connecting to MongoDB:\n${err}`))
 
-// use routes
+// ejs config
+server.set('view engine', 'ejs')
+
+// api routes
 server.use('/api/users', require('./routes/api/users'))
 server.use('/api/auth', require('./routes/api/auth'))
 server.use('/api/faq', require('./routes/api/faq'))
+
+// spark routes
+server.use('/spark', require('./routes/spark'))
+
 // serve static assets
 server.use(express.static(path.join(__dirname, 'public')))
 

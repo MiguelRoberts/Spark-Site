@@ -12,8 +12,12 @@ $(function() {
 
     $(".leaders-carousel").slick({
         dots: true,
-        infinite: true,
+        arrows: true,
+
         slidesToShow: 5,
-        slidesToScroll: 7
+        slidesToScroll: 5,
+
+        infinite: true,
+        speed: 1253,
       });
 })

@@ -1,8 +1,20 @@
-const jwt   = require('jsonwebtoken')
-const User  = require('../models/User')
+const cookieParser  = require('cookie-parser')
+const jwt           = require('jsonwebtoken')
+const User          = require('../models/User')
 
+const setCookie = (res, token) => {
+    const cookieConfig = {
+        httpOnly: true,
+        maxAge: 100000000,
+        signed: true
+    }
+
+    res.cookie('auth-token', token, cookieConfig)
+}
+
+// TODO: Handle Unauthorized Users Better (add alert "you do not have permission to access this page")
 const auth = (req, res, next) => {
-    const token = req.header('x-auth-token')
+    const token = req.signedCookies['auth-token']
 
     // Check token
     if(!token) return res.status(401).json({ msg: 'No token, authorization denied' })
@@ -31,4 +43,4 @@ const sparkAuth = async (req, res, next) => {
     }
 }
 
-module.exports = { auth, sparkAuth }
+module.exports = { setCookie, auth, sparkAuth }

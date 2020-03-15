@@ -41,7 +41,7 @@ router.put('/', auth, sparkAuth, async (req, res) => {
 })
 
 // @route   GET /api/faq/answered
-// @desc    Gets all answered questions
+// @desc    Get Answered Questions
 // @access  Public
 router.get('/answered', async (req, res) => {
     try {
@@ -54,7 +54,7 @@ router.get('/answered', async (req, res) => {
 })
 
 // @route   GET /api/faq/unanswered
-// @desc    Gets all unanswered questions
+// @desc    Get Unanswered Questions
 // @access  Public
 router.get('/unanswered', async (req, res) => {
     try {

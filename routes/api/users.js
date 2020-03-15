@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
         newUser.password = hash
         let user = await newUser.save()
 
-        const token = await jwt.sign({ id: user.id }, process.env.JWT, { expiresIn: 86400 })
+        const token = await jwt.sign({ _id: user.id }, process.env.JWT, { expiresIn: 86400 })
 
         res.json({
             token,

@@ -235,6 +235,9 @@ nav img {
 
 #leaders {
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #leaders h1 {
@@ -248,4 +251,18 @@ nav img {
     border: 1px solid #FBC02D;
     margin: 0 auto;
     margin-bottom: 50px;
+}
+
+.leaders-carousel {
+    width: 90%;
+}
+
+/* SLICK STUFF */
+.slick-slide {
+    user-select: none !important;
+    outline: none !important;
+}
+
+button.slick-arrow {
+    
 }

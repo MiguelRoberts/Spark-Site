@@ -2,7 +2,7 @@ const User      = require('../../models/User')
 const router    = require('express').Router()
 const bcrypt    = require('bcryptjs')
 const jwt       = require('jsonwebtoken')
-const { auth }  = require('../../middleware/auth')
+const { setCookie, auth }  = require('../../middleware/auth')
 
 // @route   POST /api/auth
 // @desc    Authenticate User
@@ -23,19 +23,24 @@ router.post('/', async (req, res) => {
         const isMatched = await bcrypt.compare(password, user.password)
         if (!isMatched) return res.status(400).json({ msg: 'Invalid Password' })
 
-        const token = await jwt.sign({ id: user.id }, process.env.JWT, { expiresIn: 21600 })
-        res.json({
-            token,
-            user: {
-                id: user.id,
-                name: user.name,
-                grade: user.grade,
-                academy: user.academy,
-                email: user.email,
-            }
-        })
+        const token = await jwt.sign({ _id: user.id }, process.env.JWT, { expiresIn: 21600 })
+        setCookie(res, token)
+
+        res.redirect('/spark')
+
+        // res.json({
+        //     token,
+        //     user: {
+        //         id: user.id,
+        //         name: user.name,
+        //         grade: user.grade,
+        //         academy: user.academy,
+        //         email: user.email,
+        //     }
+        // })
 
     } catch(err) {
+        console.log(err)
         res.status(500).json({ msg: 'Error Authenticating User' })
     }
 })
