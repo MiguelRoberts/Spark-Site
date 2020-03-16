@@ -11,6 +11,8 @@ router.get('/', auth, async (req, res) => {
 
         if (!user) return res.status(500).send('Error Authenticating User')
 
+        console.log(user)
+
         res.render('home', { user })
     } catch (e) {
         res.status(500).send('Error')
