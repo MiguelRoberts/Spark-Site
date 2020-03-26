@@ -54,4 +54,12 @@ router.get('/user', auth, (req, res) => {
       .then(user => res.json(user))
 })
 
+// @route   GET api/auth/logout
+// @desc    Logout User - clears clookie
+// @access  Private
+router.get('/logout', auth, (req, res) => {
+    res.clearCookie('auth-token')
+    res.redirect('/')
+})
+
 module.exports = router
