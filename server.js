@@ -30,6 +30,7 @@ server.use('/api/faq', require('./routes/api/faq'))
 
 // spark routes
 server.use('/spark', require('./routes/spark'))
+server.use('/spark/faq', require('./routes/spark/faq'))
 
 // serve static assets
 server.use(express.static(path.join(__dirname, 'public')))
@@ -37,3 +38,5 @@ server.use(express.static(path.join(__dirname, 'public')))
 // start server
 const port = process.env.PORT || 8000
 server.listen(port, () => console.log(`Server running on port ${port}...`))
+
+// Add Form Response When Users Submit Question on FAQ Page

@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/ae2a37b208.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/header.css">
+
+    <link rel="icon" type="image/png" href="/img/favicon-2.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300i,400,400i">
+
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/animations.css">
+
+    <link rel="stylesheet" href="/css/spark/header.css">
+    <link rel="stylesheet" href="/css/spark/<%= styles %>">
     <title>Spark Homepage</title>
 </head>
 <body>
-
     <nav>
         <div id="left-nav">
             <h3>SPARK</h3>
-            <img src="./img/favicon-2.png" id="logo" alt="">
+            <img src="/img/favicon-2.png" id="logo" alt="spark-logo">
             <h3>Homepage</h3>
         </div>
         <div id="right-nav">
@@ -22,14 +28,15 @@
         </div>
     </nav>
 
-    <div class="sidebar">
-        <div class="sidebar-tab" id="home">
-            <a href="" class="sidebar-tab-text"><i class="fas fa-home"></i>Home</a>
+    <div class="main">
+        <div class="sidebar">
+            <div class="sidebar-tab" id="home">
+                <a href="/" class="sidebar-tab-text"><i class="fas fa-home"></i>Home</a>
+            </div>
+            <div class="sidebar-tab" id="calendar">
+                <a href="/spark/calendar" class="sidebar-tab-text"><i class="fas fa-calendar-alt"></i>Calendar</a>
+            </div>
+            <div class="sidebar-tab" id="faq">
+                <a href="/spark/faq" class="sidebar-tab-text"><i class="fas fa-question"></i>FAQ</a>
+            </div>
         </div>
-        <div class="sidebar-tab" id="calendar">
-            <a href="" class="sidebar-tab-text"><i class="fas fa-calendar-alt"></i>Calendar</a>
-        </div>
-        <div class="sidebar-tab" id="faq">
-            <a href="" class="sidebar-tab-text"><i class="fas fa-question"></i>FAQ</a>
-        </div>
-    </div>

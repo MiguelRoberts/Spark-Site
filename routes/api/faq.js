@@ -5,12 +5,12 @@ const { auth, sparkAuth }   = require('../../middleware/auth')
 // @route   POST /api/faq
 // @desc    Submit a Question
 // @access  Public
-
 router.post('/', async (req, res) => {
     try {
         const faqInfo = { email, question } = req.body
 
-        if (!email || !question) res.status(400).send({ msg: 'Please Enter All Fields' })
+        if (!email || !question) 
+            return res.status(400).send({ msg: 'Please Enter All Fields' })
 
         const faq = await FAQ.create(faqInfo)
         res.json(faq)
@@ -23,12 +23,11 @@ router.post('/', async (req, res) => {
 // @route   PUT /api/faq
 // @desc    Answer a Question
 // @access  Protected
-
 router.put('/', auth, sparkAuth, async (req, res) => {
     try {
         const { id, answer } = req.body
 
-        if (!answer) res.status(400).send({ msg: 'No Answer Given' })
+        if (!answer) return res.status(400).send({ msg: 'No Answer Given' })
         
         const question = await FAQ.findById(id)
         question.answer = answer
