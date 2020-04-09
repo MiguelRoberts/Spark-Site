@@ -4,5 +4,9 @@
     <script src="https://kit.fontawesome.com/ae2a37b208.js" crossorigin="anonymous"></script>
     <script src="/js/animations.js"></script>
     <script src="/js/spark/app.js"></script>
+    
+    <% if (locals.js) { %>
+        <%- js -%>
+    <% } %>
 </body>
 </html>

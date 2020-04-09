@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="/css/animations.css">
 
     <link rel="stylesheet" href="/css/spark/header.css">
-    <link rel="stylesheet" href="/css/spark/<%= styles %>">
+    
+    <% if (locals.css) { %>
+        <%- css -%>
+    <% } %>
+    
     <title>Spark Homepage</title>
 </head>
 <body>
@@ -31,7 +35,7 @@
     <div class="main">
         <div class="sidebar">
             <div class="sidebar-tab" id="home">
-                <a href="/" class="sidebar-tab-text"><i class="fas fa-home"></i>Home</a>
+                <a href="/spark" class="sidebar-tab-text"><i class="fas fa-home"></i>Home</a>
             </div>
             <div class="sidebar-tab" id="calendar">
                 <a href="/spark/calendar" class="sidebar-tab-text"><i class="fas fa-calendar-alt"></i>Calendar</a>

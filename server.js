@@ -31,7 +31,7 @@ server.use('/api/faq', require('./routes/api/faq'))
 // spark routes
 server.use('/spark', require('./routes/spark'))
 server.use('/spark/faq', require('./routes/spark/faq'))
-
+server.use('/spark/calendar', require('./routes/spark/calendar'))
 // serve static assets
 server.use(express.static(path.join(__dirname, 'public')))
 

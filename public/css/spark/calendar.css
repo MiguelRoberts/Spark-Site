@@ -1,0 +1,7 @@
+#spark-calendar {
+    max-width: 1200px;
+}
+
+#spark-calendar td.fc-day, #spark-calendar td.fc-event-container {
+    cursor: pointer;
+}
