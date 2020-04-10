@@ -27,6 +27,7 @@ server.set('view engine', 'ejs')
 server.use('/api/users', require('./routes/api/users'))
 server.use('/api/auth', require('./routes/api/auth'))
 server.use('/api/faq', require('./routes/api/faq'))
+server.use('/api/events', require('./routes/api/events'))
 
 // spark routes
 server.use('/spark', require('./routes/spark'))
