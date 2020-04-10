@@ -7,7 +7,8 @@ const { auth, sparkAuth }  = require('../../middleware/auth')
 // @access  Protected
 router.post('/', auth, async (req, res) => {
     const eventData = { title, start, end } = req.body
-
+    eventData.owners = eventData.owners || [req.user._id]
+    
     if (!title || !start || !end) 
         return res.status(400).send({ msg: 'Please Enter All Fields' })
 

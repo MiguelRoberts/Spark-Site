@@ -6,6 +6,11 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: false,
+        default: ""
+    },
     start: {
         type: String,
         required: true
@@ -13,7 +18,15 @@ const eventSchema = new Schema({
     end: {
         type: String,
         required: true
-    }
+    },
+    public: {
+        type: Boolean,
+        default: true
+    },
+    owners: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 })
 
 module.exports = Event = mongoose.model('Event', eventSchema)

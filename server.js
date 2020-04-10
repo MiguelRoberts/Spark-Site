@@ -33,6 +33,7 @@ server.use('/api/events', require('./routes/api/events'))
 server.use('/spark', require('./routes/spark'))
 server.use('/spark/faq', require('./routes/spark/faq'))
 server.use('/spark/calendar', require('./routes/spark/calendar'))
+server.use('/spark/committees', require('./routes/spark/committees'))
 // serve static assets
 server.use(express.static(path.join(__dirname, 'public')))
 
@@ -40,4 +41,5 @@ server.use(express.static(path.join(__dirname, 'public')))
 const port = process.env.PORT || 8000
 server.listen(port, () => console.log(`Server running on port ${port}...`))
 
-// Add Form Response When Users Submit Question on FAQ Page
+// TODO: Add Form Response When Users Submit Question on FAQ Page
+// TODO: Add Attendance Functionality to Spark Events
