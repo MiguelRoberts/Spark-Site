@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const committeSchema = new Schema({
+const committeeSchema = new Schema({
     importance: {
         type: String,
         required: true
     },
-    title: {
+    name: {
         type: String,
         required: true
     },

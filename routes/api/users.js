@@ -7,7 +7,6 @@ const jwt       = require('jsonwebtoken')
 // @route   POST /api/users
 // @desc    Register New User
 // @access  Public
-
 router.post('/', async (req, res) => {    
     const userInfo = { firstname, lastname, email, grade, academy, password } = req.body
 
@@ -58,6 +57,77 @@ router.post('/', async (req, res) => {
     } catch(err) {
         console.log(err)
         res.status(500).send({ msg: 'Error Creating User' })
+    }
+})
+
+// @route   POST /api/users/reset
+// @desc    Send Reset Password Email
+// @access  Public
+router.post('/send_reset_email', async (req, res) => {    
+    const email = req.body.email
+
+    // Simple validation
+    if (!email)
+        return res.status(400).json({ msg: 'Please enter an email' })
+
+    try {
+        // Find User
+        const user = await User.findOne({ email })
+        if (!user) return res.send({ type: 'error', msg: 'Invalid Email' })
+
+        // create token for reset password url
+        const token = await jwt.sign({ _id: user._id }, process.env.JWT, { expiresIn: 10 })
+
+        const url = `http://localhost:8000/reset_password.html?token=${token}`
+
+        // email url
+        res.send({ type: 'success', url })
+
+    } catch(err) {
+        console.log(err)
+        res.send({ type: 'error', msg: 'An Error Occurred While Resetting Your Password.<br>Please Contact an Administrator or Try Again Later.' })
+    }
+})
+
+// @route   POST /api/users/reset?token=""
+// @desc    Reset Pasword
+// @access  Public
+router.post('/reset_password', async (req, res) => {
+    const token = req.query.token
+    const checkToken = req.body.checkToken
+
+    // validate token
+    if (checkToken) {
+        try {
+            const decoded = jwt.verify(token, process.env.JWT)
+            return res.send({ type: 'success' })
+        } catch (e) {
+            return res.send({ type: 'error' })
+        }
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT)
+        const user = await User.findById(decoded._id)
+        
+        let password = req.body.password
+    
+        // check if passwords match
+        if (password[0] !== password[1]) 
+            return res.send({ type: 'error', msg: 'Passwords do not match.' })
+        
+        // reset password
+        const salt = await bcrypt.genSalt()
+        const hash = await bcrypt.hash(password[0], salt)
+
+        user.password = hash
+        await user.save()
+
+        res.send({ type: 'success' })
+    } catch(e) {
+        if (e.name === 'TokenExpiredError')
+            res.send({ type: 'error', msg: 'Your reset password token has expired.<br/>Click <a href="/forgot_password.html">here</a> to reset your password again.'})
+        res.send({ type: 'error', msg: 'An Error Occurred While Resetting Your Password.<br>Please Contact an Administrator or Try Again Later.'})
     }
 })
 

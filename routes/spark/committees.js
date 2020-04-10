@@ -1,5 +1,6 @@
-const { auth, sparkAuth }  = require('../../middleware/auth')
-const router    = require('express').Router()
+const Committee             = require('../../models/Committee')
+const router                = require('express').Router()
+const { auth, sparkAuth }   = require('../../middleware/auth')
 
 // @route   GET /spark/committee
 // @desc    (write here alek)

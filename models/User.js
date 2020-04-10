@@ -9,14 +9,12 @@ const userSchema = new Schema({
     lastname: {
         type: String,
         required: true
-    },
+    },  
     grade: {
         type: String,
-        required: true
     },
     academy: {
         type: String,
-        required: true
     },
     leader_data: {
         type: mongoose.SchemaTypes.ObjectId,

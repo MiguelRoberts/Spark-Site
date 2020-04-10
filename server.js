@@ -41,5 +41,6 @@ server.use(express.static(path.join(__dirname, 'public')))
 const port = process.env.PORT || 8000
 server.listen(port, () => console.log(`Server running on port ${port}...`))
 
+// TODO: Add Email Functionality to Reset Passwords | Add Admin Functionality
 // TODO: Add Form Response When Users Submit Question on FAQ Page
 // TODO: Add Attendance Functionality to Spark Events
