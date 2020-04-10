@@ -15,7 +15,6 @@
 
 .committee-row {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
 }
@@ -25,6 +24,7 @@
 }
 
 .committee {
+    width: 32%;
     margin-right: 25px;
 }
 
