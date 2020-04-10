@@ -1,0 +1,33 @@
+.committees {
+    padding: 50px;
+}
+
+.title {
+    margin-bottom: 40px;
+}
+
+.importance-title {
+    font-weight: 400;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #FBC02D;
+    margin-bottom: 0px;
+}
+
+.committee-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+.committee-title {
+    margin: 15px 0;
+    font-weight: 400;
+}
+
+.committee {
+    margin-right: 25px;
+}
+
+.committee:last-child {
+    margin-right: 0px;
+}
