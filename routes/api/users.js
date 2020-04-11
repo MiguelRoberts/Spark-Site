@@ -1,8 +1,10 @@
 const User      = require('../../models/User')
 const Leader    = require('../../models/Leader')
+const sgMail    = require('@sendgrid/mail');
 const router    = require('express').Router()
 const bcrypt    = require('bcryptjs')
 const jwt       = require('jsonwebtoken')
+const request   = require('request')
 
 // @route   POST /api/users
 // @desc    Register New User
@@ -76,12 +78,34 @@ router.post('/send_reset_email', async (req, res) => {
         if (!user) return res.send({ type: 'error', msg: 'Invalid Email' })
 
         // create token for reset password url
-        const token = await jwt.sign({ _id: user._id }, process.env.JWT, { expiresIn: 10 })
+        const token = await jwt.sign({ _id: user._id }, process.env.JWT, { expiresIn: 600 })
 
         const url = `http://localhost:8000/reset_password.html?token=${token}`
 
-        // email url
-        res.send({ type: 'success', url })
+        // get reset-password
+        request("http://localhost:8000/reset_password_template-email.html", 
+            function(error, response, html) {
+                if (error) throw new Error
+
+                html = html.replace('<% name %>', user.firstname)
+                html = html.replace('<% url %>', url)
+
+                // email template with filled in values
+                sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+                console.log(html)
+                
+                const msg = {
+                    to: user.email,
+                    from: 'no-reply@spark-mailer.bergen.org',
+                    subject: 'Reset Password',
+                    html
+                }
+                
+                sgMail.send(msg);
+                res.send({ type: 'success' })
+            }
+        )
 
     } catch(err) {
         console.log(err)
