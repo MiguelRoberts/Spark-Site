@@ -10,10 +10,7 @@ const committeeSchema = new Schema({
         type: String,
         required: true
     },
-    members: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }]
+    members: [{}]
 })
 
 module.exports = Committee = mongoose.model('Committee', committeeSchema)

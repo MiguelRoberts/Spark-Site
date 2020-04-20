@@ -103,7 +103,7 @@ router.post('/send_reset_email', async (req, res) => {
                 }
                 
                 sgMail.send(msg);
-                res.send({ type: 'success' })
+                res.send({ type: 'success', url })
             }
         )
 

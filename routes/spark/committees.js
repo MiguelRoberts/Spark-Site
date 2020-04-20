@@ -7,6 +7,8 @@ const { auth, sparkAuth }   = require('../../middleware/auth')
 // @access  Protected
 router.get('/', auth, async (req, res) => {
     try {
+        const committees = await Committee.find()
+
         res.render('committees', {
             css: `
                 <link rel="stylesheet" href="/css/spark/committees.css" />
@@ -14,7 +16,8 @@ router.get('/', auth, async (req, res) => {
             js: `
                 <script src="/js/spark/committees.js"></script>
             `,
-            user: req.user
+            user: req.user,
+            committees
         })
     } catch (e) {
         console.log(e)
