@@ -8,6 +8,10 @@ const { auth, sparkAuth }   = require('../../middleware/auth')
 router.get('/', auth, async (req, res) => {
     try {
         const committees = await Committee.find()
+        
+        const primary = committees.filter(c => c.importance === "Primary")
+        const secondary = committees.filter(c => c.importance === "Secondary")
+        const tertiary = committees.filter(c => c.importance === "Tertiary")
 
         res.render('committees', {
             css: `
@@ -17,7 +21,7 @@ router.get('/', auth, async (req, res) => {
                 <script src="/js/spark/committees.js"></script>
             `,
             user: req.user,
-            committees
+            primary, secondary, tertiary
         })
     } catch (e) {
         console.log(e)
