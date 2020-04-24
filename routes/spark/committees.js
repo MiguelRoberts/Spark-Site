@@ -12,6 +12,8 @@ router.get('/', auth, async (req, res) => {
         const primary = committees.filter(c => c.importance === "Primary")
         const secondary = committees.filter(c => c.importance === "Secondary")
         const tertiary = committees.filter(c => c.importance === "Tertiary")
+        
+        console.log(primary)
 
         res.render('committees', {
             css: `
