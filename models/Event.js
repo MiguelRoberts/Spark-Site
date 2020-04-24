@@ -26,7 +26,8 @@ const eventSchema = new Schema({
     owners: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    availability: [{}]
 })
 
 module.exports = Event = mongoose.model('Event', eventSchema)

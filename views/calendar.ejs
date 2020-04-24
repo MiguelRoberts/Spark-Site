@@ -1,14 +1,53 @@
 <%- include ('./partials/header') %>
 
+<div class="modal micromodal-slide" id="add-event-modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="add-event-modal">
+            <header class="modal__header">
+                <h2 class="modal__title" id="add-event-modal-title">
+                    Create Spark Event
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            
+            <main class="modal__content" id="add-event-modal-content">
+                <form id="add-event-form" action="/api/events" method="POST">
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label for="title">Title</label>
+                            <input id="title" type="text" name="title" placeholder="Title..." required>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label for="description">Description</label>
+                            <textarea id="description" type="text" name="description" placeholder="Description..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-field" style="margin-right: 5px;">
+                            <label for="start">Start Date</label>
+                            <input id="start" type="text" name="start" placeholder="Start..." readonly required>
+                        </div>
+                        <div class="input-field">
+                            <label for="end">End Date</label>
+                            <input id="end" type="text" name="end" placeholder="End..." readonly required>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <label for="public">Display on Public Calendar</label>
+                        <input id="public" type="checkbox" name="public">
+                    </div>
+                    <button type="submit" class="modal__btn" data-micromodal-close>Create</button>
+                    <button type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <h1 class="title">Spark Calendar</h1>
-
-    <form action="/api/events" method="POST">
-        <input type="text" name="title" required>
-        <input type="text" name="start" required>
-        <input type="text" name="end" required>
-        <button type="submit">Submit</button>
-    </form>
 
     <div id="spark-calendar"></div>
 </div>
