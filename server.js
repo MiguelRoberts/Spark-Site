@@ -36,6 +36,7 @@ server.use('/spark/calendar', require('./routes/spark/calendar'))
 server.use('/spark/committees', require('./routes/spark/committees'))
 
 server.use('/spark/applications', require('./routes/spark/applications'))
+
 // serve static assets
 server.use(express.static(path.join(__dirname, 'public')))
 

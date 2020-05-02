@@ -15,7 +15,7 @@ router.get('/', auth, async (req, res) => {
         
         console.log(primary)
 
-        res.render('committees', {
+        res.render('spark/committees', {
             css: `
                 <link rel="stylesheet" href="/css/spark/committees.css" />
             `,

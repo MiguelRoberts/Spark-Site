@@ -8,7 +8,7 @@ const router    = require('express').Router()
 router.get('/', auth, async (req, res) => {
     try {
         const questions = await FAQ.find()
-        res.render('faq', {
+        res.render('spark/faq', {
             styles: 'faq.css',
             user: req.user, 
             questions

@@ -1,0 +1,69 @@
+<%- include ('../partials/header') %>
+
+<div class="container committees">
+    <h1 class="title">Committees</h1>
+
+    <table class="primary">
+        <tbody>
+            <tr>
+                <td><h4 class="importance-title">Primary Committees</h4></td>
+            </tr>
+
+            <%  let i = 0
+                primary.forEach((committee, j) => {
+                    if (i % 3 === 0) { %> <tr class = "committee-row"> <% } %>
+                    <td class="committee">
+                        <h4 class="committee-title"><%= committee.name %></h4>
+                        <ul>
+                            <% committee.members.forEach(member => { %>
+                                <li><%= `${member.firstname} ${member.lastname}` %></li>
+                            <% }) %>
+                        </ul>
+                    </td>
+                    <% i+=1
+                    if (i % 3 === 0 || j === primary.length) { %> </tr> <% } %>
+                <% }); %>
+
+            <tr>
+                <td><h4 class="importance-title">Secondary Committees</h4></td>
+            </tr>
+    
+            <%  i = 0
+                secondary.forEach((committee, j) => {
+                    if (i % 3 === 0) { %> <tr class = "committee-row"> <% } %>
+                    <td class="committee">
+                        <h4 class="committee-title"><%= committee.name %></h4>
+                        <ul>
+                            <% committee.members.forEach(member => { %>
+                                <li><%= `${member.firstname} ${member.lastname}` %></li>
+                            <% }) %>
+                        </ul>
+                    </td>
+                    <% i+=1
+                    if (i % 3 === 0 || j === secondary.length) { %> </tr> <% } %>
+                <% }); %>
+
+            <tr>
+                <td><h4 class="importance-title">Tertiary Committees</h4></td>
+            </tr>
+    
+            <%  i = 0
+                tertiary.forEach((committee, j) => {
+                    if (i % 3 === 0) { %> <tr class = "committee-row"> <% } %>
+                    <td class="committee">
+                        <h4 class="committee-title"><%= committee.name %></h4>
+                        <ul>
+                            <% committee.members.forEach(member => { %>
+                                <li><%= `${member.firstname} ${member.lastname}` %></li>
+                            <% }) %>
+                        </ul>
+                    </td>
+                    <% i+=1
+                    if (i % 3 === 0 || j === tertiary.length) { %> </tr> <% } %>
+                <% }); %>
+        </tbody>
+    </table>
+
+</div>
+
+<%- include ('../partials/footer') %>

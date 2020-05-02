@@ -1,9 +1,9 @@
-const { auth }  = require('../../../middleware/auth')
-const User      = require('../../../models/User')
-const router    = require('express').Router()
+const { auth, sparkAuth }   = require('../../../middleware/auth')
+const User                  = require('../../../models/User')
+const router                = require('express').Router()
 
-// @route   GET /spark
-// @desc    Spark Homepage
+// @route   GET /spark/applications/
+// @desc    Spark Application Review
 // @access  Protected
 router.get('/', auth, async (req, res) => {
     try {
@@ -11,7 +11,7 @@ router.get('/', auth, async (req, res) => {
 
         if (!user) return res.status(500).send('Error Authenticating User')
 
-        res.render('applications/index', { 
+        res.render('spark/applications', { 
             css: '<link href="/css/spark/applications/index.css" />',
             css: '<link href="/js/spark/applications/index.js" />', 
             user 
