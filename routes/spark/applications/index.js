@@ -12,8 +12,8 @@ router.get('/', auth, async (req, res) => {
         if (!user) return res.status(500).send('Error Authenticating User')
 
         res.render('spark/applications', { 
-            css: '<link href="/css/spark/applications/index.css" />',
-            css: '<link href="/js/spark/applications/index.js" />', 
+            css: '<link rel="stylesheet" href="/css/spark/applications/index.css" />',
+            js: '<link href="/js/spark/applications/index.js" />', 
             user 
         })
     } catch (e) {

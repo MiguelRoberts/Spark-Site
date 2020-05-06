@@ -1,0 +1,62 @@
+.applications {
+    padding: 50px;
+}
+
+.applicants {
+    border-spacing: 0;
+}
+
+.title {
+    margin-bottom: 40px;
+}
+
+thead tr td {
+    font-weight: 400;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #FBC02D;
+}
+
+.name {
+    width: 25%;
+}
+
+.written {
+    width: 21.66%;
+    text-align: center;
+}
+
+.individual {
+    text-align: center;
+    width: 21.66%;
+}
+
+.group {
+    text-align: center;
+    width: 21.66%;
+}
+
+.total {
+    text-align: center;
+    width: 10%;
+}
+
+.applicant-row {
+    height: 75px;
+}
+
+.applicant-row td{
+    border-bottom: 1px solid rgba(132,132,132,.75);
+}
+
+.grade-button {
+    font-size: 18px;
+    font-weight: 300;
+    border: none;
+    background-color: #FBC02D;
+    color: white;
+    border-radius: 30px;
+    padding: 8px 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
