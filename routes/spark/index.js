@@ -7,15 +7,14 @@ const router    = require('express').Router()
 // @access  Protected
 router.get('/', auth, async (req, res) => {
     try {
-        const user = (await User.findById(req.user._id).select('-password')).toObject()
-
-        if (!user) return res.status(500).send('Error Authenticating User')
+        if (!req.user) return res.status(500).send('Error Authenticating User')
 
         res.render('spark/home', { 
             css: '<link href="/css/spark/index.css" />', 
-            user 
+            user: req.user
         })
     } catch (e) {
+        console.log(e)
         res.status(500).send('Error')
     }
 })

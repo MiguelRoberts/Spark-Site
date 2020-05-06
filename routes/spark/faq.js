@@ -9,7 +9,7 @@ router.get('/', auth, async (req, res) => {
     try {
         const questions = await FAQ.find()
         res.render('spark/faq', {
-            styles: 'faq.css',
+            css: '/css/spark/faq.css',
             user: req.user, 
             questions
         })

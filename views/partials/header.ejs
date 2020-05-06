@@ -28,10 +28,14 @@
         <div id="right-nav">
             <!-- put user name right in here -->
             <h3><%= user.name %></h3>
-            <a href="./api/auth/logout" id="logout">Logout</a>
+            <a href="/api/auth/logout" id="logout">Logout</a>
         </div>
     </nav>
 
+    <% if (locals.css) { %>
+        <input id="userInfo" type="text" style="display: none;" value="<%= JSON.stringify(user) %>">
+    <% } %>
+    
     <div class="main">
         <div class="sidebar">
             <div class="sidebar-tab" id="home">

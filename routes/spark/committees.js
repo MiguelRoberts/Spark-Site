@@ -13,8 +13,6 @@ router.get('/', auth, async (req, res) => {
         const secondary = committees.filter(c => c.importance === "Secondary")
         const tertiary = committees.filter(c => c.importance === "Tertiary")
         
-        console.log(primary)
-
         res.render('spark/committees', {
             css: `
                 <link rel="stylesheet" href="/css/spark/committees.css" />

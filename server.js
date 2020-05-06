@@ -1,8 +1,9 @@
-const express       = require('express')
-const bodyParser    = require('body-parser')
-const cookieParser  = require('cookie-parser')
-const mongoose      = require('mongoose')
-const path          = require('path')
+const express           = require('express')
+const bodyParser        = require('body-parser')
+const cookieParser      = require('cookie-parser')
+const methodOverride    = require('method-override')
+const mongoose          = require('mongoose')
+const path              = require('path')
 
 // env config
 require('dotenv').config()
@@ -12,11 +13,12 @@ const server = express()
 server.use(express.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(cookieParser(process.env.COOKIE))
+server.use(methodOverride('_method'))
 
 // connect to mongodb
 const db = process.env.DB
 mongoose
-    .connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+    .connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log(`Error connecting to MongoDB:\n${err}`))
 

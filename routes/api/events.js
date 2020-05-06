@@ -2,18 +2,31 @@ const Event     = require('../../models/Event')
 const router    = require('express').Router()
 const { auth, sparkAuth }  = require('../../middleware/auth')
 
+// @route   GET /api/events
+// @desc    GET Events
+// @access  Protected
+router.get('/', auth, async (req, res) => {
+    try {
+        const events = await Event.find({})
+        res.send(events)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
 // @route   POST /api/events
 // @desc    Create Event
 // @access  Protected
 router.post('/', auth, async (req, res) => {
-    const eventData = { title, start, end, public } = req.body
+    let eventData = { title, start, end, public } = req.body
     eventData.owners = eventData.owners || [req.user._id]
     
     if (!title || !start || !end) 
         return res.status(400).send({ msg: 'Please Enter All Fields' })
 
-    eventData.public = public === undefined ? false : public === "on" ? true : false
-
+    eventData.public = eventData.public === "true" ? true : false
+    
     try {
         const event = await Event.create(eventData)
         res.send(event)
@@ -23,13 +36,21 @@ router.post('/', auth, async (req, res) => {
     }
 })
 
-// @route   GET /api/events
-// @desc    GET Events
+// @route   PUT /api/events/:id
+// @desc    Update Event
 // @access  Protected
-router.get('/', auth, async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
+    let eventData = { title, start, end, public } = req.body
+    eventData.owners = eventData.owners || [req.user._id]
+
+    if (!title || !start || !end) 
+        return res.status(400).send({ msg: 'Please Enter All Fields' })
+
+    eventData.public = eventData.public === "true" ? true : false
+    
     try {
-        const events = await Event.find({})
-        res.send(events)
+        const event = await Event.findByIdAndUpdate(req.params.id, eventData)
+        res.send(event)
     } catch (e) {
         console.log(e)
         res.status(500).send({ msg: 'Server Error' })

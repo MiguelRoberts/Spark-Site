@@ -13,7 +13,7 @@ const setCookie = (res, token) => {
 }
 
 // TODO: Handle Unauthorized Users Better (add alert "you do not have permission to access this page")
-const auth = (req, res, next) => {
+const auth = async (req, res, next) => {
     const token = req.signedCookies['auth-token']
 
     // Check token
@@ -24,17 +24,17 @@ const auth = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT)
         
         // Add user from payload
-        req.user = decoded
+        req.user = (await User.findById(decoded._id).select('-password')).toObject()
         next()
     } catch (err) {
+        console.log(err)
         res.status(400).json({ msg: 'Invalid Token' })
     }
 }
 
 const sparkAuth = async (req, res, next) => {
     try {
-        const user = await User.findById(req.user.id)
-        if (!user.leader_data)
+        if (!req.user.leader_data)
             return res.status(400).json({ msg: 'Invalid Permissions' })
 
         next()
