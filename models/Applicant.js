@@ -3,6 +3,8 @@ const Schema    = mongoose.Schema
 
 const applicantSchema = new Schema({
     written: {
+        activities: [],
+        responses: [],
         grades: [], // category grades
         comments: String
     },
@@ -10,10 +12,18 @@ const applicantSchema = new Schema({
         questions: [],
         questionGrades: [],
         grades: [], // category grades
+        interviewer: {
+            type:mongoose.SchemaType.ObjectId,
+            ref: 'User'
+        },
         comments: String
     },
     group_interview: {
         grades: [], // category grades
         comment: String
-    }
+    },
+    applicationStage: {
+        type: Number,
+        default: 1,
+    }, // 1 = written | 2 = individual interview | 3 = group interview
 })

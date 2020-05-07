@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const applicationDetailsSchema = new Schema({
+    applicationsOpen: Boolean,
     written: {
         questions: [], // written questions
         categories: [] // categories to be graded on

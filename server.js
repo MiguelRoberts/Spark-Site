@@ -52,3 +52,24 @@ server.listen(port, () => console.log(`Server running on port ${port}...`))
 // TODO: Finish Email Functionality to Reset Passwords | Add Admin Functionality
 // TODO: Add Form Response When Users Submit Question on FAQ Page
 // TODO: Add Attendance Functionality to Spark Events
+
+// const ApplicationDetails = require('./models/ApplicationDetails')
+// async function stuff() {
+//     const a = await ApplicationDetails.create({
+//         applicationsOpen: true,
+//         written: {
+//             questions: ["Written Question 1", "Written Question 2", "Written Question 3", "Written Question 4", "Written Question 5"], // written questions
+//             categories: ["Written Category 1", "Written Category 2", "Written Category 3"] // categories to be graded on
+//         },
+//         individual_interview: {
+//             questions: [], // pool of all questions that can be asked in the interview
+//             categories: ["Individual Category 1", "Individual Category 2", "Individual Category 3", "Individual Category 4", "Individual Category 5"] // categories to be graded on
+//         },
+//         group_interviews: {
+//             categories: ["Group Category 1", "Group Category 2", "Group Category 3", "Group Category 4"] // categories to be graded on
+//         }
+//     })
+//     console.log(a)
+// }
+
+// stuff()
