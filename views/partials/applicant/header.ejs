@@ -20,6 +20,20 @@
 </head>
 <body>
 
+    <nav>
+        <div id="left-nav">
+            <h3>Applicant</h3>
+            <img src="/img/favicon-2.png" id="logo" alt="spark-logo">
+            <h3>Portal</h3>
+        </div>
+        <div id="right-nav">
+            <!-- put user name right in here -->
+            <h3><%= user.name %></h3>
+            <a href="" id="question">Question?</a>
+            <a href="/api/auth/logout" id="logout">Logout</a>
+        </div>
+    </nav>
+
     <% if (locals.user) { %>
         <input id="userInfo" type="text" style="display: none;" value="<%= JSON.stringify(user) %>">
     <% } %>

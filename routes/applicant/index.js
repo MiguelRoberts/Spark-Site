@@ -8,7 +8,7 @@ router.get('/', auth, applicantAuth, async (req, res) => {
     try {
         res.render('applicant/home', { 
             title: "Spark Applicant",
-            css: '<link href="/css/applicant/index.css" />',
+            css: '<link rel="stylesheet" href="/css/applicant/index.css" />',
             user: req.user
         })
     } catch (e) {
