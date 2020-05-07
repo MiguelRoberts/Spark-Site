@@ -57,6 +57,27 @@ router.put('/:id', auth, async (req, res) => {
     }
 })
 
+// @route   DELETE /api/events/:id
+// @desc    Delete Event
+// @access  Protected
+router.delete('/:id', auth, async (req, res) => {
+    const userId = req.body.id
+
+    if (!userId) return res.status(400).send({ msg: 'Error Sending Delete Request' })
+    try {
+        const event = await Event.findById(req.params.id)
+
+        if (event.owners.indexOf(userId) === -1) 
+            return res.status(400).send({ msg: 'You Do Not Have Permission to Delete This Event' })
+
+        const e = await event.delete()
+        res.send(e)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
 // @route   POST /api/events/:eventId/owners
 // @desc    Update User's Availability For an Event
 // @access  Protected

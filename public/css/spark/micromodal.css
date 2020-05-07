@@ -101,6 +101,10 @@
   color: #fff;
 }
 
+.modal__btn-danger {
+  background-color: #D32F2F;
+  color: #fff;
+}
 
 
 /**************************\

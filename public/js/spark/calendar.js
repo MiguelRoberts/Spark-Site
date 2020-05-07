@@ -55,6 +55,7 @@ $(function() {
                 $('#event-public').click(function(event) { event.preventDefault() })
 
                 $("#view-event-modal-submit-button").addClass('hidden')
+                $("#view-event-modal-delete-button").addClass('hidden')
                 $("#view-event-modal-close-button").text('Close')
             } else {
                 $('#event-title').removeAttr('readonly')
@@ -69,6 +70,7 @@ $(function() {
                 $('#event-public').unbind('click')
 
                 $("#view-event-modal-submit-button").removeClass('hidden')
+                $("#view-event-modal-delete-button").removeClass('hidden')
                 $("#view-event-modal-close-button").text('Cancel')
             }
 
@@ -105,6 +107,22 @@ $(function() {
             data,
             dataType: 'JSON'
         })
+        .done(function(data) {
+            location.reload()
+        })
+        .fail(function(err) {
+            console.log(err)
+        })
+    })
+
+    $("#view-event-modal-delete-button").click(function() {
+        if(confirm('Are You Sure You Would Like to Delete This Event?'))
+            $.ajax({
+                method: "POST",
+                url: `/api/events/${$("#event-id").val()}?_method=DELETE`,
+                data: { id: user._id },
+                dataType: 'JSON'
+            })
             .done(function(data) {
                 location.reload()
             })
