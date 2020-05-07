@@ -26,7 +26,10 @@ router.post('/', async (req, res) => {
         const token = await jwt.sign({ _id: user.id }, process.env.JWT, { expiresIn: 21600 })
         setCookie(res, token)
 
-        res.redirect('/spark')
+        if (user.leader_data)
+            res.redirect('/spark')
+        else 
+            res.redirect('/applicant')
 
         // res.json({
         //     token,

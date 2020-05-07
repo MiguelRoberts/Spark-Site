@@ -4,9 +4,10 @@ const router                = require('express').Router()
 // @route   GET /spark/application-controls/
 // @desc    Spark Application Committee Main Page
 // @access  Protected
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, sparkAuth, async (req, res) => {
     try {
         res.render('spark/application-controls', { 
+            title: "Application Controls",
             css: '<link rel="stylesheet" href="/css/spark/application-controls/index.css" />',
             js: '<link href="/js/spark/application-controls/index.js" />', 
             user: req.user

@@ -31,12 +31,14 @@ server.use('/api/auth', require('./routes/api/auth'))
 server.use('/api/faq', require('./routes/api/faq'))
 server.use('/api/events', require('./routes/api/events'))
 
+// applicant routes
+server.use('/applicant', require('./routes/applicant'))
+
 // spark routes
 server.use('/spark', require('./routes/spark'))
 server.use('/spark/faq', require('./routes/spark/faq'))
 server.use('/spark/calendar', require('./routes/spark/calendar'))
 server.use('/spark/committees', require('./routes/spark/committees'))
-
 server.use('/spark/applications', require('./routes/spark/applications'))
 server.use('/spark/application-controls', require('./routes/spark/application-controls'))
 

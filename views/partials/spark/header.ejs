@@ -16,7 +16,7 @@
         <%- css -%>
     <% } %>
     
-    <title>Spark Homepage</title>
+    <title><%= title %></title>
 </head>
 <body>
     <nav>
@@ -32,7 +32,7 @@
         </div>
     </nav>
 
-    <% if (locals.css) { %>
+    <% if (locals.user) { %>
         <input id="userInfo" type="text" style="display: none;" value="<%= JSON.stringify(user) %>">
     <% } %>
     

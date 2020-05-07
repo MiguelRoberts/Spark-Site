@@ -5,10 +5,11 @@ const router    = require('express').Router()
 // @route   GET /spark/faq
 // @desc    FAQ Page
 // @access  Protected
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, sparkAuth, async (req, res) => {
     try {
         const questions = await FAQ.find()
         res.render('spark/faq', {
+            title: "Spark FAQ",
             css: '/css/spark/faq.css',
             user: req.user, 
             questions

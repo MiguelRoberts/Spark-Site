@@ -32,8 +32,9 @@ const auth = async (req, res, next) => {
     }
 }
 
-const sparkAuth = async (req, res, next) => {
+const sparkAuth = (req, res, next) => {
     try {
+        // only allow spark leaders to access spark side of website
         if (!req.user.leader_data)
             return res.status(400).json({ msg: 'Invalid Permissions' })
 
@@ -43,4 +44,16 @@ const sparkAuth = async (req, res, next) => {
     }
 }
 
-module.exports = { setCookie, auth, sparkAuth }
+const applicantAuth = (req, res, next) => {
+    try {
+        // prevent spark leaders from accessing applicant side of website
+        if (req.user.leader_data)
+            return res.redirect('/spark')
+
+        next()
+    } catch (e) {
+        res.status(500).json({ msg: 'Error validating user.' })
+    }
+}
+
+module.exports = { setCookie, auth, sparkAuth, applicantAuth }

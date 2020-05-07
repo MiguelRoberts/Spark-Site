@@ -5,7 +5,7 @@ const { auth, sparkAuth }   = require('../../middleware/auth')
 // @route   GET /spark/committee
 // @desc    (write here alek)
 // @access  Protected
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, sparkAuth, async (req, res) => {
     try {
         const committees = await Committee.find()
         
@@ -14,6 +14,7 @@ router.get('/', auth, async (req, res) => {
         const tertiary = committees.filter(c => c.importance === "Tertiary")
         
         res.render('spark/committees', {
+            title: "Spark Committees",
             css: `
                 <link rel="stylesheet" href="/css/spark/committees.css" />
             `,

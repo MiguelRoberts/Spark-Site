@@ -4,9 +4,10 @@ const router                = require('express').Router()
 // @route   GET /spark/applications/
 // @desc    Spark Application Review
 // @access  Protected
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, sparkAuth, async (req, res) => {
     try {
         res.render('spark/applications', { 
+            title: "Spark Applications",
             css: '<link rel="stylesheet" href="/css/spark/applications/index.css" />',
             js: '<link href="/js/spark/applications/index.js" />', 
             user: req.user
