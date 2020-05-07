@@ -9,12 +9,20 @@ const userSchema = new Schema({
     lastname: {
         type: String,
         required: true
-    },  
+    },
+    gender: {
+        type: String,
+        required: true
+    },
     grade: {
         type: String,
     },
     academy: {
         type: String,
+    },
+    applicant_data: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Applicant'
     },
     leader_data: {
         type: mongoose.SchemaTypes.ObjectId,

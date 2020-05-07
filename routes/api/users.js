@@ -10,7 +10,7 @@ const request   = require('request')
 // @desc    Register New User
 // @access  Public
 router.post('/', async (req, res) => {    
-    const userInfo = { firstname, lastname, email, grade, academy, password } = req.body
+    const userInfo = { firstname, lastname, email, grade, academy, gender, password } = req.body
 
     // Simple validation
     if (!firstname || !lastname || !grade || !academy || !email || !password)

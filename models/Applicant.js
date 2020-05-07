@@ -13,7 +13,7 @@ const applicantSchema = new Schema({
         questionGrades: [],
         grades: [], // category grades
         interviewer: {
-            type:mongoose.SchemaType.ObjectId,
+            type: mongoose.SchemaTypes.ObjectId,
             ref: 'User'
         },
         comments: String
@@ -27,3 +27,5 @@ const applicantSchema = new Schema({
         default: 1,
     }, // 1 = written | 2 = individual interview | 3 = group interview
 })
+
+module.exports = Applicant = mongoose.model('Applicant', applicantSchema)
