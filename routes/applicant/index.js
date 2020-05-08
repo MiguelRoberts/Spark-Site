@@ -17,7 +17,7 @@ router.get('/', auth, applicantAuth, async (req, res) => {
                             .findById(req.user._id)
                             .populate('applicant_data')
                             .exec()
-        
+
         res.render('applicant/home', { 
             title: "Spark Applicant",
             user,
