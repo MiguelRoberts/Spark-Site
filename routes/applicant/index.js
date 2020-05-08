@@ -21,7 +21,7 @@ router.get('/', auth, applicantAuth, async (req, res) => {
         res.render('applicant/home', { 
             title: "Spark Applicant",
             user,
-            css: '<link href="/css/applicant/index.css" />',
+            css: '<link rel="stylesheet" href="/css/applicant/index.css" />',
             details,
         })
     } catch (e) {
