@@ -9,7 +9,7 @@ router.get('/', auth, sparkAuth, async (req, res) => {
         res.render('spark/application-controls', { 
             title: "Application Controls",
             css: '<link rel="stylesheet" href="/css/spark/application-controls/index.css" />',
-            js: '<link href="/js/spark/application-controls/index.js" />', 
+            js: '<script src="/js/spark/application-controls/index.js"></script>', 
             user: req.user
         })
     } catch (e) {

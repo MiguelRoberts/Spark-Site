@@ -4,10 +4,75 @@
     <h1 class="title" style="text-align: center;">Application Controls</h1>
 
 
-    <div class="section">
-        <h2 class="header">Written Application</h2>
-        <div class="questions">
-            <input id="question" type="text">            
+    <div class="addables-container">
+        <div id="written-questions" class="addable" data-api="/api/application-details/written-questions">
+            <div class="addable__header">
+                <h3 class="header">Written - Questions</h2>
+                <button>Remove All</button>
+            </div>
+            <div class="addable__body">
+                <div class="addable__content"></div>
+                <div class="addable__input">
+                    <input type="text">
+                    <button>Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="written-categories" class="addable" data-api="/api/application-details/written-categories">
+            <div class="addable__header">
+                <h3 class="header">Written - Categories</h2>
+                <button>Remove All</button>
+            </div>
+            <div class="addable__body">
+                <div class="addable__content"></div>
+                <div class="addable__input">
+                    <input type="text">
+                    <button>Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="individual-interview-questions" class="addable" data-api="/api/application-details/individual-interview-questions">
+            <div class="addable__header">
+                <h3 class="header">Individual Interview - Questions</h2>
+                <button>Remove All</button>
+            </div>
+            <div class="addable__body">
+                <div class="addable__content"></div>
+                <div class="addable__input">
+                    <input type="text">
+                    <button>Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="individual-interview-categories" class="addable" data-api="/api/application-details/individual-interview-categories">
+            <div class="addable__header">
+                <h3 class="header">Individual Interview - Categories</h2>
+                <button>Remove All</button>
+            </div>
+            <div class="addable__body">
+                <div class="addable__content"></div>
+                <div class="addable__input">
+                    <input type="text">
+                    <button>Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="group-interview-categories" class="addable" data-api="/api/application-details/group-interview-categories">
+            <div class="addable__header">
+                <h3 class="header">Group Interview - Categories</h2>
+                <button>Remove All</button>
+            </div>
+            <div class="addable__body">
+                <div class="addable__content"></div>
+                <div class="addable__input">
+                    <input type="text">
+                    <button>Add</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
