@@ -9,10 +9,11 @@ const router                = require('express').Router()
 router.get('/', auth, sparkAuth, async (req, res) => {
     try {
         const applications = await User
-                                    .find()
+                                    .find({ applicant_data: { $exists: true } })
                                     .populate('applicant_data')
                                     .exec()
         
+        console.log(applications)
         res.render('spark/applications', { 
             title: "Spark Applications",
             css: '<link rel="stylesheet" href="/css/spark/applications/index.css" />',
