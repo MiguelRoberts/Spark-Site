@@ -1,3 +1,25 @@
+h4 {
+    margin: 0;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.breakdown {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.academies {
+    width: 50%;
+}
+
+.genders {
+    width: 50%;
+}
+
 .applications {
     padding: 50px;
 }

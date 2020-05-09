@@ -3,6 +3,53 @@
 <div class="container applications">
     <h1 class="title">Applications</h1>
 
+    <h4>Breakdown</h4>
+    <p>Total Current Applicants: <%= applications.length %> </p>
+    <div class="breakdown">
+        <div class="academies">
+            <p>Academies:</p>
+            <ul>
+                <%  let aast, amst, abf, aedt, atcs, acaha, avpav, avpam, avpat
+                    aast = amst= abf = aedt = atcs = acaha = avpav = avpam = avpat = 0
+                    applications.forEach(function(applicant) { 
+                        if(applicant.academy === "AAST") {aast++}
+                        else if(applicant.academy === "AMST") {amst++}
+                        else if(applicant.academy === "ABF") {abf++}
+                        else if(applicant.academy === "AEDT") {aedt++}
+                        else if(applicant.academy === "ATCS") {atcs++}
+                        else if(applicant.academy === "ACAHA") {acaha++}
+                        else if(applicant.academy === "AVPA/V") {avpav++}
+                        else if(applicant.academy === "AVPA/M") {avpam++}
+                        else if(applicant.academy === "AVPA/T") {avpat++}
+                    }); %>
+                <li>AAST:   <%= aast %> </li>
+                <li>AMST:   <%= amst %> </li>
+                <li>ABF:    <%= abf %> </li>
+                <li>AEDT:   <%= aedt %> </li>
+                <li>ATCS:   <%= atcs %> </li>
+                <li>ACAHA:  <%= acaha %></li>
+                <li>AVPA/V: <%= avpav %> </li>
+                <li>AVPA/M: <%= avpam %> </li>
+                <li>AVPA/T: <%= avpat %> </li>
+            </ul>
+        </div>
+        <div class="genders">
+            <p>Genders:</p>
+            <ul>
+                <%  let male, female, other
+                    male = female = other = 0
+                    applications.forEach(function(applicant) {
+                        if(applicant.gender === "male") {male++}
+                        else if (applicant.gender === "female") {female++}
+                        else if (applicant.gender === "other") {other++}
+                    }); %>
+                <li>Male:   <%= male %> </li>
+                <li>Female: <%= female %> </li>
+                <li>Other:  <%= other %> </li>
+            </ul>
+        </div>
+    </div>
+
     <table class="applicants">
         <thead>
             <tr>
@@ -36,19 +83,19 @@
                     %>
 
                     <% if(written_grade !== 0) { %>
-                        <td class="written"> <%= written_grade %> </td>
+                        <td class="written"><a href=""><%= written_grade %></a></td>
                     <% } else { %>
                         <td class="written"><a href="" class="grade-button">Grade</a></td>
                     <% } %>
 
                     <% if(individual_grade !== 0) { %>
-                        <td class="individual"> <%= individual_grade %> </td>
+                        <td class="individual"><a href=""> <%= individual_grade %> </a></td>
                     <% } else { %>
                         <td class="individual"><a href="" class="grade-button">Grade</a></td>
                     <% } %>
 
                     <% if(group_grade !== 0) { %>
-                        <td class="group"> <%= written_grade %> </td>
+                        <td class="group"><a href=""> <%= group_grade %> </a></td>
                     <% } else { %>
                         <td class="group"><a href="" class="grade-button">Grade</a></td>
                     <% } %>
