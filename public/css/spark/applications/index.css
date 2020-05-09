@@ -17,27 +17,37 @@ thead tr td {
 }
 
 .name {
-    width: 25%;
+    width: 16%;
+}
+
+.gender {
+    width: 8%;
+    text-align: center;
+}
+
+.academy {
+    width: 8%;
+    text-align: center;
 }
 
 .written {
-    width: 21.66%;
+    width: 20%;
     text-align: center;
 }
 
 .individual {
     text-align: center;
-    width: 21.66%;
+    width: 20%;
 }
 
 .group {
     text-align: center;
-    width: 21.66%;
+    width: 20%;
 }
 
 .total {
     text-align: center;
-    width: 10%;
+    width: 8%;
 }
 
 .applicant-row {
