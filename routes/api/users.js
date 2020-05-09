@@ -1,5 +1,6 @@
 const User      = require('../../models/User')
 const Leader    = require('../../models/Leader')
+const Applicant = require('../../models/Applicant')
 const sgMail    = require('@sendgrid/mail');
 const router    = require('express').Router()
 const bcrypt    = require('bcryptjs')
@@ -33,6 +34,9 @@ router.post('/', async (req, res) => {
 
         const leader = new Leader(leaderInfo)
         newUser.leader_data = leader._id
+    } else {
+        const applicant_data = await Applicant.create({})
+        newUser.applicant_data = applicant_data._id
     }
 
     try {
