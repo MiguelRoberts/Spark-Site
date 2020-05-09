@@ -51,6 +51,7 @@ textarea {
     padding: 10px;
     width: 100%;
     resize: vertical;
+    min-height: 150px;
 }
 
 .hours-per-week {
@@ -64,8 +65,10 @@ textarea {
 .hours {
     text-align: center;
     margin-left: 25px;
+    font-weight: 300;
+    padding: 5px;
     width: 50px;
-    height: 25px;
+    height: 35px;
     resize: none;
 }
 
