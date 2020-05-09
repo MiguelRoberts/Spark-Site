@@ -31,6 +31,7 @@ server.use('/api/auth', require('./routes/api/auth'))
 server.use('/api/faq', require('./routes/api/faq'))
 server.use('/api/events', require('./routes/api/events'))
 server.use('/api/applicant', require('./routes/api/applicant'))
+server.use('/api/application-details', require('./routes/api/application-details'))
 
 // applicant routes
 server.use('/applicant', require('./routes/applicant'))
@@ -49,6 +50,9 @@ server.use(express.static(path.join(__dirname, 'public')))
 // start server
 const port = process.env.PORT || 8000
 server.listen(port, () => console.log(`Server running on port ${port}...`))
+
+// TODO: Add Open Applications Button to Application-Controls Page
+// TODO: Add Email-Applicants Button to Application-Controls Page
 
 // TODO: Finish Email Functionality to Reset Passwords | Add Admin Functionality
 // TODO: Add Form Response When Users Submit Question on FAQ Page

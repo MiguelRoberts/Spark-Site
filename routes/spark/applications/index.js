@@ -12,11 +12,11 @@ router.get('/', auth, sparkAuth, async (req, res) => {
                                     .find({ applicant_data: { $exists: true } })
                                     .populate('applicant_data')
                                     .exec()
-        
+
         res.render('spark/applications', { 
             title: "Spark Applications",
             css: '<link rel="stylesheet" href="/css/spark/applications/index.css" />',
-            js: '<link href="/js/spark/applications/index.js" />', 
+            js: '<script src="/js/spark/applications/index.js"></script>', 
             user: req.user,
             applications
         })

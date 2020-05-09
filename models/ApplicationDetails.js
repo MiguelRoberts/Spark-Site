@@ -12,7 +12,7 @@ const applicationDetailsSchema = new Schema({
         questions: [], // pool of all questions that can be asked in the interview
         categories: [] // categories to be graded on
     },
-    group_interviews: {
+    group_interview: {
         categories: [] // categories to be graded on
     }
 })
