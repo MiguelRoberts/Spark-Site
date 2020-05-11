@@ -18,6 +18,7 @@ router.get('/', auth, applicantAuth, async (req, res) => {
                             .populate('applicant_data')
                             .exec()
 
+        console.log(user.applicant_data)
         res.render('applicant/home', { 
             title: "Spark Applicant",
             user,

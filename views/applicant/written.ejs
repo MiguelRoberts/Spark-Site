@@ -1,0 +1,46 @@
+<div class="written">
+    <div class="content">
+        <h2>Written Application</h2>
+        <h3>Due Date: Some due date here</h3>
+        <p>Hi! Please follow the instructions and fill this application out to the best of your ability. PUT MORE INSTRUCTIONS HERE</p>
+
+
+        <form action="/api/applicant/written" method="POST">
+            <h3 class="header">Activities and Extracurriculars</h4>
+            <hr>
+            <p>In this section, please fill describe three activities or extracurriculars that you participate in. Explain what you do, what positions you may hold, and what it means to you. If there is nothing you can put, please but "N/A".</p>
+
+            <h4>Activity 1</h4>
+            <textarea name="activities" id="" cols="30" rows="5" placeholder="Enter response here..." required></textarea>
+            <div class="hours-per-week">
+                <p>Enter number of hours spent per week:</p>
+                <input name="hours" type="text" placeholder="ex. 12" class="hours" required>
+            </div> 
+
+            <h4>Activity 2</h4>
+            <textarea name="activities" id="" cols="30" rows="5" placeholder="Enter response here..." required></textarea>
+            <div class="hours-per-week">
+                <p>Enter number of hours spent per week:</p>
+                <input name="hours" type="text" placeholder="ex. 5" class="hours"required>
+            </div>
+
+            <h4>Activity 3</h4>
+            <textarea name="activities" id="" cols="30" rows="5" placeholder="Enter response here..." required></textarea>
+            <div class="hours-per-week">
+                <p>Enter number of hours spent per week:</p>
+                <input name="hours" type="text" placeholder="ex. 22" class="hours" required>
+            </div>
+
+            <h3 class="header">Questions</h3>
+            <hr>
+            <p>For this section just answer the questions truthfully. Make sure they are meaningful!</p>
+
+            <% details.written.questions.forEach(function(question) { %>
+                <h4><%= question %></h4>
+                <textarea name="responses" id="" cols="30" rows="10" placeholder="Enter response here..." required></textarea>
+            <% }) %>
+            
+            <button id="submit">Submit</button>
+        </form>
+    </div>
+</div>
