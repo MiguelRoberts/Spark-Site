@@ -1,6 +1,7 @@
 const { auth, applicantAuth }   = require('../../middleware/auth')
 const ApplicationDetails        = require('../../models/ApplicationDetails')
 const Applicant                 = require('../../models/Applicant')
+const Groups                    = require('../../models/Groups')
 const User                      = require('../../models/User')
 const router                    = require('express').Router()
 
@@ -18,7 +19,17 @@ router.get('/', auth, applicantAuth, async (req, res) => {
                             .populate('applicant_data')
                             .exec()
 
-        console.log(user.applicant_data)
+        if (user.applicant_data.applicationStage === 3) {
+            const groups = await Groups.find({ name: 'Group Interview' })
+            return res.render('applicant/home', { 
+                title: "Spark Applicant",
+                user,
+                css: '<link rel="stylesheet" href="/css/applicant/index.css" />',
+                details,
+                groups
+            }) 
+        }
+
         res.render('applicant/home', { 
             title: "Spark Applicant",
             user,
