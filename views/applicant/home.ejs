@@ -7,8 +7,12 @@
             <p>We appreciate you signing up early, but it is not yet time to apply. Please check your email for any application updates and check the portal as well. If you have a question, feel free to use the question button above.</p>
         </div>
     </div>
-<% } else { %>
+<% } else if (user.applicationStage === 1) { %>
+    <%- include ('./written') %>
+<% } else if (user.applicationStage === 2) { %>
     <%- include ('./individual') %>
+<% } else if (user.applicationStage === 3) { %>
+    <%- include (./groupInterview) %>
 <% } %>
 
 <%- include ('./../partials/applicant/footer') %>
