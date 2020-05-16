@@ -13,6 +13,8 @@
     <%- include ('./individual') %>
 <% } else if (user.applicant_data.applicationStage === 3) { %>
     <%- include ('./groupInterview') %>
+<% } else if (user.applicant_data.applicationStage === 4) { %>
+    <%- include ('./groupActivity') %>
 <% } %>
 
 <%- include ('./../partials/applicant/footer') %>
