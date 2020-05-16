@@ -106,4 +106,59 @@ router.post('/written/:id', auth, sparkAuth, async (req, res) => {
     }
 })
 
+// @route   GET /spark/applications/individual-interview/:id
+// @desc    View Individual Interview Availability
+// @access  Protected
+router.get('/individual-interview/:id', auth, sparkAuth, async (req, res) => {
+    try {
+        const applicant = await User
+                                .findById(req.params.id)
+                                .populate('applicant_data')
+                                .exec()
+
+        if (!applicant) return res.redirect('/spark/applications')
+
+        res.render('spark/applications/individual', { 
+            title: "Schedule Interview",
+            css: `
+                <link rel="stylesheet" href="/css/spark/micromodal.css" />
+                <link rel="stylesheet" href="/css/schedule.css" />
+                <link rel="stylesheet" href="/css/spark/applications/individual.css" />
+            `,
+            js: `
+                <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+                <script src="/js/spark/applications/individual.js"></script>
+                <script src="/js/schedule.js"></script>
+            `, 
+            user: req.user,
+            applicant
+        })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Error')
+    }
+})
+
+// @route   POST /spark/applications/individual-interview/:id
+// @desc    Schedule Individual Interview
+// @access  Protected
+router.post('/individual-interview/:id', auth, sparkAuth, async (req, res) => {
+    try {
+        const { interviewer_id, hour, minutes } = req.body
+        const time = `${hour}:${minutes}`
+
+        const applicant = await User.findById(req.params.id)
+
+        await Applicant.findByIdAndUpdate(applicant.applicant_data, { 
+            'individual_interview.interviewer' : interviewer_id, 
+            'individual_interview.interview_time' : time 
+        })
+
+        res.redirect('/spark/applications')
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Error')
+    }
+})
+
 module.exports = router

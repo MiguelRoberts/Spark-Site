@@ -83,15 +83,15 @@
                     %>
 
                     <% if(written_grade !== 0) { %>
-                        <td class="written"><a href=""><%= written_grade %></a></td>
+                        <td class="written"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
                     <% } else { %>
-                        <td class="written"><a href="" class="grade-button">Grade</a></td>
+                        <td class="written"><a href="/spark/applications/written/<%= applicant._id %>" class="grade-button">Grade</a></td>
                     <% } %>
 
                     <% if(individual_grade !== 0) { %>
-                        <td class="individual"><a href=""> <%= individual_grade %> </a></td>
+                        <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
                     <% } else { %>
-                        <td class="individual"><a href="" class="grade-button">Grade</a></td>
+                        <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>" class="grade-button">Grade</a></td>
                     <% } %>
 
                     <% if(group_grade !== 0) { %>

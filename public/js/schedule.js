@@ -1,5 +1,7 @@
 $(function() {
     $(".mod").click(function() {
+        if ($('.schedule')[0].hasAttribute('data-uneditable')) return
+        
         const $el = $(this)
         if ($el.hasClass('wednesday')) return
 

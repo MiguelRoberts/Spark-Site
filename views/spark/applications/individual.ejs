@@ -1,0 +1,89 @@
+<%- include ('../../partials/spark/header') %>
+
+<div class="modal micromodal-slide" id="schedule-interview-modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="grade-modal">
+            <header class="modal__header">
+                <h2 class="modal__title" id="grade-modal-title">
+                    Schedule Interview
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            
+            <main class="modal__content" id="grade-modal-content">
+                <form id="schedule-interview-modal-form" action="/spark/applications/individual-interview/<%= applicant._id %>" method="POST">
+                    <input id="interviewer_id" type="text" style="display: none;" name="interviewer_id" value="">
+                    <div class="input-field">
+                        <label for="date">Date</label>
+                        <input id="date" type="text" placeholder="e.g. April 20">
+                    </div>
+
+                    <div class="select-field">
+                        <label for="time">Time</label>
+                        <div class="select-container">
+                            <select name="hour" id="time">
+                                <% for (let i = 8; i < 16; i++) { 
+                                    let hour = i <= 12 ? i : i % 12
+                                %>
+                                    <option value="<%= hour %>"><%= hour %></option>
+                                <% } %>
+                            </select>
+                            <select name="minute" id="time">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button id="modal-submit" type="submit" class="modal__btn">Submit</button>
+                        <button id="modal-cancel" type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div class="main individual">
+    <h2>Schedule an Interview</h2>
+    <p class="instructions"><%= `Availability for ${applicant.firstname} ${applicant.lastname}` %></p>
+
+    <p class="success" style="display: none">Successfully Updated Availability</p>
+    <p class="error" style="display: none">Error Updating Availability</p>
+
+    <% 
+        const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+        const availability = applicant.applicant_data.individual_interview.availability
+    %>
+
+    <div class="schedule" data-post-url="/api/applicant/update_availability" data-uneditable>
+        <div class="row">
+            <% days.forEach(day => { %>
+                    <div class="day"><%= day %></div>
+            <% }) %>
+        </div>
+
+        <% for (let mod = 1; mod < 28; mod++) { %>
+            <div class="row">
+                <% days.forEach(day => { %>
+                    <% if (day === "Wednesday") { %> 
+                        <div class="mod wednesday"><%= mod %></div>
+                    <% } else { %>
+                        <% if (availability[`${day.toLowerCase()}`] && availability[`${day.toLowerCase()}`].indexOf(mod) !== -1) { %>
+                            <div data-day="<%= day.toLowerCase() %>" class="mod selected"><%= mod %></div>
+                        <% } else { %>
+                            <div data-day="<%= day.toLowerCase() %>" class="mod"><%= mod %></div>
+                        <% } %>
+                    <% } %>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+
+    <button id="schedule-interview">Schedule Interview</button>
+</div>
+
+<%- include ('../../partials/spark/footer') %>

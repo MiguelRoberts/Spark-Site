@@ -5,7 +5,7 @@ const applicantSchema = new Schema({
     written: {
         activities: [],
         responses: [],
-        grades: [], // category grades
+        grades: [Number], // category grades
         comments: String
     },
     individual_interview: {
@@ -27,17 +27,18 @@ const applicantSchema = new Schema({
                 default: []
             }]
         },
-        questions: [],
-        questionGrades: [],
-        grades: [], // category grades
+        questions: [Number],
+        questionGrades: [Number],
+        grades: [Number], // category grades
         interviewer: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'User'
         },
+        interview_time: String,
         comments: String
     },
     group_interview: {
-        grades: [], // category grades
+        grades: [Number], // category grades
         comment: String
     },
     application_stage: {
