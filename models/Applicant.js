@@ -10,10 +10,22 @@ const applicantSchema = new Schema({
     },
     individual_interview: {
         availability: {
-            monday: [],
-            tuesday: [],
-            thursday: [],
-            friday: []
+            monday: [{
+                type: Number,
+                default: []
+            }],
+            tuesday: [{
+                type: Number,
+                default: []
+            }],
+            thursday: [{
+                type: Number,
+                default: []
+            }],
+            friday: [{
+                type: Number,
+                default: []
+            }]
         },
         questions: [],
         questionGrades: [],

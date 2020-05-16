@@ -32,16 +32,30 @@ router.post('/written', auth, applicantAuth, async (req, res) => {
     }
 })
 
-// @route   POST /api/applicant/individual-interview
+// @route   GET /api/applicant/get_availability
+// @desc    Get Availability For Individual Interview
+// @access  Protected
+router.get('/get_availability/:id', auth, applicantAuth, async (req, res) => {
+    try {
+        const application = await Applicant.findById(req.params.id)
+        res.send({
+            availability: application.individual_interview.availability
+        })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
+// @route   POST /api/applicant/update_availability
 // @desc    Submit Availability For Individual Interview
 // @access  Protected
-router.post('/individual-interview', auth, applicantAuth, async (req, res) => {
+router.post('/update_availability', auth, applicantAuth, async (req, res) => {
     try {
-        const { availability } = req.body
-
+        const { schedule:availability } = req.body
         await Applicant.findByIdAndUpdate(req.user.applicant_data, { 'individual_interview.availability' : availability })
 
-        res.send({ msg: 'Successfully Update Availability' })
+        res.send({ msg: 'Successfully Updated Availability' })
     } catch (e) {
         console.log(e)
         res.status(500).send({ msg: 'Server Error' })
