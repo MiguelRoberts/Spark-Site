@@ -9,30 +9,43 @@ const router                = require('express').Router()
 // @access  Protected
 router.get('/', auth, sparkAuth, async (req, res) => {
     try {
-        let applications = await User
+        let all_applications = await User
                                     .find({ 
                                         applicant_data: { $exists: true }
                                     })
                                     .populate('applicant_data')
                                     .exec()
+                                
+        // applicants that haven't been cut
+        let applications = all_applications.filter(a => a.applicant_data.cut === false)
 
-        applications = applications.filter(applicant => applicant.applicant_data.cut === false)
-        console.log(applications)
+        // cut applicants
+        let cut = all_applications.filter(a => a.applicant_data.cut === true)
 
-        // applications 
-        // cut_written
-        // cut_individual
-        // cut_group_i
-        // cut_group_a
+        // applicants that were cut during written stage
+        let cut_written = cut.filter(a => a.applicant_data.application_stage === 1)
+        
+        // applicants that were cut during individual interview stage
+        let cut_individual = cut.filter(a => a.applicant_data.application_stage === 2)
+        
+        // applicants that were cut during group interview stage
+        let cut_group_i = cut.filter(a => a.applicant_data.application_stage === 3)
+
+        // applicants that were cut during group activity stage
+        let cut_group_a = cut.filter(a => a.applicant_data.application_stage === 4)
 
         res.render('spark/applications', { 
             title: "Spark Applications",
             css: '<link rel="stylesheet" href="/css/spark/applications/index.css" />',
             js: '<script src="/js/spark/applications/index.js"></script>', 
+
             user: req.user,
-            applications
+
+            applications,
+            cut_written, cut_individual, cut_group_i, cut_group_a
         })
     } catch (e) {
+        console.log(e)
         res.status(500).send('Error')
     }
 })
