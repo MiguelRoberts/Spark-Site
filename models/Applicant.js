@@ -23,10 +23,14 @@ const applicantSchema = new Schema({
         grades: [], // category grades
         comment: String
     },
-    applicationStage: {
+    application_stage: {
         type: Number,
         default: 1,
     }, // 1 = written | 2 = individual interview | 3 = group interview
+    cut: {
+        type: Boolean,
+        default: false
+    }
 })
 
 module.exports = Applicant = mongoose.model('Applicant', applicantSchema)
