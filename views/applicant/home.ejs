@@ -7,11 +7,11 @@
             <p>We appreciate you signing up early, but it is not yet time to apply. Please check your email for any application updates and check the portal as well. If you have a question, feel free to use the question button above.</p>
         </div>
     </div>
-<% } else if (user.applicant_data.applicationStage === 1) { %>
+<% } else if (user.applicant_data.application_stage === 1) { %>
     <%- include ('./written') %>
-<% } else if (user.applicant_data.applicationStage === 2) { %>
+<% } else if (user.applicant_data.application_stage === 2) { %>
     <%- include ('./individual') %>
-<% } else if (user.applicant_data.applicationStage === 3) { %>
+<% } else if (user.applicant_data.application_stage === 3) { %>
     <%- include ('./groupInterview') %>
 <% } else if (user.applicant_data.applicationStage === 4) { %>
     <%- include ('./groupActivity') %>

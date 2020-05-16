@@ -9,7 +9,24 @@ const applicantSchema = new Schema({
         comments: String
     },
     individual_interview: {
-        availability: {},
+        availability: {
+            monday: [{
+                type: Number,
+                default: []
+            }],
+            tuesday: [{
+                type: Number,
+                default: []
+            }],
+            thursday: [{
+                type: Number,
+                default: []
+            }],
+            friday: [{
+                type: Number,
+                default: []
+            }]
+        },
         questions: [],
         questionGrades: [],
         grades: [], // category grades
@@ -23,10 +40,14 @@ const applicantSchema = new Schema({
         grades: [], // category grades
         comment: String
     },
-    applicationStage: {
+    application_stage: {
         type: Number,
         default: 1,
     }, // 1 = written | 2 = individual interview | 3 = group interview
+    cut: {
+        type: Boolean,
+        default: false
+    }
 })
 
 module.exports = Applicant = mongoose.model('Applicant', applicantSchema)

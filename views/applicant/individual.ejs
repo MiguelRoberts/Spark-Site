@@ -1,82 +1,39 @@
 <div class="individual">
     <h2>Individual Interview Signup</h2>
 
-    <table class="individual-signups">
-        <thead>
-            <tr>
-                <td id="monday">Monday</td>
-                <td id="tuesday">Tuesday</td>
-                <td id="wednesday">Wednesday</td>
-                <td id="thursday">Thursday</td>
-                <td id="friday">Friday</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 1-3</td>
-                <td class="tuesday"><input type="checkbox"> 1-3</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 1-3</td>
-                <td class="friday"><input type="checkbox"> 1-3</td>
-            </tr>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 4-6</td>
-                <td class="tuesday"><input type="checkbox"> 4-6</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 4-6</td>
-                <td class="friday"><input type="checkbox"> 4-6</td>
-            </tr>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 7-9</td>
-                <td class="tuesday"><input type="checkbox"> 7-9</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 7-9</td>
-                <td class="friday"><input type="checkbox"> 7-9</td>
-            </tr>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 10-12</td>
-                <td class="tuesday"><input type="checkbox"> 10-12</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 10-12</td>
-                <td class="friday"><input type="checkbox"> 10-12</td>
-            </tr>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 13-15</td>
-                <td class="tuesday"><input type="checkbox"> 13-15</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 13-15</td>
-                <td class="friday"><input type="checkbox"> 13-15</td>
-            </tr>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 16-18</td>
-                <td class="tuesday"><input type="checkbox"> 16-18</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 16-18</td>
-                <td class="friday"><input type="checkbox"> 16-18</td>
-            </tr>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 19-21</td>
-                <td class="tuesday"><input type="checkbox"> 19-21</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 19-21</td>
-                <td class="friday"><input type="checkbox"> 19-21</td>
-            </tr>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 22-24</td>
-                <td class="tuesday"><input type="checkbox"> 22-24</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 22-24</td>
-                <td class="friday"><input type="checkbox"> 22-24</td>
-            </tr>
-            <tr class="mods">
-                <td class="monday"><input type="checkbox"> 25-27</td>
-                <td class="tuesday"><input type="checkbox"> 25-27</td>
-                <td class="wednesday"></td>
-                <td class="thursday"><input type="checkbox"> 25-27</td>
-                <td class="friday"><input type="checkbox"> 25-27</td>
-            </tr>
-        </tbody>
-    </table>
+    <p class="instructions">Please Select Your Availability Below</p>
 
-    <button id="save">Save for Later</button>
+    <p class="success" style="display: none">Successfully Updated Availability</p>
+    <p class="error" style="display: none">Error Updating Availability</p>
+
+    <% 
+        const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+        const availability = user.applicant_data.individual_interview.availability
+    %>
+
+    <div class="schedule" data-post-url="/api/applicant/update_availability">
+        <div class="row">
+            <% days.forEach(day => { %>
+                    <div class="day"><%= day %></div>
+            <% }) %>
+        </div>
+
+        <% for (let mod = 1; mod < 28; mod++) { %>
+            <div class="row">
+                <% days.forEach(day => { %>
+                    <% if (day === "Wednesday") { %> 
+                        <div class="mod wednesday"><%= mod %></div>
+                    <% } else { %>
+                        <% if (availability[`${day.toLowerCase()}`] && availability[`${day.toLowerCase()}`].indexOf(mod) !== -1) { %>
+                            <div data-day="<%= day.toLowerCase() %>" class="mod selected"><%= mod %></div>
+                        <% } else { %>
+                            <div data-day="<%= day.toLowerCase() %>" class="mod"><%= mod %></div>
+                        <% } %>
+                    <% } %>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+
+    <button id="save-schedule">Save Changes</button>
 </div>

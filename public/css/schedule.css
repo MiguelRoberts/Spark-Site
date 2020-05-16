@@ -1,0 +1,69 @@
+.schedule {
+    margin: 25px 0;
+    font-weight: 400;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 800px;
+
+    font-size: 24px;
+}
+
+.day, .mod {
+    padding: 5px 0;
+    width: 180px;
+    border: 1px solid #757575;
+    text-align: center;
+}
+
+.mod {
+    user-select: none;
+    cursor: pointer;
+}
+
+.wednesday {
+    background-color: #E0E0E0;
+    cursor: not-allowed;
+}
+
+.selected {
+    background-color: #66BB6A;
+}
+
+#save-schedule {
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    background-color: #FBC02D;
+    color: white;
+    border-radius: 30px;
+    margin-top: 5px;
+    padding: 13px 15px;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.instructions {
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.success, .error {
+    font-weight: 400;
+    font-size: 20px;
+    margin: 0;
+}
+
+.success {
+    color: #43A047;
+}
+
+.error {
+    color: #E53935;
+}
