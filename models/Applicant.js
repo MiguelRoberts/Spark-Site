@@ -9,7 +9,12 @@ const applicantSchema = new Schema({
         comments: String
     },
     individual_interview: {
-        availability: {},
+        availability: {
+            monday: [],
+            tuesday: [],
+            thursday: [],
+            friday: []
+        },
         questions: [],
         questionGrades: [],
         grades: [], // category grades
