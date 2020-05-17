@@ -33,7 +33,7 @@ router.get('/', auth, sparkAuth, async (req, res) => {
 
         // applicants that were cut during group activity stage
         let cut_group_a = cut.filter(a => a.applicant_data.application_stage === 4)
-
+        
         res.render('spark/applications', { 
             title: "Spark Applications",
             css: '<link rel="stylesheet" href="/css/spark/applications/index.css" />',

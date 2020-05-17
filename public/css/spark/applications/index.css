@@ -33,10 +33,6 @@ td a {
     border-spacing: 0;
 }
 
-.title {
-    margin-bottom: 40px;
-}
-
 thead tr td {
     font-weight: 400;
     padding-bottom: 10px;
@@ -58,23 +54,40 @@ thead tr td {
 }
 
 .written {
-    width: 20%;
+    width: 18.6%;
     text-align: center;
 }
 
 .individual {
     text-align: center;
-    width: 20%;
+    width: 18.6%;
 }
 
 .group {
     text-align: center;
-    width: 20%;
+    width: 18.6%;
 }
 
 .total {
     text-align: center;
-    width: 8%;
+    width: 6%;
+}
+
+.cut {
+    text-align: center;
+    width: 6%;
+}
+
+.cut-button {
+    font-size: 18px;
+    font-weight: 300;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 30px;
+    padding: 8px 10px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .applicant-row {
@@ -97,3 +110,139 @@ thead tr td {
     cursor: pointer;
 }
 
+.progression {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#next-stage {
+    font-size: 18px;
+    font-weight: 300;
+    border: none;
+    background-color: rgb(116,200,96);
+    color: white;
+    border-radius: 30px;
+    padding: 8px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    width: 115px;
+    margin: 15px 0;
+    margin-right: 30px;
+}
+
+.table-title {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 15px;
+    font-weight: 400;
+}
+
+/*Cut written table */
+.cut-written {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.nameW {
+    width: 25%;
+}
+
+.academyW {
+    width: 15%;
+    text-align: center;
+}
+
+.genderW {
+    width: 15%;
+    text-align: center;
+}
+
+.writtenW {
+    width: 25%;
+    text-align: center;
+}
+
+.totalW {
+    width: 20%;
+    text-align: center;
+}
+
+/*Cut Individual Table */
+.cut-individual {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.nameI {
+    width: 20%;
+}
+
+.academyI {
+    width: 10%;
+    text-align: center;
+}
+
+.genderI {
+    width: 10%;
+    text-align: center;
+}
+
+.writtenI {
+    width: 25%;
+    text-align: center;
+}
+
+.individualI {
+    text-align: center;
+    width: 25%;
+}
+
+.totalI {
+    width: 10%;
+    text-align: center;
+}
+
+/*Cut Group Interview and Group Activity Tables */
+.cut-group {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.nameG {
+    width: 16%;
+}
+
+.academyG {
+    width: 8%;
+    text-align: center;
+}
+
+.genderG {
+    width: 8%;
+    text-align: center;
+}
+
+.writtenG {
+    width: 20%;
+    text-align: center;
+}
+
+.individualG {
+    text-align: center;
+    width: 20%;
+}
+
+.groupG {
+    text-align: center;
+    width: 20%;
+}
+
+.totalG {
+    width: 8%;
+    text-align: center;
+}

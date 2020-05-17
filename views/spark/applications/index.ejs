@@ -3,8 +3,10 @@
 <div class="container applications">
     <h1 class="title">Applications</h1>
 
-    <h4>Breakdown</h4>
-    <p>Total Current Applicants: <%= applications.length %> </p>
+    <h2 class="table-title">Active Applicants</h2>
+
+    <h4>Breakdown of Active Applicants</h4>
+    <p>Total Active Applicants: <%= applications.length %> </p>
     <div class="breakdown">
         <div class="academies">
             <p>Academies:</p>
@@ -50,6 +52,12 @@
         </div>
     </div>
 
+    <div class="progression">
+        <a href="" id="next-stage">Next Stage</a>
+        <p>Current Stage:Whatever stage</p>
+    </div>
+    
+    <!-- Active Applicants Table -->
     <table class="applicants">
         <thead>
             <tr>
@@ -60,6 +68,7 @@
                 <td class="individual">Individual Interview</td>
                 <td class="group">Group Interview</td>
                 <td class="total">Total</td>
+                <td class="cut">Cut</td>
             </tr>                
         </thead>
         <tbody>
@@ -90,9 +99,14 @@
 
                     <% if(individual_grade !== 0) { %>
                         <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
-                    <% } else { %>
+                    <% } else if(individual.interviewer === user._id) { %>
                         <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>" class="grade-button">Grade</a></td>
+                    <% } else if(individual.interviewer !== user._id) { %>
+                        <td class="individual"> <%= `${individual.interviewer}` %> </td>
+                    <% } else { %>
+                        <td class="individual"><a href="" class="grade-button">Assign</a></td>
                     <% } %>
+                    
 
                     <% if(group_grade !== 0) { %>
                         <td class="group"><a href=""> <%= group_grade %> </a></td>
@@ -102,11 +116,172 @@
 
                     <% let total = written_grade + individual_grade + group_grade %>
                     <td class="total"> <%= total %> </td>
+
+                    <td class="cut"><a href="" class="cut-button">Cut</a></td>
                 </tr>
             <% }) %>
         </tbody>
     </table>
 
+    <!-- Cut after written table -->
+    <h2 class="table-title">Applicants Cut after Written</h2>
+        
+    <table class="cut-written">
+        <thead>
+            <tr>
+                <td class="nameW">Name</td>
+                <td class="genderW">Gender</td>
+                <td class="academyW">Academy</td>
+                <td class="writtenW"> Written Application</td>
+                <td class="totalW">Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% cut_written.forEach(function(applicant) { %>
+                <tr class="applicant-row">
+                    <td class="nameW"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                    <td class="genderW"> <%= `${applicant.gender}` %> </td>
+                    <td class="academyW"> <%= `${applicant.academy}` %> </td>
+
+                    <%  const written = applicant.applicant_data.written
+                        let written_grade = 0
+                        written.grades.forEach(function(grade) {written_grade = written_grade + grade}); %>
+                    <td class="writtenW"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
+                    <% let total = written_grade %>
+                    <td class="totalW"> <%= total %> </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <!-- Cut after individual interviews table -->
+    <h2 class="table-title">Applicants Cut after Individual Interview</h2>
+        
+    <table class="cut-individual">
+        <thead>
+            <tr>
+                <td class="nameI">Name</td>
+                <td class="genderI">Gender</td>
+                <td class="academyI">Academy</td>
+                <td class="writtenI"> Written Application</td>
+                <td class="individualI">Individual Interview</td>
+                <td class="totalI">Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% cut_individual.forEach(function(applicant) { %>
+                <tr class="applicant-row">
+                    <td class="nameI"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                    <td class="genderI"> <%= `${applicant.gender}` %> </td>
+                    <td class="academyI"> <%= `${applicant.academy}` %> </td>
+
+                    <%  const written = applicant.applicant_data.written
+                        let written_grade = 0
+                        written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
+
+                        const individual = applicant.applicant_data.individual_interview
+                        let individual_grade = 0
+                        individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
+                        individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) %>
+                    <td class="writtenI"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
+                    <td class="individualI"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
+                    
+                    <% let total = written_grade + individual_grade %>
+                    <td class="totalI"> <%= total %> </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <!-- Cut after group interviews table -->
+    <h2 class="table-title">Applicants Cut after Group Interviews</h2>
+        
+    <table class="cut-group">
+        <thead>
+            <tr>
+                <td class="nameG">Name</td>
+                <td class="genderG">Gender</td>
+                <td class="academyG">Academy</td>
+                <td class="writtenG"> Written Application</td>
+                <td class="individualG">Individual Interview</td>
+                <td class="groupG">Group Interview</td>
+                <td class="totalG">Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% cut_group_i.forEach(function(applicant) { %>
+                <tr class="applicant-row">
+                    <td class="nameG"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                    <td class="genderG"> <%= `${applicant.gender}` %> </td>
+                    <td class="academyG"> <%= `${applicant.academy}` %> </td>
+
+                    <%  const written = applicant.applicant_data.written
+                        let written_grade = 0
+                        written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
+
+                        const individual = applicant.applicant_data.individual_interview
+                        let individual_grade = 0
+                        individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
+                        individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) 
+                        
+                        const group = applicant.applicant_data.group_interview
+                        let group_grade = 0
+                        group.grades.forEach(function(grade) {group_grade = group_grade + grade}) %>
+                    <td class="writtenG"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
+                    <td class="individualG"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
+                    <td class="groupG"><a href=""> <%= group_grade %> </a></td>
+
+                    <% let total = written_grade + individual_grade + group_grade %>
+                    <td class="totalG"> <%= total %> </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <!-- Cut after group activity table -->
+    <h2 class="table-title">Applicants Cut after Group Activity</h2>
+        
+    <table class="cut-group">
+        <thead>
+            <tr>
+                <td class="nameG">Name</td>
+                <td class="genderG">Gender</td>
+                <td class="academyG">Academy</td>
+                <td class="writtenG"> Written Application</td>
+                <td class="individualG">Individual Interview</td>
+                <td class="groupG">Group Interview</td>
+                <td class="totalG">Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% cut_group_a.forEach(function(applicant) { %>
+                <tr class="applicant-row">
+                    <td class="nameG"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                    <td class="genderG"> <%= `${applicant.gender}` %> </td>
+                    <td class="academyG"> <%= `${applicant.academy}` %> </td>
+
+                    <%  const written = applicant.applicant_data.written
+                        let written_grade = 0
+                        written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
+
+                        const individual = applicant.applicant_data.individual_interview
+                        let individual_grade = 0
+                        individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
+                        individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) 
+                        
+                        const group = applicant.applicant_data.group_interview
+                        let group_grade = 0
+                        group.grades.forEach(function(grade) {group_grade = group_grade + grade}) %>
+                    <td class="writtenG"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
+                    <td class="individualG"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
+                    <td class="groupG"><a href=""> <%= group_grade %> </a></td>
+
+                    <% let total = written_grade + individual_grade + group_grade %>
+                    <td class="totalG"> <%= total %> </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </div>
 
 <%- include ('../../partials/spark/footer') %>
