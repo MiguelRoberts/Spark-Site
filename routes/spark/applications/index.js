@@ -13,7 +13,12 @@ router.get('/', auth, sparkAuth, async (req, res) => {
                                     .find({ 
                                         applicant_data: { $exists: true }
                                     })
-                                    .populate('applicant_data')
+                                    .populate({
+                                        path: 'applicant_data',
+                                        populate: {
+                                            path: 'individual_interview.interviewer'
+                                        }
+                                    })
                                     .exec()
                                 
         // applicants that haven't been cut
@@ -34,6 +39,8 @@ router.get('/', auth, sparkAuth, async (req, res) => {
         // applicants that were cut during group activity stage
         let cut_group_a = cut.filter(a => a.applicant_data.application_stage === 4)
         
+        const stage = ['Written Application', 'Individual Interview', 'Group Interview', 'Group Activitiy'][applications[0].applicant_data.application_stage-1]
+
         res.render('spark/applications', { 
             title: "Spark Applications",
             css: '<link rel="stylesheet" href="/css/spark/applications/index.css" />',
@@ -42,8 +49,39 @@ router.get('/', auth, sparkAuth, async (req, res) => {
             user: req.user,
 
             applications,
-            cut_written, cut_individual, cut_group_i, cut_group_a
+            cut_written, cut_individual, cut_group_i, cut_group_a,
+            stage
         })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Error')
+    }
+})
+
+// @route   POST /spark/applications/advance
+// @desc    Advance Applicants to Next Stage
+// @access  Protected
+router.post('/advance', auth, sparkAuth, async (req, res) => {
+    try {
+        await Applicant.updateMany({ cut: false }, { $inc: { application_stage: 1 } })
+
+        res.redirect('/spark/applications')
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Error')
+    }
+})
+
+// @route   POST /spark/applications/cut/:id
+// @desc    Cut Applicant
+// @access  Protected
+router.post('/cut/:id', auth, sparkAuth, async (req, res) => {
+    try {
+        const applicant = await User.findById(req.params.id)
+
+        await Applicant.findByIdAndUpdate(applicant.applicant_data, { cut: true })
+
+        res.redirect('/spark/applications')
     } catch (e) {
         console.log(e)
         res.status(500).send('Error')

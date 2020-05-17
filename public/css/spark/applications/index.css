@@ -25,8 +25,8 @@ td a {
     width: 50%;
 }
 
-.applications {
-    padding: 50px;
+.main .container.applications {
+    padding: 75px;
 }
 
 .applicants {
@@ -120,16 +120,15 @@ thead tr td {
 }
 
 #next-stage {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
     border: none;
     background-color: rgb(116,200,96);
     color: white;
     border-radius: 30px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     text-decoration: none;
     cursor: pointer;
-    width: 115px;
     margin: 15px 0;
     margin-right: 30px;
 }
@@ -137,7 +136,7 @@ thead tr td {
 .table-title {
     width: 100%;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 75px;
     padding-bottom: 15px;
     font-weight: 400;
 }
