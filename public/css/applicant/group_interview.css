@@ -1,0 +1,59 @@
+.groupInterview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 75px;
+}
+
+.groupInterview p {
+    width: 50%;
+    text-align: justify;
+}
+
+.groupInterview h2 {
+    margin-top: 50px;
+    border-bottom: 3px solid #FBC02D;
+    padding-bottom: 12px;
+}
+
+.groupinterview-signups {
+    width: 75%;
+}
+
+.groupinterview-signups tr {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 50px 0;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #555555;
+}
+
+.group-interview {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.group-interview h4 {
+    font-weight: 300;
+    margin: 5px 0;
+}
+
+.group-interview ul {
+    margin: 15px 0;
+}
+
+.signup {
+    font-size: 20px;
+    font-weight: 300;
+    border: none;
+    background-color: rgb(116,220,96);
+    color: white;
+    border-radius: 30px;
+    padding: 10px 12px;
+    text-decoration: none;
+    cursor: pointer;
+}

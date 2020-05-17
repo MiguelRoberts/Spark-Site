@@ -9,8 +9,12 @@
     </div>
 <% } else if (user.applicant_data.application_stage === 1) { %>
     <%- include ('./written') %>
-<% } else if (user.applicant_data.application_stage === 2) { %>
-    <%- include ('./individual') %>
+<% } else if (user.applicant_data.application_stage === 2) { 
+        if (user.applicant_data.individual_interview.interviewer !== "") { %>
+            <%- include ('./individualDetails') %>
+        <% } else { %>
+            <%- include ('./individual') %>
+        <% } %>
 <% } else if (user.applicant_data.application_stage === 3) { %>
     <%- include ('./groupInterview') %>
 <% } else if (user.applicant_data.applicationStage === 4) { %>

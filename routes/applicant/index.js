@@ -18,7 +18,7 @@ router.get('/', auth, applicantAuth, async (req, res) => {
                             .findById(req.user._id)
                             .populate('applicant_data')
                             .exec()
-
+        
         const stylesheets = [
             '<link rel="stylesheet" href="/css/applicant/written.css" />',
             '<link rel="stylesheet" href="/css/applicant/individual.css" /><link rel="stylesheet" href="/css/schedule.css" />',
