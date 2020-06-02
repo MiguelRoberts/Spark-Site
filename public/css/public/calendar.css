@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    background-color: #fff;
+    color: #555;
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    letter-spacing: 1px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 50vw;
+    margin: 25px auto;
+}
+
+#logo {
+    width: 150px;
+    height: 150px;
+}
+
+hr {
+    border: 1px solid #FBC02D;
+    width: 50%;
+}
+
+h3 {
+    margin: 50px 0 20px 0;
+    font-weight: 400;
+}
+
+p:last-of-type {
+    margin-bottom: 15px;
+}
+
+#spark-calendar .fc-day-grid-event > .fc-content {
+    padding: 0 1px !important;
+    white-space: normal !important;
+}
+
+#spark-calendar {
+    margin-top: 25px;
+}

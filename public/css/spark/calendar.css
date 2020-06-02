@@ -67,3 +67,8 @@ button[type="submit"] {
 .hidden {
     display: none;
 }
+
+#spark-calendar .fc-day-grid-event > .fc-content {
+    padding: 0 1px !important;
+    white-space: normal !important;
+}

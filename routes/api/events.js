@@ -3,7 +3,7 @@ const router    = require('express').Router()
 const { auth, sparkAuth }  = require('../../middleware/auth')
 
 // @route   GET /api/events
-// @desc    GET Events
+// @desc    GET All Events
 // @access  Protected
 router.get('/', auth, async (req, res) => {
     try {
@@ -14,6 +14,20 @@ router.get('/', auth, async (req, res) => {
         res.status(500).send({ msg: 'Server Error' })
     }
 })
+
+// @route   GET /api/events/public
+// @desc    GET Public Events
+// @access  Public
+router.get('/public', auth, async (req, res) => {
+    try {
+        const events = await Event.find({ public: true })
+        res.send(events)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
 
 // @route   POST /api/events
 // @desc    Create Event

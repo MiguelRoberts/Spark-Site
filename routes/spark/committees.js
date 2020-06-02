@@ -3,7 +3,7 @@ const router                = require('express').Router()
 const { auth, sparkAuth }   = require('../../middleware/auth')
 
 // @route   GET /spark/committee
-// @desc    (write here alek)
+// @desc    Display Committee Information
 // @access  Protected
 router.get('/', auth, sparkAuth, async (req, res) => {
     try {

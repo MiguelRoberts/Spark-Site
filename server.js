@@ -33,6 +33,9 @@ server.use('/api/events', require('./routes/api/events'))
 server.use('/api/applicant', require('./routes/api/applicant'))
 server.use('/api/application-details', require('./routes/api/application-details'))
 
+// public routes
+server.use('/', require('./routes/public'))
+
 // applicant routes
 server.use('/applicant', require('./routes/applicant'))
 

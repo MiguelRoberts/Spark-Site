@@ -13,8 +13,6 @@ html, body{
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     letter-spacing: 1px;
-    scrollbar-width: 0;
-    height: 310vh;
 }
 
 .container {
@@ -22,7 +20,7 @@ html, body{
     flex-direction: column;
     justify-content: left;
     width: 50vw;
-    margin: 25px 20vw 0 25vw;
+    margin: 25px auto;
 }
 
 #logo {
@@ -63,7 +61,8 @@ h3 {
     margin-top: 25px;
     font-weight: 400;
 }
-.submit input {
+
+.submit input, #question {
     margin-top: 20px;
     width: 75%;
     color: #555;
@@ -71,10 +70,8 @@ h3 {
 }
 
 #question {
-    height: 200px;
-    display: block;
-    align-items: flex-start;
-    justify-content: flex-start;
+    min-height: 200px;
+    resize: vertical;
 }
 
 #submit {
@@ -87,4 +84,5 @@ h3 {
     border-radius: 30px;
     padding: 15px 20px;
     text-decoration: none;
+    outline: none;
 }

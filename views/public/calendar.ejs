@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="BCA Spark">
+
+        <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/css/public/calendar.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css" integrity="sha256-Lfe6+s5LEek8iiZ31nXhcSez0nmOxP+3ssquHMR3Alo=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css" integrity="sha256-AVsv7CEpB2Y1F7ZjQf0WI8SaEDCycSk4vnDRt0L2MNQ=" crossorigin="anonymous" />
+        
+        <link rel="icon" type="image/png" href="./img/favicon-2.png">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300i,400,400i" rel="stylesheet">
+        
+        <title>BCA Spark - Calendar</title>
+</head>
+<body>
+    <div class="container">
+        <img src="./img/bca-logo-2.png" id="logo" alt="">
+        <h1>Upcoming Events</h1>
+        <hr>
+        <% if (!upcomingEvents || upcomingEvents.length === 0) { %>
+            <h3>There are currently no upcoming events.</h3>
+            <p>Please Check Back Later!</p>
+        <% } else upcomingEvents.forEach(({ start, title, description }) => { 
+            let [year, month, day] = start.split('-')
+            month = Number(month)
+            day = Number(day)
+        %>
+            <h3><%= `${month}/${day}` %>: <%= title %></h3>
+            <p><%= description %></p>
+        <% }) %>
+
+        <h1>Public Spark Calendar</h1>
+        <hr>
+
+        <div id="spark-calendar"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.min.js"></script>
+    <script src="/js/public/calendar.js"></script>
+</body>
+</html>
