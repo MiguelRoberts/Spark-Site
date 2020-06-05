@@ -144,10 +144,10 @@ router.post('/written/:id', auth, sparkAuth, async (req, res) => {
     }
 })
 
-// @route   GET /spark/applications/individual-interview/:id
+// @route   GET /spark/applications/individual-interview/:id/schedule
 // @desc    View Individual Interview Availability
 // @access  Protected
-router.get('/individual-interview/:id', auth, sparkAuth, async (req, res) => {
+router.get('/individual-interview/:id/schedule', auth, sparkAuth, async (req, res) => {
     try {
         const applicant = await User
                                 .findById(req.params.id)
@@ -156,16 +156,16 @@ router.get('/individual-interview/:id', auth, sparkAuth, async (req, res) => {
 
         if (!applicant) return res.redirect('/spark/applications')
 
-        res.render('spark/applications/individual', { 
+        res.render('spark/applications/individual_schedule', { 
             title: "Schedule Interview",
             css: `
                 <link rel="stylesheet" href="/css/spark/micromodal.css" />
                 <link rel="stylesheet" href="/css/schedule.css" />
-                <link rel="stylesheet" href="/css/spark/applications/individual.css" />
+                <link rel="stylesheet" href="/css/spark/applications/individual_schedule.css" />
             `,
             js: `
                 <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-                <script src="/js/spark/applications/individual.js"></script>
+                <script src="/js/spark/applications/individual_schedule.js"></script>
                 <script src="/js/schedule.js"></script>
             `, 
             user: req.user,
@@ -177,10 +177,10 @@ router.get('/individual-interview/:id', auth, sparkAuth, async (req, res) => {
     }
 })
 
-// @route   POST /spark/applications/individual-interview/:id
+// @route   POST /spark/applications/individual-interview/:id/schedule
 // @desc    Schedule Individual Interview
 // @access  Protected
-router.post('/individual-interview/:id', auth, sparkAuth, async (req, res) => {
+router.post('/individual-interview/:id/schedule', auth, sparkAuth, async (req, res) => {
     try {
         const { interviewer_id, date, hour, minutes } = req.body
         const time = `${hour}:${minutes}`
@@ -212,26 +212,25 @@ router.get('/individual-interview/:id/grade', auth, sparkAuth, async (req, res) 
 
         if (!applicant) return res.redirect('/spark/applications')
 
-        const written = applicant.applicant_data.written
+        const interview = applicant.applicant_data.individual_interview
 
         const applicationDetails = await ApplicationDetails.findOne()
-        const written_application = applicationDetails.written
+        const individual_interview = applicationDetails.individual_interview
 
-        res.render('spark/applications/written', { 
-            title: "Grade Written Application",
+        res.render('spark/applications/individual_grade', { 
+            title: "Grade Interview",
             css: `
                 <link rel="stylesheet" href="/css/spark/micromodal.css" />
-                <link rel="stylesheet" href="/css/applicant/index.css" />
-                <link rel="stylesheet" href="/css/spark/applications/written.css" />
+                <link rel="stylesheet" href="/css/spark/applications/individual_grade.css" />
             `,
             js: `
                 <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-                <script src="/js/spark/applications/written.js"></script>
+                <script src="/js/spark/applications/individual_grade.js"></script>
             `, 
             user: req.user,
             applicant,
-            written,
-            written_application
+            interview,
+            individual_interview
         })
     } catch (e) {
         console.log(e)

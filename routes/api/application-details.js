@@ -81,8 +81,9 @@ router.get('/individual-interview-questions', auth, sparkAuth, async (req, res) 
 // @access  Protected
 router.post('/individual-interview-questions', auth, sparkAuth, async (req, res) => {
     const { elements:questions } = req.body
+    console.log(questions)
     try {
-        await ApplicantDetails.findOneAndUpdate({}, { 'individual-interview.questions' : questions })
+        await ApplicantDetails.findOneAndUpdate({}, { 'individual_interview.questions' : questions })
 
         res.send({ msg: 'Successfully Submitted Responses' })
     } catch (e) {
@@ -92,7 +93,7 @@ router.post('/individual-interview-questions', auth, sparkAuth, async (req, res)
 })
 
 // @route   GET /api/application-details/individual-interview-categories
-// @desc    GET Individual Interview Categories
+// @desc    GET Individual Interview Questions
 // @access  Protected
 router.get('/individual-interview-categories', auth, sparkAuth, async (req, res) => {
     try {
@@ -120,7 +121,7 @@ router.post('/individual-interview-categories', auth, sparkAuth, async (req, res
     }
 })
 
-// @route   GET /api/application-details/grou-interview-categories
+// @route   GET /api/application-details/group-interview-categories
 // @desc    GET Group Interview Categories
 // @access  Protected
 router.get('/group-interview-categories', auth, sparkAuth, async (req, res) => {

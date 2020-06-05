@@ -11,7 +11,7 @@
             </header>
             
             <main class="modal__content" id="grade-modal-content">
-                <form id="schedule-interview-modal-form" action="/spark/applications/individual-interview/<%= applicant._id %>" method="POST">
+                <form id="schedule-interview-modal-form" action="/spark/applications/individual-interview/<%= applicant._id %>/schedule" method="POST">
                     <input id="interviewer_id" type="text" style="display: none;" name="interviewer_id" value="">
                     <div class="input-field">
                         <label for="date">Date</label>
