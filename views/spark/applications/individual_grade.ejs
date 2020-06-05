@@ -1,81 +1,85 @@
 <%- include ('../../partials/spark/header') %>
 
-<div class="individual-grade">
+<div class="modal micromodal-slide" id="grade-modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="grade-modal">
+            <header class="modal__header">
+                <h2 class="modal__title" id="grade-modal-title">
+                    Grade Individual Interview
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            
+            <main class="modal__content" id="grade-modal-content">
+                <form id="grade-modal-form" action="/spark/applications/individual-interview/<%= applicant._id %>/grade" method="POST">
+                    <input class="hidden" type="text" name="type" value="categories">
+
+                    <% individual_interview.categories.forEach((category, i) => {
+                        let val = ""
+                        if (interview.grades.length >= i) val = interview.grades[i]
+                    %>
+                        <div class="input-field">
+                            <label for="<%= category.replace(' ', '_') %>"><%= category %></label>
+                            <input id="<%= category.replace(' ', '_') %>" type="number" min="1" max="5" name="grades" value="<%= val %>" placeholder="1-5" required>
+                        </div>
+                    <% }) %>
+
+                    <div class="textarea-field">
+                        <label id="comments-label" for="comments">Comments</label>
+                        <textarea name="comments" id="comments" cols="30" rows="10"><%= interview.comments %></textarea>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button id="modal-submit" type="submit" class="modal__btn">Submit</button>
+                        <button id="modal-cancel" type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div class="main individual-grade">
     <h2>Individual Interview</h2>
 
     <div id="information">
         <h4>Information: </h4>
         <p> <%= `${applicant.firstname} ${applicant.lastname}` %> </p>
-        <p>|</p>
+        <p>-</p>
         <p> <%= `${applicant.grade}` %> </p>
     </div>
 
-    <div class="question">
-        <div class="row">
-            <select name="question1" class="questions" required>
-                <option value="" disabled selected>Choose a question</option>
-                <% individual_interview.questions.forEach(function(question) { %>
-                    <option value="">question</option>
-                <% }); %>
-            </select>
-            <input class="grades" type="number" min="1" max="5" name="grades" placeholder="1-5" required>
-        </div>
-        <textarea class="responses" name="response1" id="" cols="30" rows="10" placeholder="Enter response here..."></textarea>
-    </div>
+    <form id="save-questions" action="/spark/applications/individual-interview/<%= applicant._id %>/grade" method="POST">
+        <input class="hidden" type="text" name="type" value="questions">
+        <% for (let i = 0; i < 5; i++) { %>
+            <div class="question">
+                <div class="row">
+                    <select name="questions" class="questions" required>
+                        <% if (interview.questions.length === 0) { %>
+                            <option value="" disabled selected>Choose a question</option>
+                        <% } else { %>
+                            <option value="" disabled>Choose a question</option>
+                        <% } individual_interview.questions.forEach(function(question, index) { %>
+                            <% if (interview.questions.length !== 0 && interview.questions[i] === index) { %>
+                                <option value="<%= index %>" selected><%= question %></option>
+                            <% } else { %>
+                                <option value="<%= index %>"><%= question %></option>
+                            <% } %>
+                        <% }); %>
+                    </select>
+                    <input class="grades" type="number" value="<%= interview.questionGrades[i] %>"" min="1" max="5" name="grades" placeholder="1-5" required>
+                </div>
+                <textarea class="responses" name="responses" cols="30" rows="10" placeholder="Enter response here..." required><%= interview.responses[i] %></textarea>
+            </div>
+        <% } %>
 
-    <div class="question">
-        <div class="row">
-            <select name="question2" class="questions" required>
-                <option value="" disabled selected>Choose a question</option>
-                <% individual_interview.questions.forEach(function(question) { %>
-                    <option value="">question</option>
-                <% }); %>
-            </select>
-            <input class="grades" type="number" min="1" max="5" name="grades" placeholder="1-5" required>
-        </div>
-        <textarea class="responses" name="response1" id="" cols="30" rows="10" placeholder="Enter response here..."></textarea>
-    </div>
+        <button class="hidden" type="submit">Submit</button>
+    </form>
 
-    <div class="question">
-        <div class="row">
-            <select name="question3" class="questions" required>
-                <option value="" disabled selected>Choose a question</option>
-                <% individual_interview.questions.forEach(function(question) { %>
-                    <option value="">question</option>
-                <% }); %>
-            </select>
-            <input class="grades" type="number" min="1" max="5" name="grades" placeholder="1-5" required>
-        </div>
-        <textarea class="responses" name="response1" id="" cols="30" rows="10" placeholder="Enter response here..."></textarea>
+    <div class="buttons">
+        <button id="save" type="button">Save</button>
+        <button id="grade" type="button" data-micromodal-trigger="grade-modal">Grade</button>
     </div>
-
-    <div class="question">
-        <div class="row">
-            <select name="question4" class="questions" required>
-                <option value="" disabled selected>Choose a question</option>
-                <% individual_interview.questions.forEach(function(question) { %>
-                    <option value="">question</option>
-                <% }); %>
-            </select>
-            <input class="grades" type="number" min="1" max="5" name="grades" placeholder="1-5" required>
-        </div>
-        <textarea class="responses" name="response1" id="" cols="30" rows="10" placeholder="Enter response here..."></textarea>
-    </div>
-
-    <div class="question">
-        <div class="row">
-            <select name="question5" class="questions" required>
-                <option value="" disabled selected>Choose a question</option>
-                <% individual_interview.questions.forEach(function(question) { %>
-                    <option value="">question</option>
-                <% }); %>
-            </select>
-            <input class="grades" type="number" min="1" max="5" name="grades" placeholder="1-5" required>
-        </div>
-        <textarea class="responses" name="response1" id="" cols="30" rows="10" placeholder="Enter response here..."></textarea>
-    </div>
-
-    <button id="grade" type="button" data-micromodal-trigger="grade-modal">Grade</button>
 </div>
 
 <%- include ('../../partials/spark/footer') %>

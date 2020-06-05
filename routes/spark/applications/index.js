@@ -135,7 +135,10 @@ router.post('/written/:id', auth, sparkAuth, async (req, res) => {
         const { grades, comments } = req.body
         const applicant = await User.findById(req.params.id)
 
-        await Applicant.findByIdAndUpdate(applicant.applicant_data, { 'written.grades' : grades, 'written.comments' : comments })
+        await Applicant.findByIdAndUpdate(applicant.applicant_data, { 
+            'written.grades' : grades, 
+            'written.comments' : comments 
+        })
 
         res.redirect('/spark/applications')
     } catch (e) {
@@ -232,6 +235,42 @@ router.get('/individual-interview/:id/grade', auth, sparkAuth, async (req, res) 
             interview,
             individual_interview
         })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Error')
+    }
+})
+
+// @route   POST /spark/applications/written/:id
+// @desc    Grade Written Application
+// @access  Protected
+router.post('/individual-interview/:id/grade', auth, sparkAuth, async (req, res) => {
+    try {
+        const applicant = await User.findById(req.params.id)
+
+        const type = req.body.type
+
+        if (type === "questions") {
+            const { questions, responses, grades } = req.body
+
+            await Applicant.findByIdAndUpdate(applicant.applicant_data, {
+                'individual_interview.questions' : questions, 
+                'individual_interview.responses' : responses,
+                'individual_interview.questionGrades' : grades
+            })
+
+            res.redirect('back')
+        } else {
+            const { grades, comments } = req.body
+            const applicant = await User.findById(req.params.id)
+
+            await Applicant.findByIdAndUpdate(applicant.applicant_data, {
+                'individual_interview.grades' : grades, 
+                'individual_interview.comments' : comments 
+            })
+
+            res.redirect('/spark/applications')
+        }
     } catch (e) {
         console.log(e)
         res.status(500).send('Error')

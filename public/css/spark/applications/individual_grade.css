@@ -1,26 +1,93 @@
+.back {
+    z-index: -1;
+}
+
+.hidden {
+    display: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#grade-modal-form .input-field {
+    margin: 10px 0;
+}
+
+#grade-modal-form input {
+    width: 100px;
+    padding: 10px;
+    margin-left: 15px;
+    text-align: center;
+}
+
+.textarea-field {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#comments-label {
+    text-align: center;
+}
+
+#comments { 
+    padding: 10px;
+}
+
+#grade-modal-form  textarea {
+    resize: vertical;
+    width: 100%;
+    height: 150px;
+    color: #424242;
+    font-size: 18px;
+}
+
+#grade-modal-form button {
+    margin-top: 15px;
+    font-size: 20px;
+    padding: 15px;
+}
+
+#modal-submit {
+    color: white;
+    background-color: #43A047;
+}
+
 .individual-grade {
     padding: 50px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
 h2 {
     border-bottom: 2px solid #FBC02D;
     padding-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 #information {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 25%;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+
+#information p:first-of-type {
+    margin-left: 10px;
+}
+
+#information p {
+    margin: 0 5px;
 }
 
 .question {
-    width: 50%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,22 +103,24 @@ h2 {
 }
 
 .questions {
-    width: 75%;
+    width: 82%;
     padding: 5px;
 }
 
 .grades {
-    width: 11%;
+    width: 15%;
+    text-align: center;
     padding: 5px;
 }
 
 .responses {
     width: 100%;
-    min-height: 100px;
+    min-height: 150px;
     padding: 10px;
+    resize: vertical;
 }
 
-#grade {
+.buttons button {
     margin-top: 25px;
     color: white;
     font-weight: 500;
@@ -59,4 +128,9 @@ h2 {
     border: none;
     padding: 15px 18px;
     border-radius: 25px;
+    cursor: pointer;
+}
+
+#grade {
+    margin-left: 10px;
 }

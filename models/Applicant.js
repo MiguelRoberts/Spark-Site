@@ -28,6 +28,7 @@ const applicantSchema = new Schema({
             }]
         },
         questions: [Number],
+        responses: [String],
         questionGrades: [Number],
         grades: [Number], // category grades
         interviewer: {
