@@ -34,6 +34,7 @@ const applicantSchema = new Schema({
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'User'
         },
+        interview_date: String,
         interview_time: String,
         comments: String
     },

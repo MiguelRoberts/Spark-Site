@@ -182,17 +182,57 @@ router.get('/individual-interview/:id', auth, sparkAuth, async (req, res) => {
 // @access  Protected
 router.post('/individual-interview/:id', auth, sparkAuth, async (req, res) => {
     try {
-        const { interviewer_id, hour, minutes } = req.body
+        const { interviewer_id, date, hour, minutes } = req.body
         const time = `${hour}:${minutes}`
 
         const applicant = await User.findById(req.params.id)
-
+        
         await Applicant.findByIdAndUpdate(applicant.applicant_data, { 
-            'individual_interview.interviewer' : interviewer_id, 
-            'individual_interview.interview_time' : time 
+            'individual_interview.interviewer' : interviewer_id,
+            'individual_interview.interview_date' : date,
+            'individual_interview.interview_time' : time
         })
 
         res.redirect('/spark/applications')
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Error')
+    }
+})
+
+// @route   GET /spark/applications/individual-interview/:id
+// @desc    View Grade Page For Individual Interview
+// @access  Protected
+router.get('/individual-interview/:id/grade', auth, sparkAuth, async (req, res) => {
+    try {
+        const applicant = await User
+                                .findById(req.params.id)
+                                .populate('applicant_data')
+                                .exec()
+
+        if (!applicant) return res.redirect('/spark/applications')
+
+        const written = applicant.applicant_data.written
+
+        const applicationDetails = await ApplicationDetails.findOne()
+        const written_application = applicationDetails.written
+
+        res.render('spark/applications/written', { 
+            title: "Grade Written Application",
+            css: `
+                <link rel="stylesheet" href="/css/spark/micromodal.css" />
+                <link rel="stylesheet" href="/css/applicant/index.css" />
+                <link rel="stylesheet" href="/css/spark/applications/written.css" />
+            `,
+            js: `
+                <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+                <script src="/js/spark/applications/written.js"></script>
+            `, 
+            user: req.user,
+            applicant,
+            written,
+            written_application
+        })
     } catch (e) {
         console.log(e)
         res.status(500).send('Error')

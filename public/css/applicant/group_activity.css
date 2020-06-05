@@ -40,7 +40,7 @@
 }
 
 .group-activity h4 {
-    font-weight: 300;
+    font-weight: 400; /*used to be 300*/
     margin: 5px 0;
 }
 
@@ -51,7 +51,7 @@
 
 .signup {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400; /*used to be 300*/
     border: none;
     background-color: rgb(116,220,96);
     color: white;

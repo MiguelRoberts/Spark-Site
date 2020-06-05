@@ -2,11 +2,14 @@ html, body{
     color: #555555;
     font-family: 'Lato', 'Arial', sans-serif;
     font-size: 20px;
-    font-weight: 300;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     letter-spacing: 1px;
     scrollbar-width: 0;
+}
+
+button {
+    outline: none;
 }
 
 .container {
@@ -26,7 +29,6 @@ h4 {
     text-align: left;
     margin: 0;
     height: 25px;
-    font-weight: 300;
 }
 
 input {
@@ -56,13 +58,11 @@ input {
     
     height: 55px;
     font-size: 20px;
-    font-weight: 300;
-    border: 1px solid #FBC02D;
+    border: 1.5px solid #FBC02D;
     background-color: transparent;
     border-radius: 30px;
     padding: 15px 20px;
-    /* This margin is commented as I changed the justify content to space between */
-    /* margin-right: 25px; */
+    
 
     transition: background-color .2s;
 }
@@ -72,8 +72,7 @@ input {
 
     height: 55px;
     font-size: 20px;
-    font-weight: 300;
-    border: 1px solid #FBC02D;
+    border: 1.5px solid #FBC02D;
     background-color: transparent;
     border-radius: 30px;
     padding: 15px 20px;

@@ -1,6 +1,7 @@
 const User      = require('../../models/User')
 const Leader    = require('../../models/Leader')
 const Applicant = require('../../models/Applicant')
+const { setCookie } = require('../../middleware/auth')
 const sgMail    = require('@sendgrid/mail');
 const router    = require('express').Router()
 const bcrypt    = require('bcryptjs')
@@ -48,18 +49,12 @@ router.post('/', async (req, res) => {
         let user = await newUser.save()
 
         const token = await jwt.sign({ _id: user.id }, process.env.JWT, { expiresIn: 86400 })
+        setCookie(res, token)
 
-        res.json({
-            token,
-            user: {
-                id: user.id,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                grade: user.grade,
-                academy: user.academy,
-                email: user.email,
-            }
-        })
+        if (user.leader_data)
+            res.redirect('/spark')
+        else 
+            res.redirect('/applicant')
     } catch(err) {
         console.log(err)
         res.status(500).send({ msg: 'Error Creating User' })

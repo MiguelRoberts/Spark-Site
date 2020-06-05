@@ -15,9 +15,9 @@
                 <td><hr></td>
             </tr>
             <tr>
-                <td class="date">Some date</td>
-                <td class="time">Time</td>
-                <td class="leader">Alek</td>
+                <td class="date"><%= user.applicant_data.individual_interview.interview_date %></td>
+                <td class="time"><%= user.applicant_data.individual_interview.interview_time %></td>
+                <td class="leader"><%= user.applicant_data.individual_interview.interviewer.firstname %></td>
             </tr>
         </tbody>
     </table>

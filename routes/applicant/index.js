@@ -16,9 +16,15 @@ router.get('/', auth, applicantAuth, async (req, res) => {
         if (details.applicationsOpen) 
             user = await User
                             .findById(req.user._id)
-                            .populate('applicant_data')
+                            .populate({ 
+                                path: 'applicant_data',
+                                populate: { 
+                                    path: 'individual_interview.interviewer'
+                                }
+                            })
                             .exec()
         
+        console.log(user)
         const stylesheets = [
             '<link rel="stylesheet" href="/css/applicant/written.css" />',
             '<link rel="stylesheet" href="/css/applicant/individual.css" /><link rel="stylesheet" href="/css/schedule.css" />',

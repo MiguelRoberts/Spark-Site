@@ -101,12 +101,12 @@
 
                     <% if(individual_grade !== 0) { %>
                         <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
-                    <% } else if(individual.interviewer === user._id) { %>
+                    <% } else if(!individual.interviewer) { %>
+                        <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>" class="grade-button">Schedule</a></td>
+                    <% } else if((individual.interviewer._id).toString() == user._id) { %>
                         <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>" class="grade-button">Grade</a></td>
-                    <% } else if(individual.interviewer !== user._id) { %>
-                        <td class="individual"> <%= `${individual.interviewer.firstname} ${individual.interviewer.lastname}` %> </td>
                     <% } else { %>
-                        <td class="individual"><a href="" class="grade-button">Assign</a></td>
+                        <td class="individual"> <%= `${individual.interviewer.firstname} ${individual.interviewer.lastname}` %> </td>
                     <% } %>
                     
 

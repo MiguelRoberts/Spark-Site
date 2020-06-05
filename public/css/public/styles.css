@@ -18,7 +18,7 @@ html, body{
     color: #555;
     font-family: 'Lato', 'Arial', sans-serif;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 300; /*used to be 300*/
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     letter-spacing: 1px;
@@ -113,7 +113,7 @@ nav img {
 
 #events, #questions {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     border: none;
     background-color: #FBC02D;
     color: white;

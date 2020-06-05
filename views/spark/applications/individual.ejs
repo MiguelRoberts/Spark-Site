@@ -15,7 +15,7 @@
                     <input id="interviewer_id" type="text" style="display: none;" name="interviewer_id" value="">
                     <div class="input-field">
                         <label for="date">Date</label>
-                        <input id="date" type="text" placeholder="e.g. April 20">
+                        <input id="date" name="date" type="text" placeholder="e.g. April 20" required>
                     </div>
 
                     <div class="select-field">
@@ -28,7 +28,7 @@
                                     <option value="<%= hour %>"><%= hour %></option>
                                 <% } %>
                             </select>
-                            <select name="minutes" id="time">
+                            <select name="minutes" id="time" required>
                                 <option value="00">00</option>
                                 <option value="15">15</option>
                                 <option value="30">30</option>

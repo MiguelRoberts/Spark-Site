@@ -38,6 +38,10 @@ h3 {
     font-weight: 400;
 }
 
+p {
+    line-height: 28px;
+}
+
 .submit {
     display: flex;
     flex-direction: column;
@@ -77,7 +81,6 @@ h3 {
 #submit {
     margin-top: 30px;
     font-size: 20px;
-    font-weight: 300;
     border: none;
     background-color: #FBC02D;
     color: white;

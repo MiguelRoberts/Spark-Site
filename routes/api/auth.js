@@ -31,17 +31,6 @@ router.post('/', async (req, res) => {
         else 
             res.redirect('/applicant')
 
-        // res.json({
-        //     token,
-        //     user: {
-        //         id: user.id,
-        //         name: user.name,
-        //         grade: user.grade,
-        //         academy: user.academy,
-        //         email: user.email,
-        //     }
-        // })
-
     } catch(err) {
         console.log(err)
         res.status(500).json({ msg: 'Error Authenticating User' })

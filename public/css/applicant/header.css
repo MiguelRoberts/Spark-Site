@@ -10,6 +10,10 @@ html, body{
     margin: 0;
 }
 
+button {
+    outline: none !important;
+}
+
 nav {
     min-height: 100px;
     display: flex;
@@ -34,7 +38,7 @@ nav {
 }
 
 h3 {
-    font-weight: 300;
+    font-weight: 400; /*used to be 300*/
 }
 
 #logo {
@@ -44,7 +48,7 @@ h3 {
 
 #logout, #question {
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400; /*used to be 300*/
     border: none;
     background-color: #FBC02D;
     color: white;

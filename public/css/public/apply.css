@@ -6,7 +6,6 @@ html, body{
     color: white;
     font-family: 'Lato', 'Arial', sans-serif;
     font-size: 20px;
-    font-weight: 300;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     letter-spacing: 1px;
@@ -84,7 +83,6 @@ option {
     color: white;
     height: 50px;
     font-size: 20px;
-    font-weight: 300;
     border: 1px solid #FBC02D;
     background-color: #FBC02D;
     border-radius: 30px;
