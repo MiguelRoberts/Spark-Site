@@ -1,0 +1,62 @@
+.individual-grade {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+h2 {
+    border-bottom: 2px solid #FBC02D;
+    padding-bottom: 15px;
+}
+
+#information {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 25%;
+    justify-content: space-between;
+}
+
+.question {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.questions {
+    width: 75%;
+    padding: 5px;
+}
+
+.grades {
+    width: 11%;
+    padding: 5px;
+}
+
+.responses {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+}
+
+#grade {
+    margin-top: 25px;
+    color: white;
+    font-weight: 500;
+    background-color: #FBC02D;
+    border: none;
+    padding: 15px 18px;
+    border-radius: 25px;
+}
