@@ -68,9 +68,6 @@ function updateStage(stage) {
 
 // updateStage(1)
 
-// TODO: Change submit written view - alek
-
-// TODO: Change some due date here
 // TODO: Change width of scheduling interview - spark side
 // TODO: Any spark leader can schedule the group interview date
 // TODO: Add group interview creater in applications-control

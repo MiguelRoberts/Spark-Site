@@ -24,7 +24,6 @@ router.get('/', auth, applicantAuth, async (req, res) => {
                             })
                             .exec()
         
-        console.log(user)
         const stylesheets = [
             '<link rel="stylesheet" href="/css/applicant/written.css" />',
             '<link rel="stylesheet" href="/css/applicant/individual.css" /><link rel="stylesheet" href="/css/schedule.css" />',
