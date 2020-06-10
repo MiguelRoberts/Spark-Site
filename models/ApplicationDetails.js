@@ -6,7 +6,8 @@ const applicationDetailsSchema = new Schema({
     written: {
         instructions: String,
         questions: [], // written questions
-        categories: [] // categories to be graded on
+        categories: [], // categories to be graded on
+        deadline: String
     },
     individual_interview: {
         questions: [], // pool of all questions that can be asked in the interview

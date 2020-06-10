@@ -4,6 +4,35 @@ const Applicant             = require('../../models/Applicant')
 const User                  = require('../../models/User')
 const router                = require('express').Router()
 
+// @route   GET /api/application-details/written-deadline
+// @desc    GET Written Deadline
+// @access  Protected
+router.get('/written-deadline', auth, sparkAuth, async (req, res) => {
+    try {
+        const details = await ApplicantDetails.findOne()
+
+        res.send({ deadline: details.written.deadline })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
+// @route   POST /api/application-details/written-deadline
+// @desc    Update Written Deadline
+// @access  Protected
+router.post('/written-deadline', auth, sparkAuth, async (req, res) => {
+    const { deadline } = req.body
+    try {
+        await ApplicantDetails.findOneAndUpdate({}, { 'written.deadline' : deadline })
+
+        res.send({ msg: 'Successfully Submitted Responses' })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
 // @route   GET /api/application-details/written-questions
 // @desc    GET Written Questions
 // @access  Protected
@@ -81,7 +110,6 @@ router.get('/individual-interview-questions', auth, sparkAuth, async (req, res) 
 // @access  Protected
 router.post('/individual-interview-questions', auth, sparkAuth, async (req, res) => {
     const { elements:questions } = req.body
-    console.log(questions)
     try {
         await ApplicantDetails.findOneAndUpdate({}, { 'individual_interview.questions' : questions })
 

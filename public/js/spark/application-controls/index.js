@@ -1,7 +1,11 @@
 $(function() {
+    // ADDABLE SCRIPTS
     function fillAddables() {
         $.each($('.addable'), function() {
             const $el = $(this)
+            
+            if ($el.attr('data-custom') === 'true') return
+
             const $content = $el.children('.addable__body').children('.addable__content')
             const url = $el.attr('data-api')
 
@@ -23,6 +27,7 @@ $(function() {
 
     // click enter in input
     $('.addable__input input').keydown(function(e) {
+        if ($(this).parent().parent().parent().attr('data-custom') === 'true') return
         if (e.keyCode === 13) {
             const $input = $(this)
             const element = $input.val()
@@ -36,6 +41,7 @@ $(function() {
 
     // click add element button
     $('.addable__input button').click(function() {
+        if ($(this).parent().parent().parent().attr('data-custom') === 'true') return
         const $el = $(this)
         const $content = $el.parent().prev('.addable__content')
         const $input = $el.prev('input')
@@ -118,4 +124,43 @@ $(function() {
             console.log(err)
         })
     }
+
+    // CUSTOM ADDABLE SCRIPTS
+    function fillWrittenDeadline() {
+        const url = $("#written-deadline").attr('data-api')
+
+        $.ajax({
+            method: "GET",
+            url,
+            dataType: 'JSON'
+        })
+        .done(function(data) {
+            if (JSON.stringify(data) !== JSON.stringify({}))
+                $("#written-deadline input").val(data.deadline)
+        })
+        .fail(function(err) {
+            console.log(err)
+        })
+    }
+
+    fillWrittenDeadline()
+    
+    $("#written-deadline button").click(function() {
+        const deadline = $("#written-deadline input").val()
+        if (!deadline) return
+        
+        const url = $("#written-deadline").attr('data-api')
+        $.ajax({
+            method: "POST",
+            url,
+            data: { deadline },
+            dataType: 'JSON'
+        })
+        .done(function(data) {
+            console.log(data)
+        })
+        .fail(function(err) {
+            console.log(err)
+        })
+    })
 })

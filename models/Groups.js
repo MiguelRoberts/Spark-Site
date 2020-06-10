@@ -11,6 +11,11 @@ const groupsSchema = new Schema({
         type: String,
         required: true
     },
+
+    time: {
+        type: String,
+        required: true
+    },
     
     applicants: [{
         type: mongoose.SchemaTypes.ObjectId,

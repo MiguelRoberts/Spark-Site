@@ -4,10 +4,7 @@ const Schema = mongoose.Schema
 const leaderSchema = new Schema({
     activities: [String],
     committees: [String],
-    headshot: {
-        type: String,
-        required: true
-    }
+    headshot: String
 })
 
 module.exports = Leader = mongoose.model('Leader', leaderSchema)

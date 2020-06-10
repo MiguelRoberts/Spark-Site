@@ -77,6 +77,10 @@ nav img {
 .learn-more {
     display: flex;
     flex-direction: column;
+    width: 150px;
+    position: absolute;
+    bottom: 25px;
+    margin: 0 calc((100vw - 150px) / 2);
     color: white;
     align-items: center;
     padding-top: 20px;

@@ -7,7 +7,7 @@ const { auth, sparkAuth }   = require('../../middleware/auth')
 // @access  Protected
 router.get('/', auth, sparkAuth, async (req, res) => {
     try {
-        const committees = await Committee.find()
+        const committees = await Committee.find({}).populate('members').exec()
         
         const primary = committees.filter(c => c.importance === "Primary")
         const secondary = committees.filter(c => c.importance === "Secondary")

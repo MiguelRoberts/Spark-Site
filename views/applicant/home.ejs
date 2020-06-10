@@ -7,8 +7,22 @@
             <p>We appreciate you signing up early, but it is not yet time to apply. Please check your email for any application updates and check the portal as well. If you have a question, feel free to use the question button above.</p>
         </div>
     </div>
+<% } else if (user.applicant_data.cut) { %>
+    <div class="applicant-cut">
+        <p>you've been cut</p>
+    </div>
 <% } else if (user.applicant_data.application_stage === 1) { %>
-    <%- include ('./written') %>
+    <% if (user.applicant_data.written.activities.length !== 0) { %>
+        <div class="written-submitted">
+            <p>thanks for submitting</p>
+        </div>
+    <% } else if (Date.now() > Date.parse(details.written.date)) { %>
+        <div class="written-deadline">
+            <p>deadline has passed</p>
+        </div>
+    <% } else { %>
+        <%- include ('./written') %>
+    <% } %>
 <% } else if (user.applicant_data.application_stage === 2) { 
         if (user.applicant_data.individual_interview.interviewer) { %>
             <%- include ('./individualDetails') %>
@@ -17,7 +31,7 @@
         <% } %>
 <% } else if (user.applicant_data.application_stage === 3) { %>
     <%- include ('./groupInterview') %>
-<% } else if (user.applicant_data.applicationStage === 4) { %>
+<% } else if (user.applicant_data.application_stage === 4) { %>
     <%- include ('./groupActivity') %>
 <% } %>
 

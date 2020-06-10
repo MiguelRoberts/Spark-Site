@@ -1,8 +1,8 @@
 <div class="written">
     <div class="content">
         <h2>Written Application</h2>
-        <h3>Due Date: Some due date here</h3>
-        <p>Hi! Please follow the instructions and fill this application out to the best of your ability. PUT MORE INSTRUCTIONS HERE</p>
+        <h3>Due Date: <%= details.written.deadline %></h3>
+        <p>Hi! Please follow the instructions and fill this application out to the best of your ability.</p>
 
         <form action="/api/applicant/written" method="POST">
             <h3 class="header">Activities and Extracurriculars</h4>
