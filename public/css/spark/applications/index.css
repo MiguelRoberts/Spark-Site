@@ -9,6 +9,7 @@ p {
 td a {
     text-decoration: none;
     color: #1976D2;
+    cursor: pointer;
 }
 
 .breakdown {

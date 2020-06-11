@@ -286,4 +286,41 @@ router.post('/individual-interview/:id/grade', auth, sparkAuth, async (req, res)
     }
 })
 
+// @route   GET /spark/applications/group-interview/:id/grade
+// @desc    Get Group Interview Grade
+// @access  Protected
+router.get('/group-interview/:id/grade', auth, sparkAuth, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id).populate('applicant_data').exec()
+        const { grades, comments } = user.applicant_data.group_interview
+        
+        res.send({ grades, comments })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Error')
+    }
+})
+
+// @route   POST /spark/applications/group-interview/:id/grade
+// @desc    Update Group Interview Grade
+// @access  Protected
+router.post('/group-interview/:id/grade', auth, sparkAuth, async (req, res) => {
+    try {
+        const { grades, comments } = req.body
+        const applicant = await User.findById(req.params.id)
+
+        await Applicant.findByIdAndUpdate(applicant.applicant_data, {
+            'group_interview.grades' : grades, 
+            'group_interview.comments' : comments 
+        })
+        
+        res.redirect('back')
+    } catch (e) {
+        console.log(e)
+        res.status(500).send('Error')
+    }
+})
+
+
+
 module.exports = router

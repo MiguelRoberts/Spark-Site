@@ -12,12 +12,10 @@
             
             <main class="modal__content" id="grade-modal-content">
                 <form id="grade-modal-form" method="POST">
-                    <input class="hidden" type="text" name="type" value="categories">
-
                     <% group_interview.categories.forEach((category, i) => { %>
                         <div class="input-field">
                             <label for="<%= category.replace(' ', '_') %>"><%= category %></label>
-                            <input id="<%= category.replace(' ', '_') %>" type="number" min="1" max="5" name="grades" placeholder="1-5" required>
+                            <input id="<%= category.replace(' ', '_') %>" class="group-interview-category" type="number" min="1" max="5" name="grades" placeholder="1-5" required>
                         </div>
                     <% }) %>
 
