@@ -37,304 +37,318 @@
 <div class="container applications">
     <h1 class="title">Applications</h1>
 
-    <h2 class="table-title">Active Applicants</h2>
+    <% if (stage !== "Not Open" && stage !== "Accepted") { %>
+        <h2 class="table-title">Active Applicants</h2>
 
-    <h4>Breakdown of Active Applicants</h4>
-    <p>Total Active Applicants: <%= applications.length %> </p>
-    <div class="breakdown">
-        <div class="academies">
-            <p>Academies:</p>
-            <ul>
-                <%  let aast, amst, abf, aedt, atcs, acaha, avpav, avpam, avpat
-                    aast = amst= abf = aedt = atcs = acaha = avpav = avpam = avpat = 0
-                    applications.forEach(function(applicant) { 
-                        if(applicant.academy === "AAST") {aast++}
-                        else if(applicant.academy === "AMST") {amst++}
-                        else if(applicant.academy === "ABF") {abf++}
-                        else if(applicant.academy === "AEDT") {aedt++}
-                        else if(applicant.academy === "ATCS") {atcs++}
-                        else if(applicant.academy === "ACAHA") {acaha++}
-                        else if(applicant.academy === "AVPA/V") {avpav++}
-                        else if(applicant.academy === "AVPA/M") {avpam++}
-                        else if(applicant.academy === "AVPA/T") {avpat++}
-                    }); %>
-                <li>AAST:   <%= aast %> </li>
-                <li>AMST:   <%= amst %> </li>
-                <li>ABF:    <%= abf %> </li>
-                <li>AEDT:   <%= aedt %> </li>
-                <li>ATCS:   <%= atcs %> </li>
-                <li>ACAHA:  <%= acaha %></li>
-                <li>AVPA/V: <%= avpav %> </li>
-                <li>AVPA/M: <%= avpam %> </li>
-                <li>AVPA/T: <%= avpat %> </li>
-            </ul>
+        <h4>Breakdown of Active Applicants</h4>
+        <p>Total Active Applicants: <%= applications.length %> </p>
+    
+        <div class="breakdown">
+            <div class="academies">
+                <p>Academies:</p>
+                <ul>
+                    <%  let aast, amst, abf, aedt, atcs, acaha, avpav, avpam, avpat
+                        aast = amst= abf = aedt = atcs = acaha = avpav = avpam = avpat = 0
+                        applications.forEach(function(applicant) { 
+                            if(applicant.academy === "AAST") {aast++}
+                            else if(applicant.academy === "AMST") {amst++}
+                            else if(applicant.academy === "ABF") {abf++}
+                            else if(applicant.academy === "AEDT") {aedt++}
+                            else if(applicant.academy === "ATCS") {atcs++}
+                            else if(applicant.academy === "ACAHA") {acaha++}
+                            else if(applicant.academy === "AVPA/V") {avpav++}
+                            else if(applicant.academy === "AVPA/M") {avpam++}
+                            else if(applicant.academy === "AVPA/T") {avpat++}
+                        }); %>
+                    <li>AAST:   <%= aast %> </li>
+                    <li>AMST:   <%= amst %> </li>
+                    <li>ABF:    <%= abf %> </li>
+                    <li>AEDT:   <%= aedt %> </li>
+                    <li>ATCS:   <%= atcs %> </li>
+                    <li>ACAHA:  <%= acaha %></li>
+                    <li>AVPA/V: <%= avpav %> </li>
+                    <li>AVPA/M: <%= avpam %> </li>
+                    <li>AVPA/T: <%= avpat %> </li>
+                </ul>
+            </div>
+            <div class="genders">
+                <p>Genders:</p>
+                <ul>
+                    <%  let male, female, other
+                        male = female = other = 0
+                        applications.forEach(function(applicant) {
+                            if(applicant.gender === "male") {male++}
+                            else if (applicant.gender === "female") {female++}
+                            else if (applicant.gender === "other") {other++}
+                        }); %>
+                    <li>Male:   <%= male %> </li>
+                    <li>Female: <%= female %> </li>
+                    <li>Other:  <%= other %> </li>
+                </ul>
+            </div>
         </div>
-        <div class="genders">
-            <p>Genders:</p>
-            <ul>
-                <%  let male, female, other
-                    male = female = other = 0
-                    applications.forEach(function(applicant) {
-                        if(applicant.gender === "male") {male++}
-                        else if (applicant.gender === "female") {female++}
-                        else if (applicant.gender === "other") {other++}
-                    }); %>
-                <li>Male:   <%= male %> </li>
-                <li>Female: <%= female %> </li>
-                <li>Other:  <%= other %> </li>
-            </ul>
-        </div>
-    </div>
+    <% } %>
 
     <div class="progression">
         <form action="/spark/applications/advance" method="POST">
-            <button id="next-stage">Avance to Next Stage</button>
+            <% if (stage === "Not Open" || stage === "Accepted") { %>
+                <button id="open-applications">Open Applications!</button>
+            <% } else if (stage === "Group Activity") { %>
+                <button id="accept-applicants">Accept Spark Members!</button>
+            <% } else { %>
+                <button id="next-stage">Avance to Next Stage</button>
+            <% } %>
         </form>
-        <p>Current Stage: <%= stage %></p>
+        <% if (stage !== "Not Open" && stage !== "Group Activity" && stage !== "Accepted") { %>
+            <p>Current Stage: <%= stage %></p>
+        <% } %>
     </div>
+
+    <% if (stage !== "Not Open" && stage !== "Accepted") { %>
     
-    <!-- Active Applicants Table -->
-    <table class="applicants">
-        <thead>
-            <tr>
-                <td class="name">Name</td>
-                <td class="gender">Gender</td>
-                <td class="academy">Academy</td>
-                <td class="written">Written Application</td>
-                <td class="individual">Individual Interview</td>
-                <td class="group">Group Interview</td>
-                <td class="total">Total</td>
-                <td class="cut">Cut</td>
-            </tr>                
-        </thead>
-        <tbody>
-            <% applications.forEach(function(applicant) { %>
-                <tr class="applicant-row">
-                    <td class="name"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
-                    <td class="gender"> <%= `${applicant.gender}` %> </td>
-                    <td class="academy"> <%= `${applicant.academy}` %> </td>
-                    <%  const written = applicant.applicant_data.written
-                        let written_grade = 0
-                        written.grades.forEach(function(grade) {written_grade = written_grade + grade});
-
-                        const individual = applicant.applicant_data.individual_interview
-                        let individual_grade = 0
-                        individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
-                        individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade});
-
-                        const group = applicant.applicant_data.group_interview
-                        let group_grade = 0
-                        group.grades.forEach(function(grade) {group_grade = group_grade + grade});
-                    %>
-
-                    <% if(written_grade !== 0) { %>
-                        <td class="written"><a href="/spark/applications/written/<%= applicant._id %>"><%= written_grade %></a></td>
-                    <% } else { %>
-                        <td class="written"><a href="/spark/applications/written/<%= applicant._id %>" class="grade-button">Grade</a></td>
-                    <% } %>
-
-                    <% if(!individual.interviewer) { %>
-                        <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>/schedule" class="grade-button">Schedule</a></td>
-                    <% } else if(individual.interviewer._id.toString() == user._id) { %>
-                        <% if (individual_grade === 0) { %>
-                            <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>/grade" class="grade-button">Grade</a></td>
-                        <% } else { %>
-                            <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>/grade"><%= individual_grade %></a></td>
-                        <% } %>
-                    <% } else { %>
-                        <% if (individual_grade === 0) { %>
-                            <td class="individual"><%= `${individual.interviewer.firstname} ${individual.interviewer.lastname}` %></td>
-                        <% } else { %>
-                            <td class="individual"><%= individual_grade %></td>
-                        <% } %>
-                    <% } %>
-                    
-
-                    <% if(group_grade !== 0) { %>
-                        <td class="group"><a id="<%= applicant._id %>"><%= group_grade %> </a></td>
-                    <% } else { %>
-                        <td class="group"><a id="<%= applicant._id %>" class="grade-button">Grade</a></td>
-                    <% } %>
-
-                    <% let total = written_grade + individual_grade + group_grade %>
-                    <td class="total"> <%= total %> </td>
-
-                    <td class="cut">
-                        <form action="/spark/applications/cut/<%= applicant._id %>" method="POST">
-                            <button class="cut-button">Cut</button>
-                        </form>
-                    </td>
-                </tr>
-            <% }) %>
-        </tbody>
-    </table>
-
-    <!-- Cut after written table -->
-    <% if (cut_written.length !== 0) { %> 
-        <h2 class="table-title">Applicants Cut after Written</h2>
-            
-        <table class="cut-written">
+        <!-- Active Applicants Table -->
+        <table class="applicants">
             <thead>
                 <tr>
-                    <td class="nameW">Name</td>
-                    <td class="genderW">Gender</td>
-                    <td class="academyW">Academy</td>
-                    <td class="writtenW"> Written Application</td>
-                    <td class="totalW">Total</td>
-                </tr>
+                    <td class="name">Name</td>
+                    <td class="gender">Gender</td>
+                    <td class="academy">Academy</td>
+                    <td class="written">Written Application</td>
+                    <td class="individual">Individual Interview</td>
+                    <td class="group">Group Interview</td>
+                    <td class="total">Total</td>
+                    <td class="cut">Cut</td>
+                </tr>                
             </thead>
             <tbody>
-                <% cut_written.forEach(function(applicant) { %>
+                <% applications.forEach(function(applicant) { %>
                     <tr class="applicant-row">
-                        <td class="nameW"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
-                        <td class="genderW"> <%= `${applicant.gender}` %> </td>
-                        <td class="academyW"> <%= `${applicant.academy}` %> </td>
-
+                        <td class="name"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                        <td class="gender"> <%= `${applicant.gender}` %> </td>
+                        <td class="academy"> <%= `${applicant.academy}` %> </td>
                         <%  const written = applicant.applicant_data.written
                             let written_grade = 0
-                            written.grades.forEach(function(grade) {written_grade = written_grade + grade}); %>
-                        <td class="writtenW"><%= written_grade %></td>
-                        <% let total = written_grade %>
-                        <td class="totalW"> <%= total %> </td>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    <% } %>
-
-    <!-- Cut after individual interviews table -->
-    <% if (cut_individual.length !== 0) { %>
-        <h2 class="table-title">Applicants Cut after Individual Interview</h2>
-            
-        <table class="cut-individual">
-            <thead>
-                <tr>
-                    <td class="nameI">Name</td>
-                    <td class="genderI">Gender</td>
-                    <td class="academyI">Academy</td>
-                    <td class="writtenI"> Written Application</td>
-                    <td class="individualI">Individual Interview</td>
-                    <td class="totalI">Total</td>
-                </tr>
-            </thead>
-            <tbody>
-                <% cut_individual.forEach(function(applicant) { %>
-                    <tr class="applicant-row">
-                        <td class="nameI"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
-                        <td class="genderI"> <%= `${applicant.gender}` %> </td>
-                        <td class="academyI"> <%= `${applicant.academy}` %> </td>
-
-                        <%  const written = applicant.applicant_data.written
-                            let written_grade = 0
-                            written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
+                            written.grades.forEach(function(grade) {written_grade = written_grade + grade});
 
                             const individual = applicant.applicant_data.individual_interview
                             let individual_grade = 0
                             individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
-                            individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) %>
-                        <td class="writtenI"><%= written_grade %></td>
-                        <td class="individualI"><%= individual_grade %></td>
+                            individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade});
+
+                            const group = applicant.applicant_data.group_interview
+                            let group_grade = 0
+                            group.grades.forEach(function(grade) {group_grade = group_grade + grade});
+                        %>
+
+                        <% if(written_grade !== 0) { %>
+                            <td class="written"><a href="/spark/applications/written/<%= applicant._id %>"><%= written_grade %></a></td>
+                        <% } else { %>
+                            <td class="written"><a href="/spark/applications/written/<%= applicant._id %>" class="grade-button">Grade</a></td>
+                        <% } %>
+
+                        <% if(!individual.interviewer) { %>
+                            <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>/schedule" class="grade-button">Schedule</a></td>
+                        <% } else if(individual.interviewer._id.toString() == user._id) { %>
+                            <% if (individual_grade === 0) { %>
+                                <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>/grade" class="grade-button">Grade</a></td>
+                            <% } else { %>
+                                <td class="individual"><a href="/spark/applications/individual-interview/<%= applicant._id %>/grade"><%= individual_grade %></a></td>
+                            <% } %>
+                        <% } else { %>
+                            <% if (individual_grade === 0) { %>
+                                <td class="individual"><%= `${individual.interviewer.firstname} ${individual.interviewer.lastname}` %></td>
+                            <% } else { %>
+                                <td class="individual"><%= individual_grade %></td>
+                            <% } %>
+                        <% } %>
                         
-                        <% let total = written_grade + individual_grade %>
-                        <td class="totalI"> <%= total %> </td>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    <% } %>
 
-    <!-- Cut after group interviews table -->
-    <% if (cut_group_i.length !== 0) { %>
-        <h2 class="table-title">Applicants Cut after Group Interviews</h2>
-            
-        <table class="cut-group">
-            <thead>
-                <tr>
-                    <td class="nameG">Name</td>
-                    <td class="genderG">Gender</td>
-                    <td class="academyG">Academy</td>
-                    <td class="writtenG"> Written Application</td>
-                    <td class="individualG">Individual Interview</td>
-                    <td class="groupG">Group Interview</td>
-                    <td class="totalG">Total</td>
-                </tr>
-            </thead>
-            <tbody>
-                <% cut_group_i.forEach(function(applicant) { %>
-                    <tr class="applicant-row">
-                        <td class="nameG"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
-                        <td class="genderG"> <%= `${applicant.gender}` %> </td>
-                        <td class="academyG"> <%= `${applicant.academy}` %> </td>
-
-                        <%  const written = applicant.applicant_data.written
-                            let written_grade = 0
-                            written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
-
-                            const individual = applicant.applicant_data.individual_interview
-                            let individual_grade = 0
-                            individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
-                            individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) 
-                            
-                            const group = applicant.applicant_data.group_interview
-                            let group_grade = 0
-                            group.grades.forEach(function(grade) {group_grade = group_grade + grade}) %>
-                        <td class="writtenG"><%= written_grade %></td>
-                        <td class="individualG"><%= individual_grade %></td>
-                        <td class="groupG"><%= group_grade %></td>
+                        <% if(group_grade !== 0) { %>
+                            <td class="group"><a id="<%= applicant._id %>"><%= group_grade %> </a></td>
+                        <% } else { %>
+                            <td class="group"><a id="<%= applicant._id %>" class="grade-button">Grade</a></td>
+                        <% } %>
 
                         <% let total = written_grade + individual_grade + group_grade %>
-                        <td class="totalG"> <%= total %> </td>
+                        <td class="total"> <%= total %> </td>
+
+                        <td class="cut">
+                            <form action="/spark/applications/cut/<%= applicant._id %>" method="POST">
+                                <button class="cut-button">Cut</button>
+                            </form>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
-    <% } %>
 
-    <!-- Cut after group activity table -->
-    <% if (cut_group_a.length !== 0) { %>
-        <h2 class="table-title">Applicants Cut after Group Activity</h2>
-            
-        <table class="cut-group">
-            <thead>
-                <tr>
-                    <td class="nameG">Name</td>
-                    <td class="genderG">Gender</td>
-                    <td class="academyG">Academy</td>
-                    <td class="writtenG"> Written Application</td>
-                    <td class="individualG">Individual Interview</td>
-                    <td class="groupG">Group Interview</td>
-                    <td class="totalG">Total</td>
-                </tr>
-            </thead>
-            <tbody>
-                <% cut_group_a.forEach(function(applicant) { %>
-                    <tr class="applicant-row">
-                        <td class="nameG"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
-                        <td class="genderG"> <%= `${applicant.gender}` %> </td>
-                        <td class="academyG"> <%= `${applicant.academy}` %> </td>
+        <!-- Cut after written table -->
+        <% if (cut_written.length !== 0) { %> 
+            <h2 class="table-title">Applicants Cut after Written</h2>
+                
+            <table class="cut-written">
+                <thead>
+                    <tr>
+                        <td class="nameW">Name</td>
+                        <td class="genderW">Gender</td>
+                        <td class="academyW">Academy</td>
+                        <td class="writtenW"> Written Application</td>
+                        <td class="totalW">Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cut_written.forEach(function(applicant) { %>
+                        <tr class="applicant-row">
+                            <td class="nameW"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                            <td class="genderW"> <%= `${applicant.gender}` %> </td>
+                            <td class="academyW"> <%= `${applicant.academy}` %> </td>
 
-                        <%  const written = applicant.applicant_data.written
-                            let written_grade = 0
-                            written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
+                            <%  const written = applicant.applicant_data.written
+                                let written_grade = 0
+                                written.grades.forEach(function(grade) {written_grade = written_grade + grade}); %>
+                            <td class="writtenW"><%= written_grade %></td>
+                            <% let total = written_grade %>
+                            <td class="totalW"> <%= total %> </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
 
-                            const individual = applicant.applicant_data.individual_interview
-                            let individual_grade = 0
-                            individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
-                            individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) 
+        <!-- Cut after individual interviews table -->
+        <% if (cut_individual.length !== 0) { %>
+            <h2 class="table-title">Applicants Cut after Individual Interview</h2>
+                
+            <table class="cut-individual">
+                <thead>
+                    <tr>
+                        <td class="nameI">Name</td>
+                        <td class="genderI">Gender</td>
+                        <td class="academyI">Academy</td>
+                        <td class="writtenI"> Written Application</td>
+                        <td class="individualI">Individual Interview</td>
+                        <td class="totalI">Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cut_individual.forEach(function(applicant) { %>
+                        <tr class="applicant-row">
+                            <td class="nameI"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                            <td class="genderI"> <%= `${applicant.gender}` %> </td>
+                            <td class="academyI"> <%= `${applicant.academy}` %> </td>
+
+                            <%  const written = applicant.applicant_data.written
+                                let written_grade = 0
+                                written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
+
+                                const individual = applicant.applicant_data.individual_interview
+                                let individual_grade = 0
+                                individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
+                                individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) %>
+                            <td class="writtenI"><%= written_grade %></td>
+                            <td class="individualI"><%= individual_grade %></td>
                             
-                            const group = applicant.applicant_data.group_interview
-                            let group_grade = 0
-                            group.grades.forEach(function(grade) {group_grade = group_grade + grade}) %>
-                        <td class="writtenG"><%= written_grade %></td>
-                        <td class="individualG"><%= individual_grade %></td>
-                        <td class="groupG"><%= group_grade %></td>
+                            <% let total = written_grade + individual_grade %>
+                            <td class="totalI"> <%= total %> </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
 
-                        <% let total = written_grade + individual_grade + group_grade %>
-                        <td class="totalG"> <%= total %> </td>
+        <!-- Cut after group interviews table -->
+        <% if (cut_group_i.length !== 0) { %>
+            <h2 class="table-title">Applicants Cut after Group Interviews</h2>
+                
+            <table class="cut-group">
+                <thead>
+                    <tr>
+                        <td class="nameG">Name</td>
+                        <td class="genderG">Gender</td>
+                        <td class="academyG">Academy</td>
+                        <td class="writtenG"> Written Application</td>
+                        <td class="individualG">Individual Interview</td>
+                        <td class="groupG">Group Interview</td>
+                        <td class="totalG">Total</td>
                     </tr>
-                <% }) %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% cut_group_i.forEach(function(applicant) { %>
+                        <tr class="applicant-row">
+                            <td class="nameG"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                            <td class="genderG"> <%= `${applicant.gender}` %> </td>
+                            <td class="academyG"> <%= `${applicant.academy}` %> </td>
+
+                            <%  const written = applicant.applicant_data.written
+                                let written_grade = 0
+                                written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
+
+                                const individual = applicant.applicant_data.individual_interview
+                                let individual_grade = 0
+                                individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
+                                individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) 
+                                
+                                const group = applicant.applicant_data.group_interview
+                                let group_grade = 0
+                                group.grades.forEach(function(grade) {group_grade = group_grade + grade}) %>
+                            <td class="writtenG"><%= written_grade %></td>
+                            <td class="individualG"><%= individual_grade %></td>
+                            <td class="groupG"><%= group_grade %></td>
+
+                            <% let total = written_grade + individual_grade + group_grade %>
+                            <td class="totalG"> <%= total %> </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+
+        <!-- Cut after group activity table -->
+        <% if (cut_group_a.length !== 0) { %>
+            <h2 class="table-title">Applicants Cut after Group Activity</h2>
+                
+            <table class="cut-group">
+                <thead>
+                    <tr>
+                        <td class="nameG">Name</td>
+                        <td class="genderG">Gender</td>
+                        <td class="academyG">Academy</td>
+                        <td class="writtenG"> Written Application</td>
+                        <td class="individualG">Individual Interview</td>
+                        <td class="groupG">Group Interview</td>
+                        <td class="totalG">Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cut_group_a.forEach(function(applicant) { %>
+                        <tr class="applicant-row">
+                            <td class="nameG"> <%= `${applicant.firstname} ${applicant.lastname}` %> </td>
+                            <td class="genderG"> <%= `${applicant.gender}` %> </td>
+                            <td class="academyG"> <%= `${applicant.academy}` %> </td>
+
+                            <%  const written = applicant.applicant_data.written
+                                let written_grade = 0
+                                written.grades.forEach(function(grade) {written_grade = written_grade + grade}); 
+
+                                const individual = applicant.applicant_data.individual_interview
+                                let individual_grade = 0
+                                individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
+                                individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) 
+                                
+                                const group = applicant.applicant_data.group_interview
+                                let group_grade = 0
+                                group.grades.forEach(function(grade) {group_grade = group_grade + grade}) %>
+                            <td class="writtenG"><%= written_grade %></td>
+                            <td class="individualG"><%= individual_grade %></td>
+                            <td class="groupG"><%= group_grade %></td>
+
+                            <% let total = written_grade + individual_grade + group_grade %>
+                            <td class="totalG"> <%= total %> </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
     <% } %>
 </div>
 

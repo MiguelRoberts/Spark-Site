@@ -12,7 +12,7 @@ const groupsSchema = new Schema({
         required: true
     },
 
-    mods: {
+    time: {
         type: String,
         required: true
     },

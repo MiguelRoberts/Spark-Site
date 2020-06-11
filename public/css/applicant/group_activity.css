@@ -36,12 +36,12 @@
 
 .group-activity h3 {
     font-weight: 700;
-    margin: 7px 0;
+    margin: 15px 0;
 }
 
 .group-activity h4 {
     font-weight: 400; /*used to be 300*/
-    margin: 5px 0;
+    margin: 7.5px 0;
 }
 
 .group-activity ul {
@@ -49,14 +49,37 @@
     padding-left: 10px;
 }
 
-.signup {
+.group-activity ul li:first-child{
+    margin-top: 10px;
+}
+
+.group-activity ul li{
+    font-weight: 400;
+    color: #757575;
+}
+
+.group-activity button {
     font-size: 20px;
     font-weight: 400; /*used to be 300*/
     border: none;
-    background-color: rgb(116,220,96);
     color: white;
-    border-radius: 30px;
-    padding: 10px 12px;
-    text-decoration: none;
+    padding: 15px;
+    min-width: 100px;
+    border-radius: 17.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+}
+
+.sign-up {
+    background-color: #4CAF50;
+}
+
+.signed-up {
+    background-color: #FFC107;
+}
+
+.full {
+    background-color: #0277BD;;
 }

@@ -170,6 +170,11 @@ $(function() {
     $("#add-group-interview-button").click(function() {
         MicroModal.show('add-group-interview-modal')
     })
+
+    // group activity dates
+    $("#add-group-activity-button").click(function() {
+        MicroModal.show('add-group-activity-modal')
+    })
 })
 
 $("#add-group-interview-modal-form").submit(function(e) {
@@ -178,17 +183,40 @@ $("#add-group-interview-modal-form").submit(function(e) {
     const url =  $(this).attr('action')
     const name = "Group Interview"
     const date = $("#date").val()
-    const mods = $("#mods").val()
+    const time = $("#mods").val()
     const room = $("#room").val()
 
     $.ajax({
         method: "POST",
         url,
-        data: { name, date, mods, room },
+        data: { name, date, time, room },
         dataType: 'JSON'
     })
     .done(function(data) {
         fillGroupInterviews()
+    })
+    .fail(function(err) {
+        console.log(err)
+    })
+})
+
+$("#add-group-activity-modal-form").submit(function(e) {
+    e.preventDefault()
+
+    const url =  $(this).attr('action')
+    const name = "Group Activity"
+    const date = $("#activity-date").val()
+    const room = $("#activity-room").val()
+    const time = $("#activity-time").val()
+
+    $.ajax({
+        method: "POST",
+        url,
+        data: { name, date, room, time },
+        dataType: 'JSON'
+    })
+    .done(function(data) {
+        fillGroupActivities()
     })
     .fail(function(err) {
         console.log(err)
@@ -208,7 +236,7 @@ function fillGroupInterviews() {
     })
     .done(function(data) {
         if (data.groups.length > 0) {
-            data.groups.forEach(({ date, mods, room, leaders, _id:id }) => {
+            data.groups.forEach(({ date, time, room, leaders, _id:id }) => {
                 const { _id:user_id } = JSON.parse($("#userInfo").val())
                 let $joinButton = `<button class="join" onclick="joinGroupInterview('${id}')">Join</button>` 
 
@@ -222,7 +250,7 @@ function fillGroupInterviews() {
                         <div class="info">
                             <p>Date: ${date}</p>
                             <div class="mods-room">
-                                <p>Mods: ${mods}</p>
+                                <p>Mods: ${time}</p>
                                 <p>Room: ${room}</p>
                             </div>
                         </div>
@@ -242,6 +270,45 @@ function fillGroupInterviews() {
 }
 
 fillGroupInterviews()
+
+function fillGroupActivities() {
+    const $content = $("#group-activity-dates").children('.addable__body').children('.addable__content')
+    $content.empty()
+
+    const url = $("#group-activity-dates").attr('data-api')
+
+    $.ajax({
+        method: "GET",
+        url,
+        dataType: 'JSON'
+    })
+    .done(function(data) {
+        if (data.groups.length > 0) {
+            data.groups.forEach(({ date, time, room, leaders, _id:id }) => {
+                $content.append(`
+                    <div class="addable__content__elements" id="${id}">
+                        <div class="info">
+                            <p>Date: ${date}</p>
+                            <div class="room-time">
+                                <p>Room: ${room}</p>
+                                <p>Time: ${time}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="actions">
+                            <button class="delete" onclick="deleteGroupActivity('${id}')">Delete</button>
+                        </div>
+                    </div>
+                `)
+            })
+        }
+    })
+    .fail(function(err) {
+        console.log(err)
+    })
+}
+
+fillGroupActivities()
 
 function joinGroupInterview(id) {
     const url = `/api/application-details/group-interview/${id}/join`
@@ -273,6 +340,20 @@ function joinGroupInterview(id) {
 
 function deleteGroupInterview(id) {
     const url = `/api/application-details/group-interview/${id}/delete?_method=delete`
+    $.ajax({
+        method: "POST",
+        url
+    })
+    .done(function(data) {
+        $(`#${id}`).remove()
+    })
+    .fail(function(err) {
+        console.log(err)
+    })
+}
+
+function deleteGroupActivity(id) {
+    const url = `/api/application-details/group-activity/${id}/delete?_method=delete`
     $.ajax({
         method: "POST",
         url

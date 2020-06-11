@@ -39,7 +39,7 @@ router.get('/', auth, sparkAuth, async (req, res) => {
         // applicants that were cut during group activity stage
         let cut_group_a = cut.filter(a => a.applicant_data.application_stage === 4)
         
-        const stage = ['Written Application', 'Individual Interview', 'Group Interview', 'Group Activitiy'][applications[0].applicant_data.application_stage-1]
+        const stage = ['Not Open', 'Written Application', 'Individual Interview', 'Group Interview', 'Group Activity', 'Accepted'][applications[0].applicant_data.application_stage]
 
         const group_interview = (await ApplicationDetails.findOne()).group_interview
 

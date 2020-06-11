@@ -95,11 +95,11 @@
     margin: 10px 0;
 }
 
-.mods-room {
+.mods-room, .room-time {
     display: flex;
 }
 
-.mods-room p:first-child {
+.mods-room p:first-child, .room-time p:first-child {
     margin-right: 25px;
 }
 
@@ -187,7 +187,7 @@
     display: none;
 }
 
-#add-group-interview-modal-content {
+#add-group-interview-modal-content, #add-group-activity-modal-content {
     width: 100%;
 }
 
@@ -198,7 +198,7 @@ form {
     align-items: center;
 }
 
-#add-group-interview-modal-form .input-field {
+#add-group-interview-modal-form .input-field, #add-group-activity-modal-form .input-field {
     margin: 10px 0;
     width: 350px;
     
@@ -207,18 +207,18 @@ form {
     align-items: center;
 }
 
-#add-group-interview-modal-form input {
+#add-group-interview-modal-form input, #add-group-activity-modal-form input {
     padding: 10px;
     text-align: center;
 }
 
-#add-group-interview-modal-form button {
+#add-group-interview-modal-form button, #add-group-activity-modal-form button {
     margin-top: 15px;
     font-size: 20px;
     padding: 15px;
 }
 
-#modal-submit {
+.modal-submit {
     color: white;
     background-color: #43A047;
 }

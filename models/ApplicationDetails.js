@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const applicationDetailsSchema = new Schema({
-    applicationsOpen: Boolean,
     written: {
         instructions: String,
         questions: [], // written questions

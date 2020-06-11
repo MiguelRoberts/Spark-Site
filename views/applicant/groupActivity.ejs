@@ -5,43 +5,38 @@
     <table class="groupactivity-signups">
         <tbody>
             <tr>
-                <td class="group-activity">
-                    <h3>Group Activity 1</h3>
-                    <h4>Date: 11/24/67</h4>
-                    <h4>Room: Lower Caf</h4>
-                    <h4>Start Time: 4:20 PM</h4>
-                    <h3>Applicants:</h3>
-                    <ul>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                    </ul>
-                    <button class="signup">Sign Up</button>
-                </td>
-                <td class="group-activity">
-                    <h3>Group Activity 2</h3>
-                    <h4>Date: 11/25/67</h4>
-                    <h4>Room: Lower Caf</h4>
-                    <h4>Start Time: 4:20 PM</h4>
-                    <h3>Applicants:</h3>
-                    <ul>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                    </ul>
-                    <button class="signup">Sign Up</button>
-                </td>
+                <% group_activities.forEach((group, i) => { 
+                    let buttonText = "Sign Up"
+                    let buttonClass = "sign-up"
+
+                    if (group.applicants.length === group_activity_limit) {
+                        buttonText = "Full"
+                        buttonClass = "full"
+                    }
+                %>
+                    <td class="group-activity">
+                        <h3>Group Activity <%= i+1 %></h3>
+                        <h4>Date: <%= group.date %></h4>
+                        <h4>Room: <%= group.room %></h4>
+                        <h4>Start Time: <%= group.time %></h4>
+                        <h3>Applicants:</h3>
+                        <ul id="<%= group._id %>-ul">
+                            <% group.applicants.forEach(applicant => { 
+                                if (JSON.stringify(applicant._id) === JSON.stringify(user._id)) {
+                                    buttonText = "Signed Up";
+                                    buttonClass = "signed-up"
+                                }
+                            %>    
+                                <li 
+                                    <% if (JSON.stringify(applicant._id) === JSON.stringify(user._id)) { %> data-me="true" <% } %>
+                                >
+                                <%= applicant.firstname %> <%= applicant.lastname %></li>
+                            <% }) %> 
+                        </ul>
+                        <button id="<%= group._id %>" class="<%= buttonClass %>" onclick="joinGroupActivity('<%= group._id %>')"><%= buttonText %></button>
+                    </td>
+                    
+                <% }) %>
             </tr>
         </tbody>
     </table>

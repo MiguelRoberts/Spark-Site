@@ -134,6 +134,38 @@ thead tr td {
     margin-right: 30px;
 }
 
+#accept-applicants {
+    font-size: 20px;
+    font-weight: 300;
+    border: none;
+    background-color: #2196F3;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 12px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 15px 0;
+    margin-right: 30px;
+}
+
+#open-applications {
+    font-size: 20px;
+    font-weight: 300;
+    border: none;
+    background-color: #2196F3;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 12px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 15px 0;
+    margin-right: 30px;
+}
+
+.title {
+    text-align: center;
+}
+
 .table-title {
     width: 100%;
     text-align: center;

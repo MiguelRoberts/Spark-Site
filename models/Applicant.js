@@ -45,8 +45,8 @@ const applicantSchema = new Schema({
     },
     application_stage: {
         type: Number,
-        default: 1,
-    }, // 1 = written | 2 = individual interview | 3 = group interview
+        default: 0,
+    }, // 0 = it is not time to apply | 1 = written application | 2 = individual interview | 3 = group interview | 4 = group activity | 5 = Accepted!
     cut: {
         type: Boolean,
         default: false

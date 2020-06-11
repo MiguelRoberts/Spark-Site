@@ -99,6 +99,18 @@
                 </div>
             </div>
         </div>
+
+        <div id="group-activity-dates" class="addable" data-api="/api/application-details/group-activity-dates" data-custom="true">
+            <div class="addable__header">
+                <h3 class="header">Group Activity - Dates</h2>
+            </div>
+            <div class="addable__body">
+                <div class="addable__content"></div>
+                <div class="addable__input">
+                    <button id="add-group-activity-button" class="full">Add Group Activity Date</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -131,8 +143,46 @@
                     </div>
                     
                     <div class="modal-buttons">
-                        <button id="modal-submit" type="submit" class="modal__btn" data-micromodal-close>Submit</button>
-                        <button id="modal-cancel" type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
+                        <button type="submit" class="modal__btn modal-submit" data-micromodal-close>Submit</button>
+                        <button type="button" class="modal__btn modal-cancel" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="add-group-activity-modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="add-group-activity-modal">
+            <header class="modal__header">
+                <h2 class="modal__title" id="add-group-activity-modal-title">
+                    Add Group Activity Date
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            
+            <main class="modal__content" id="add-group-activity-modal-content">
+                <form id="add-group-activity-modal-form" action="/api/application-details/group-activity-dates">
+                    
+                    <div class="input-field">
+                        <label for="activity-date">Date</label>
+                        <input id="activity-date" type="text" name="date" placeholder="e.g. December 12, 2020">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="activity-room">Room</label>
+                        <input id="activity-room" type="text" name="room" placeholder="e.g. Lower Cafe">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="activity-time">Time</label>
+                        <input id="activity-time" type="text" name="time" placeholder="e.g 4:15 PM">
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button type="submit" class="modal__btn modal-submit" data-micromodal-close>Submit</button>
+                        <button type="button" class="modal__btn modal-cancel" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
                     </div>
                 </form>
             </main>

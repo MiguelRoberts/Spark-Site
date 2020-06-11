@@ -155,7 +155,7 @@ router.post('/individual-interview-categories', auth, sparkAuth, async (req, res
 // @access  Protected
 router.get('/group-interview-dates', auth, sparkAuth, async (req, res) => {
     try {
-        const groups = await Groups.find()
+        const groups = await Groups.find({ name: 'Group Interview' })
 
         res.send({ groups })
     } catch (e) {
@@ -168,7 +168,7 @@ router.get('/group-interview-dates', auth, sparkAuth, async (req, res) => {
 // @desc    Create Group Interview Time
 // @access  Protected
 router.post('/group-interview-dates', auth, sparkAuth, async (req, res) => {
-    const groupInfo = { name, date, mods, room } = req.body
+    const groupInfo = { name, date, time, room } = req.body
     try {
         await Groups.create(groupInfo)
         res.send({ msg: "Created Group Interview" })
@@ -186,7 +186,7 @@ router.post('/group-interview/:id/join', auth, async (req, res) => {
 
     try {
         const group = await Groups.findById(req.params.id)
-        const groups = await Groups.find({})
+        const groups = await Groups.find({ name: 'Group Interview' })
         
         // if user is a leader add to leaders array
         if (leader_data) {
@@ -264,6 +264,80 @@ router.post('/group-interview-categories', auth, sparkAuth, async (req, res) => 
         await ApplicantDetails.findOneAndUpdate({}, { 'group_interview.categories' : categories })
 
         res.send({ msg: 'Successfully Submitted Responses' })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
+// @route   GET /api/application-details/group-activity-dates
+// @desc    GET Group Interview Times
+// @access  Protected
+router.get('/group-activity-dates', auth, sparkAuth, async (req, res) => {
+    try {
+        const groups = await Groups.find({ name: 'Group Activity' })
+
+        res.send({ groups })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
+// @route   POST /api/application-details/group-activity-dates
+// @desc    Create Group Activity Time
+// @access  Protected
+router.post('/group-activity-dates', auth, sparkAuth, async (req, res) => {
+    const groupInfo = { name, date, room, time } = req.body
+    try {
+        await Groups.create(groupInfo)
+        res.send({ msg: "Created Group Activity" })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
+// @route   POST /api/application-details/group-activity/join
+// @desc    Join Group Activity
+// @access  Protected
+router.post('/group-activity/:id/join', auth, async (req, res) => {
+    const { user_id } = req.body
+
+    try {
+        const group = await Groups.findById(req.params.id)
+        const groups = await Groups.find({ name: 'Group Activity' })
+        const applicants = await Applicant.find({ cut: false })
+        const limit = (applicants / 2) + 2
+       
+        if (group.applicants.indexOf(user_id) !== -1 || group.applicants.length === limit) return
+
+        // remove user from any group they may have previously signed up for
+        groups.forEach(async g => {
+            let i = g.applicants.indexOf(user_id)
+            if (i === -1) return
+
+            g.applicants.splice(i, 1)
+            await g.save()
+        })
+
+        group.applicants.push(user_id)
+        await group.save()
+
+        res.send({ msg: 'Signed Up For Group Activity' })
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ msg: 'Server Error' })
+    }
+})
+
+// @route   DELETE /api/application-details/group-activity/delete
+// @desc    Delete Group Activity
+// @access  Protected
+router.delete('/group-activity/:id/delete', auth, sparkAuth, async (req, res) => {
+    try {
+        await Groups.findByIdAndDelete(req.params.id)
+        res.send({ msg: "Deleted Group Activity" })
     } catch (e) {
         console.log(e)
         res.status(500).send({ msg: 'Server Error' })

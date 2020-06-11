@@ -5,7 +5,7 @@
     <table class="groupinterview-signups">
         <tbody>
             <%  let i = 0
-                groups.forEach((group, j) => { 
+                group_interviews.forEach((group, j) => { 
                 let date = new Date(Date.parse(group.date))
                 let d = ("0" + date.getDate().toString()).substr(-2)
                 let m = ("0" + date.getMonth().toString()).substr(-2)
@@ -43,7 +43,7 @@
                     <button id="<%= group._id %>" class="<%= buttonClass %>" onclick="joinGroupInterview('<%= group._id %>')"><%= buttonText %></button>
                 </td>
 
-                <% i++; if (i % 4 === 0 || j === groups.length) { %> </tr> <% } %>
+                <% i++; if (i % 4 === 0 || j === group_interviews.length) { %> </tr> <% } %>
             <% }) %>
             </tr>
         </tbody>
