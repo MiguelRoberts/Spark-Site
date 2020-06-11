@@ -245,3 +245,64 @@ thead tr td {
     width: 8%;
     text-align: center;
 }
+
+/* GRADE MODAL */
+
+.back {
+    z-index: -1;
+}
+
+.hidden {
+    display: none;
+}
+
+#grade-modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#grade-modal-form .input-field {
+    margin: 10px 0;
+}
+
+#grade-modal-form input {
+    width: 100px;
+    padding: 10px;
+    margin-left: 15px;
+    text-align: center;
+}
+
+.textarea-field {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#comments-label {
+    text-align: center;
+}
+
+#comments { 
+    padding: 10px;
+}
+
+#grade-modal-form  textarea {
+    resize: vertical;
+    width: 100%;
+    height: 150px;
+    color: #424242;
+    font-size: 18px;
+}
+
+#grade-modal-form button {
+    margin-top: 15px;
+    font-size: 20px;
+    padding: 15px;
+}
+
+#modal-submit {
+    color: white;
+    background-color: #43A047;
+}

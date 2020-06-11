@@ -46,14 +46,33 @@
     margin: 15px 0;
 }
 
-.signup {
+.group-interview ul li{
+    font-weight: 400;
+    color: #757575;
+}
+
+.group-interview button {
     font-size: 20px;
     font-weight: 400; /*used to be 300*/
     border: none;
-    background-color: rgb(116,220,96);
     color: white;
-    border-radius: 30px;
-    padding: 10px 12px;
-    text-decoration: none;
+    padding: 15px;
+    min-width: 100px;
+    border-radius: 17.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+}
+
+.sign-up {
+    background-color: #4CAF50;
+}
+
+.signed-up {
+    background-color: #FFC107;
+}
+
+.full {
+    background-color: #0277BD;;
 }

@@ -79,11 +79,64 @@
     border-bottom: 1px solid #9E9E9E;
 }
 
+.addable__content__elements {
+    font-size: 21px;
+    color: #424242;
+    
+    display: flex;
+    justify-content: space-between;
+    
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #9E9E9E;
+}
+
+.addable__content__elements p {
+    margin: 10px 0;
+}
+
+.mods-room {
+    display: flex;
+}
+
+.mods-room p:first-child {
+    margin-right: 25px;
+}
+
+.actions {
+    margin: 15px 0 5px 0;
+}
+
+.actions button {
+    font-size: 18px;
+    padding: 13.5px;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions .join {
+    background-color: #4CAF50;
+}
+
+.actions .delete {
+    background-color: #E53935;
+}
+
+.actions .joined {
+    background-color: #FFC107;
+}
+
+.actions .full {
+    background-color: #0277BD;
+}
+
 .addable__content__element:last-of-type {
     margin-bottom: 0;
 }
 
-.addable__content__element p {
+.addable__content__element p, .addable__content__elements p {
     font-weight: 400;
 }
 
@@ -115,4 +168,57 @@
 
     margin-left: 10px;
     min-width: 175px;
+}
+
+.addable__input button.full {
+    background-color: white;
+    border: 1px solid #9E9E9E;
+    padding: 12.5px;
+    cursor: pointer;
+
+    width: 100%;
+}
+
+.back {
+    z-index: -1;
+}
+
+.hidden {
+    display: none;
+}
+
+#add-group-interview-modal-content {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-group-interview-modal-form .input-field {
+    margin: 10px 0;
+    width: 350px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#add-group-interview-modal-form input {
+    padding: 10px;
+    text-align: center;
+}
+
+#add-group-interview-modal-form button {
+    margin-top: 15px;
+    font-size: 20px;
+    padding: 15px;
+}
+
+#modal-submit {
+    color: white;
+    background-color: #43A047;
 }

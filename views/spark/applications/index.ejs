@@ -1,5 +1,41 @@
 <%- include ('../../partials/spark/header') %>
 
+<div class="modal micromodal-slide" id="grade-modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="grade-modal">
+            <header class="modal__header">
+                <h2 class="modal__title" id="grade-modal-title">
+                    Grade Group Interview
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            
+            <main class="modal__content" id="grade-modal-content">
+                <form id="grade-modal-form" method="POST">
+                    <input class="hidden" type="text" name="type" value="categories">
+
+                    <% group_interview.categories.forEach((category, i) => { %>
+                        <div class="input-field">
+                            <label for="<%= category.replace(' ', '_') %>"><%= category %></label>
+                            <input id="<%= category.replace(' ', '_') %>" type="number" min="1" max="5" name="grades" placeholder="1-5" required>
+                        </div>
+                    <% }) %>
+
+                    <div class="textarea-field">
+                        <label id="comments-label" for="comments">Comments</label>
+                        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button id="modal-submit" type="submit" class="modal__btn">Submit</button>
+                        <button id="modal-cancel" type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
 <div class="container applications">
     <h1 class="title">Applications</h1>
 
@@ -117,9 +153,9 @@
                     
 
                     <% if(group_grade !== 0) { %>
-                        <td class="group"><a href=""> <%= group_grade %> </a></td>
+                        <td class="group"><a id="<%= applicant._id %>"><%= group_grade %> </a></td>
                     <% } else { %>
-                        <td class="group"><a href="" class="grade-button">Grade</a></td>
+                        <td class="group"><a id="<%= applicant._id %>" class="grade-button">Grade</a></td>
                     <% } %>
 
                     <% let total = written_grade + individual_grade + group_grade %>
@@ -159,7 +195,7 @@
                         <%  const written = applicant.applicant_data.written
                             let written_grade = 0
                             written.grades.forEach(function(grade) {written_grade = written_grade + grade}); %>
-                        <td class="writtenW"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
+                        <td class="writtenW"><%= written_grade %></td>
                         <% let total = written_grade %>
                         <td class="totalW"> <%= total %> </td>
                     </tr>
@@ -198,8 +234,8 @@
                             let individual_grade = 0
                             individual.questionGrades.forEach(function(grade) {individual_grade = individual_grade + grade});
                             individual.grades.forEach(function(grade) {individual_grade = individual_grade + grade}) %>
-                        <td class="writtenI"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
-                        <td class="individualI"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
+                        <td class="writtenI"><%= written_grade %></td>
+                        <td class="individualI"><%= individual_grade %></td>
                         
                         <% let total = written_grade + individual_grade %>
                         <td class="totalI"> <%= total %> </td>
@@ -244,9 +280,9 @@
                             const group = applicant.applicant_data.group_interview
                             let group_grade = 0
                             group.grades.forEach(function(grade) {group_grade = group_grade + grade}) %>
-                        <td class="writtenG"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
-                        <td class="individualG"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
-                        <td class="groupG"><a href=""> <%= group_grade %> </a></td>
+                        <td class="writtenG"><%= written_grade %></td>
+                        <td class="individualG"><%= individual_grade %></td>
+                        <td class="groupG"><%= group_grade %></td>
 
                         <% let total = written_grade + individual_grade + group_grade %>
                         <td class="totalG"> <%= total %> </td>
@@ -291,9 +327,9 @@
                             const group = applicant.applicant_data.group_interview
                             let group_grade = 0
                             group.grades.forEach(function(grade) {group_grade = group_grade + grade}) %>
-                        <td class="writtenG"><a href="/spark/applications/written/<%= applicant._id %>" ><%= written_grade %></a></td>
-                        <td class="individualG"><a href="/spark/applications/individual-interview/<%= applicant._id %>"> <%= individual_grade %> </a></td>
-                        <td class="groupG"><a href=""> <%= group_grade %> </a></td>
+                        <td class="writtenG"><%= written_grade %></td>
+                        <td class="individualG"><%= individual_grade %></td>
+                        <td class="groupG"><%= group_grade %></td>
 
                         <% let total = written_grade + individual_grade + group_grade %>
                         <td class="totalG"> <%= total %> </td>

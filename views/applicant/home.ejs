@@ -8,8 +8,9 @@
         </div>
     </div>
 <% } else if (user.applicant_data.cut) { %>
-    <div class="applicant-cut">
-        <p>you've been cut</p>
+    <div class="cut">
+        <h1>Your Application Has Been Cut</h1>
+        <p>We are sorry to inform you that you have been removed from the application process. Spark is relatively small and highly selective organization which requires us to make difficult decisions throughout the application process.</p>
     </div>
 <% } else if (user.applicant_data.application_stage === 1) { %>
     <% if (user.applicant_data.written.activities.length !== 0) { %>

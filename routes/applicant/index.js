@@ -42,7 +42,8 @@ router.get('/', auth, applicantAuth, async (req, res) => {
         let js = '<script src="/js/applicant/app.js"></script>' + scripts[user.applicant_data.application_stage-1]
 
         if (user.applicant_data.application_stage === 3) {
-            const groups = await Groups.find({ name: 'Group Interview' })
+            const groups = await Groups.find({ name: 'Group Interview' }).populate('applicants').exec()
+
             return res.render('applicant/home', { 
                 title: "Spark Applicant",
                 user,

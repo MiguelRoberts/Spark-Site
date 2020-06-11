@@ -41,14 +41,23 @@ router.get('/', auth, sparkAuth, async (req, res) => {
         
         const stage = ['Written Application', 'Individual Interview', 'Group Interview', 'Group Activitiy'][applications[0].applicant_data.application_stage-1]
 
+        const group_interview = (await ApplicationDetails.findOne()).group_interview
+
         res.render('spark/applications', { 
             title: "Spark Applications",
-            css: '<link rel="stylesheet" href="/css/spark/applications/index.css" />',
-            js: '<script src="/js/spark/applications/index.js"></script>', 
+            css: `
+                <link rel="stylesheet" href="/css/spark/micromodal.css" />
+                <link rel="stylesheet" href="/css/spark/applications/index.css" />
+            `,
+            js: `
+                <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+                <script src="/js/spark/applications/index.js"></script>
+            `, 
 
             user: req.user,
 
             applications,
+            group_interview,
             cut_written, cut_individual, cut_group_i, cut_group_a,
             stage
         })

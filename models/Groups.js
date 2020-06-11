@@ -6,13 +6,18 @@ const groupsSchema = new Schema({
         type: String,
         required: true
     },
-
-    room: {
+    
+    date: {
         type: String,
         required: true
     },
 
-    time: {
+    mods: {
+        type: String,
+        required: true
+    },
+
+    room: {
         type: String,
         required: true
     },

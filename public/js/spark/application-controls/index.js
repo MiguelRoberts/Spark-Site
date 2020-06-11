@@ -126,6 +126,8 @@ $(function() {
     }
 
     // CUSTOM ADDABLE SCRIPTS
+    
+    // written deadline
     function fillWrittenDeadline() {
         const url = $("#written-deadline").attr('data-api')
 
@@ -163,4 +165,122 @@ $(function() {
             console.log(err)
         })
     })
+
+    // group interview dates
+    $("#add-group-interview-button").click(function() {
+        MicroModal.show('add-group-interview-modal')
+    })
 })
+
+$("#add-group-interview-modal-form").submit(function(e) {
+    e.preventDefault()
+
+    const url =  $(this).attr('action')
+    const name = "Group Interview"
+    const date = $("#date").val()
+    const mods = $("#mods").val()
+    const room = $("#room").val()
+
+    $.ajax({
+        method: "POST",
+        url,
+        data: { name, date, mods, room },
+        dataType: 'JSON'
+    })
+    .done(function(data) {
+        fillGroupInterviews()
+    })
+    .fail(function(err) {
+        console.log(err)
+    })
+})
+
+function fillGroupInterviews() {
+    const $content = $("#group-interview-dates").children('.addable__body').children('.addable__content')
+    $content.empty()
+
+    const url = $("#group-interview-dates").attr('data-api')
+
+    $.ajax({
+        method: "GET",
+        url,
+        dataType: 'JSON'
+    })
+    .done(function(data) {
+        if (data.groups.length > 0) {
+            data.groups.forEach(({ date, mods, room, leaders, _id:id }) => {
+                const { _id:user_id } = JSON.parse($("#userInfo").val())
+                let $joinButton = `<button class="join" onclick="joinGroupInterview('${id}')">Join</button>` 
+
+                if (leaders.indexOf(user_id) !== -1)
+                    $joinButton = `<button class="joined" onclick="joinGroupInterview('${id}')">Joined</button>`
+                else if (leaders.length === 5)
+                    $joinButton = `<button class="full">Full</button>`
+
+                $content.append(`
+                    <div class="addable__content__elements" id="${id}">
+                        <div class="info">
+                            <p>Date: ${date}</p>
+                            <div class="mods-room">
+                                <p>Mods: ${mods}</p>
+                                <p>Room: ${room}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="actions">
+                            ${$joinButton}
+                            <button class="delete" onclick="deleteGroupInterview('${id}')">Delete</button>
+                        </div>
+                    </div>
+                `)
+            })
+        }
+    })
+    .fail(function(err) {
+        console.log(err)
+    })
+}
+
+fillGroupInterviews()
+
+function joinGroupInterview(id) {
+    const url = `/api/application-details/group-interview/${id}/join`
+    const { _id:user_id, leader_data } = JSON.parse($("#userInfo").val())
+
+    $.ajax({
+        method: "POST",
+        url,
+        data: { user_id, leader_data },
+        dataType: 'JSON'
+    })
+    .done(function(data) {
+        const $joined = $('.joined')
+        if ($joined) {
+            $joined.removeClass('joined')
+            $joined.addClass('join')
+            $joined.text('Join')
+        }
+
+        const $join = $(`#${id}`).children('.actions').children(".join")
+        $join.removeClass('join')
+        $join.addClass('joined')
+        $join.text("Joined")
+    })
+    .fail(function(err) {
+        console.log(err)
+    })
+}
+
+function deleteGroupInterview(id) {
+    const url = `/api/application-details/group-interview/${id}/delete?_method=delete`
+    $.ajax({
+        method: "POST",
+        url
+    })
+    .done(function(data) {
+        $(`#${id}`).remove()
+    })
+    .fail(function(err) {
+        console.log(err)
+    })
+}

@@ -15,6 +15,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="addables-container">
         <div id="written-questions" class="addable" data-api="/api/application-details/written-questions">
@@ -73,6 +74,18 @@
             </div>
         </div>
 
+        <div id="group-interview-dates" class="addable" data-api="/api/application-details/group-interview-dates" data-custom="true">
+            <div class="addable__header">
+                <h3 class="header">Group Interview - Dates</h2>
+            </div>
+            <div class="addable__body">
+                <div class="addable__content"></div>
+                <div class="addable__input">
+                    <button id="add-group-interview-button" class="full">Add Group Interview Date</button>
+                </div>
+            </div>
+        </div>
+
         <div id="group-interview-categories" class="addable" data-api="/api/application-details/group-interview-categories">
             <div class="addable__header">
                 <h3 class="header">Group Interview - Categories</h2>
@@ -85,6 +98,44 @@
                     <button>Add</button>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="add-group-interview-modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="add-group-interview-modal">
+            <header class="modal__header">
+                <h2 class="modal__title" id="add-group-interview-modal-title">
+                    Add Group Interview Date
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            
+            <main class="modal__content" id="add-group-interview-modal-content">
+                <form id="add-group-interview-modal-form" action="/api/application-details/group-interview-dates">
+                    
+                    <div class="input-field">
+                        <label for="date">Date</label>
+                        <input id="date" type="text" name="date" placeholder="e.g. December 12, 2020">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="mods">Mods</label>
+                        <input id="mods" type="text" name="mods" placeholder="e.g. 1-3">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="room">Room</label>
+                        <input id="room" type="text" name="room" placeholder="e.g 138">
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button id="modal-submit" type="submit" class="modal__btn" data-micromodal-close>Submit</button>
+                        <button id="modal-cancel" type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
+                    </div>
+                </form>
+            </main>
         </div>
     </div>
 </div>

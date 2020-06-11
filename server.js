@@ -54,32 +54,26 @@ server.use(express.static(path.join(__dirname, 'public')))
 const port = process.env.PORT || 8000
 server.listen(port, () => console.log(`Server running on port ${port}...`))
 
-function updateStage(stage) {
-    const Applicant = require('./models/Applicant')
-    Applicant.find({}, (err, applicants) => {
-        if (err) return console.log(err)
-        applicants.forEach(applicant => {
-            applicant.update({ application_stage: stage })
-            // applicant.application_stage = stage
-            // applicant.save()
-        })
-    })
-}
+// function updateStage(stage) {
+//     const Applicant = require('./models/Applicant')
+//     Applicant.find({}, (err, applicants) => {
+//         if (err) return console.log(err)
+//         applicants.forEach(applicant => {
+//             Applicant.findByIdAndUpdate(applicant._id, { application_stage : stage }, (err) => {})
+//         })
+//     })
+// }
 
-// updateStage(1)
+// updateStage(3)
 
-// TODO: Change width of scheduling interview - spark side
-// TODO: Any spark leader can schedule the group interview date
-// TODO: Add group interview creater in applications-control
-// TODO: Update instructions for group interview
-// TODO: Make signup button say Signed Up if you sign up
-// TODO: Make Signup button say full under full gorup interviews (4 ppl)
-// TODO: Make group interview button link to grade modal
+// TODO: Set Up Grade Group Interview Route
+// TODO: Populate Group Interview Values (category grades, comments) when clicking grade button
+
 // TODO: Accept Applicants!
 
-// TODO: Work on Group Interview Stage
+// TODO: Add Admin Page to create unique link for spark leaders signup - apply.html?unique-id
+
 // TODO: Add Start Application Page
-// TODO: Add "Thank You For Submitting" to written apps page
 // TODO: Add Email-Applicants Button to Application-Controls Page
 // TODO: Finish Email Functionality to Reset Passwords | Add Admin Functionality
 // TODO: Add Form Response When Users Submit Question on FAQ Page
