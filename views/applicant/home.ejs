@@ -14,11 +14,13 @@
 <% } else if (user.applicant_data.application_stage === 1) { %>
     <% if (user.applicant_data.written.activities.length !== 0) { %>
         <div class="written-submitted">
-            <p>thanks for submitting</p>
+            <h1>Thanks for applying!</h1>
+            <p>Please look out for an email in the upcoming weeks regarding the next steps and check this portal every so often to see if it updates.</p>
         </div>
-    <% } else if (Date.now() > Date.parse(details.written.date)) { %>
+    <% } else if (Date.now() > Date.parse(details.written.deadline)) { %>
         <div class="written-deadline">
-            <p>deadline has passed</p>
+            <h1>Deadline has passed</h1>
+            <p>Sorry but you did not apply on time. If you are a sophomore, please consider applying next year as a junior!</p>
         </div>
     <% } else { %>
         <%- include ('./written') %>
