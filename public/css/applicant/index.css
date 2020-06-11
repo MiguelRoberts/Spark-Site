@@ -1,26 +1,3 @@
-.not-time {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 75px;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: justify;
-    min-width: 800px;
-}
-
-.content h2 {
-    padding-bottom: 15px;
-    border-bottom: 2px solid #FBC02D;
-    margin: 0;
-}
-
 /* individual details css */
 
 .individual-details {
@@ -130,19 +107,19 @@ textarea {
     cursor: pointer;
 }
 
-.cut, .written-submitted, .written-deadline {
+.not-time, .cut, .written-submitted, .written-deadline, .accepted {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 75px;
 }
 
-.cut h1, .written-submitted h1, .written-deadline h1 {
+.not-time h1, .cut h1, .written-submitted h1, .written-deadline h1, .accepted h1 {
     border-bottom: 3px solid #FBC02D;
     padding-bottom: 15px;
 }
 
-.cut p, .written-submitted p, .written-deadline p {
+.not-time p, .cut p, .written-submitted p, .written-deadline p, .accepted p {
     width: 50%;
     text-align: center;
     line-height: 37.5px;

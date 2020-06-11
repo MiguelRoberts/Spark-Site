@@ -1,11 +1,9 @@
 <%- include ('./../partials/applicant/header') %>
 
-<% if(!details.applicationsOpen) { %>
+<% if(user.applicant_data.application_stage === 0) { %>
     <div class="not-time">
-        <div class="content">
-            <h2>It is not yet time to apply!</h2>
-            <p>We appreciate you signing up early, but it is not yet time to apply. Please check your email for any application updates and check the portal as well. If you have a question, feel free to use the question button above.</p>
-        </div>
+        <h1>It is not yet time to apply!</h1>
+        <p>We appreciate you signing up early, but it is not yet time to apply. Please check your email for any application updates and check the portal as well. If you have a question, feel free to use the question button above.</p>
     </div>
 <% } else if (user.applicant_data.cut) { %>
     <div class="cut">
@@ -40,6 +38,11 @@
     <%- include ('./groupInterview') %>
 <% } else if (user.applicant_data.application_stage === 4) { %>
     <%- include ('./groupActivity') %>
+<% } else if (user.applicant_data.application_stage === 5) { %>
+    <div class="accepted">
+        <h1>Congratulations!</h1>
+        <p>Congratulations on being accepted into SPARK! We appreciate your patience during this long application process and looking forward to having you join and work with our amazing group of student leaders. Please look out for emails regarding the next steps. See you soon! Best, SPARK Applications Committee</p>
+    </div>
 <% } %>
 
 <%- include ('./../partials/applicant/footer') %>
