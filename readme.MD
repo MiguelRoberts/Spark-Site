@@ -1,4 +1,4 @@
-# BCA Spark Webste
+# BCA Spark Website
 
 ![Project Image](./project_preview.png)
 
