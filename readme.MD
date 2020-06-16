@@ -19,7 +19,7 @@ You're sections headers will be used to reference location of destination.
 
 ## Description
 
-Currently, the website has a
+Currently, the website has a ...
 - Landing page to inform people about the spark organization
 - Public calender where anyone can see spark events made public
 - FAQ Page to see answered questions and submit questions of your own
