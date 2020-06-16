@@ -35,7 +35,7 @@ Currently, the website has a ...
 - Node.js
 - MongoDB
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#bca-spark-website)
 
 ---
 
@@ -66,12 +66,12 @@ Part 2 - Setting up the Project
 - models: contains mongoose schema files that describe the data sent, received, and modified from the database
 - public: contains all statically served assetts (js/css/img files + landing page and other html files)
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#bca-spark-website)
 
 ---
 
 ## Learning Material
-[Back To The Top](#read-me-template)
+[Back To The Top](#bca-spark-website)
 
 We strongly recommend purchasing the [Complete Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/) by Colt Steele on Udemy for ~$15 (goes on sale about every other week)
 
@@ -107,7 +107,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#bca-spark-website)
 
 ---
 
@@ -123,4 +123,4 @@ Alek and I really enjoyed working on this project and did our best to try and do
 - Phone Number: +1 (551) 804-7903
 - Email: aakaluza83@gmail.com
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#bca-spark-website)
