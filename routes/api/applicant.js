@@ -25,7 +25,7 @@ router.post('/written', auth, applicantAuth, async (req, res) => {
 
         await Applicant.findByIdAndUpdate(req.user.applicant_data, { 'written.activities' : activities, 'written.responses' : responses })
         
-        res.send({ msg: 'Successfully Submitted Responses' })
+        res.redirect('back')
     } catch (e) {
         console.log(e)
         res.status(500).send({ msg: 'Server Error' })

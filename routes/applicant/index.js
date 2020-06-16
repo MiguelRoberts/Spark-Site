@@ -43,7 +43,7 @@ router.get('/', auth, applicantAuth, async (req, res) => {
 
         if (user.applicant_data.application_stage !== 0 && user.applicant_data.application_stage !== 5) {
             css += stylesheets[user.applicant_data.application_stage-1]
-            js += scripts[user.applicant_data.application_stage]
+            js += scripts[user.applicant_data.application_stage-1]
         }
 
         if (user.applicant_data.application_stage === 3 || user.applicant_data.application_stage === 4) {

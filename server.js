@@ -66,14 +66,7 @@ server.listen(port, () => console.log(`Server running on port ${port}...`))
 
 // updateStage(0)
 
-// TODO: Set Up Grade Group Interview Route
-// TODO: Populate Group Interview Values (category grades, comments) when clicking grade button
-
-// TODO: Accept Applicants!
-
 // TODO: Add Admin Page to create unique link for spark leaders signup - apply.html?unique-id
-
-// TODO: Add Start Application Page
 // TODO: Add Email-Applicants Button to Application-Controls Page
 // TODO: Finish Email Functionality to Reset Passwords | Add Admin Functionality
 // TODO: Add Form Response When Users Submit Question on FAQ Page
